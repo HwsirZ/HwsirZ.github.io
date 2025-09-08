@@ -19,7 +19,7 @@
     &lt;!-- 封面图片区域 --&gt;
     &lt;div style=&#34;position: relative; height: 200px; overflow: hidden;&#34;&gt;
         &lt;img 
-            src=&#34;https://via.placeholder.com/720x300?text=The+Kaggle+Book+Cover&#34; 
+            src=&#34;the_kaggle_book.png&#34; 
             alt=&#34;《The Kaggle Book》封面&#34; 
             style=&#34;width: 100%; height: 100%; object-fit: cover;&#34;
         &gt;
