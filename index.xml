@@ -8,7 +8,7 @@
     <language>en</language>
     <lastBuildDate>Wed, 09 Jul 2025 08:59:11 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The_book_I_am_reading</title>
+      <title>The book I am reading</title>
       <link>/publications/the_book_i_am_reading/</link>
       <pubDate>Mon, 08 Sep 2025 17:08:57 +0800</pubDate>
       
@@ -32,7 +32,7 @@
     &lt;!-- 左侧：书籍封面 --&gt;
     &lt;div style=&#34;flex-shrink: 0;&#34;&gt;
       &lt;img 
-        src=&#34;images/the_kaggle_book.png&#34; 
+        src=&#34;/images/the_kaggle_book.png&#34; 
         alt=&#34;《The Kaggle Book》封面&#34;
         style=&#34;width: 140px; height: 180px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);&#34;
       &gt;
