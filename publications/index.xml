@@ -16,17 +16,75 @@
       
         <description>&lt;h1 id=&#34;the-kaggle-book&#34;&gt;《the kaggle book》&lt;/h1&gt;
 &lt;div&gt;
-&lt;div class=&#34;reading-progress-card&#34; style=&#34;font-family: &#39;Segoe UI&#39;, &#39;Microsoft YaHei&#39;, sans-serif; max-width: 720px; margin: 2rem auto; background: white; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); overflow: hidden;&#34;&gt;
-    &lt;!-- 封面图片区域 --&gt;
-    &lt;div style=&#34;position: relative; height: 200px; overflow: hidden;&#34;&gt;
-        &lt;img 
-            src=&#34;/images/the_kaggle_book.png&#34; 
-            alt=&#34;《The Kaggle Book》封面&#34; 
-            style=&#34;width: 100%; height: 100%; object-fit: cover;&#34;
-        &gt;
-        &lt;div style=&#34;position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 20px; color: white;&#34;&gt;
-            &lt;h3 style=&#34;margin: 0; font-size: 1.6rem; font-weight: 600;&#34;&gt;📚 阅读进度&lt;/h3&gt;
-            &lt;p style=&#34;margin: 8px 0 0; font-size: 1rem; opacity: 0.9;&#34;&gt;《The Kaggle Book》&lt;/p&gt;</description>
+    &lt;div style=&#34;font-family: &#39;Segoe UI&#39;, &#39;Microsoft YaHei&#39;, sans-serif; max-width: 800px; margin: 2rem auto; background: white; border-radius: 14px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); overflow: hidden;&#34;&gt;
+  &lt;!-- 封面图与信息区（Flex 布局） --&gt;
+  &lt;div style=&#34;display: flex; padding: 20px; gap: 20px; align-items: flex-start;&#34;&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 左侧：书籍封面 --&amp;gt;
+&amp;lt;div style=&amp;quot;flex-shrink: 0;&amp;quot;&amp;gt;
+  &amp;lt;img 
+    src=&amp;quot;images/the_kaggle_book.png&amp;quot; 
+    alt=&amp;quot;《The Kaggle Book》封面&amp;quot;
+    style=&amp;quot;width: 140px; height: 180px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);&amp;quot;
+  &amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div style=&amp;quot;flex: 1; display: flex; flex-direction: column; justify-content: center; line-height: 1.7;&amp;quot;&amp;gt;
+  &amp;lt;h3 style=&amp;quot;margin: 0 0 8px 0; font-size: 1.4rem; color: #2d3748; font-weight: 600;&amp;quot;&amp;gt;
+    📘 《The Kaggle Book》
+  &amp;lt;/h3&amp;gt;
+  &amp;lt;p style=&amp;quot;margin: 0 0 12px 0; font-size: 1.05rem; color: #4a5568;&amp;quot;&amp;gt;
+    &amp;lt;strong&amp;gt;作者：&amp;lt;/strong&amp;gt;Vera Khachatryan, Eryk Lewinson
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;!-- 阅读进度条 --&amp;gt;
+  &amp;lt;div style=&amp;quot;margin: 10px 0;&amp;quot;&amp;gt;
+    &amp;lt;div style=&amp;quot;display: flex; justify-content: space-between; font-size: 0.9rem; color: #718096; margin-bottom: 6px;&amp;quot;&amp;gt;
+      &amp;lt;span&amp;gt;阅读进度&amp;lt;/span&amp;gt;
+      &amp;lt;span&amp;gt;35%&amp;lt;/span&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div style=&amp;quot;height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;&amp;quot;&amp;gt;
+      &amp;lt;div style=&amp;quot;height: 100%; background: linear-gradient(90deg, #48bb78, #38a169); width: 35%;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;!-- 当前阅读章节 --&amp;gt;
+  &amp;lt;p style=&amp;quot;margin: 8px 0 0; font-size: 1rem; color: #2b6cb0;&amp;quot;&amp;gt;
+    &amp;lt;strong&amp;gt;当前阅读：&amp;lt;/strong&amp;gt;Chapter 5: Competition Tasks and Metrics
+  &amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+  &lt;!-- 下方：可折叠章节目录 --&gt;
+  &lt;details style=&#34;padding: 0 20px 20px; margin-top: -10px; border-top: 1px dashed #e2e8f0;&#34;&gt;
+    &lt;summary style=&#34;cursor: pointer; user-select: none; outline: none; padding: 12px 0; font-weight: 600; color: #2d3748; font-size: 1.05rem;&#34;&gt;
+      📚 点击展开查看全书目录
+    &lt;/summary&gt;
+    &lt;div style=&#34;margin-top: 12px; font-size: 0.95rem; color: #4a5568; line-height: 1.8; padding-left: 5px;&#34;&gt;
+      &lt;strong&gt;Part I: Introduction to Competitions&lt;/strong&gt;&lt;br&gt;
+      1. Introducing Kaggle and Other Data Science Competitions&lt;br&gt;
+      2. Organizing Data with Datasets&lt;br&gt;
+      3. Working and Learning with Kaggle Notebooks&lt;br&gt;
+      4. Leveraging Discussion Forums&lt;br&gt;
+      5. &lt;strong&gt;Competition Tasks and Metrics&lt;/strong&gt; ← 当前&lt;br&gt;&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;strong&amp;gt;Part II: Sharpening Your Skills for Competitions&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+  6. Designing Good Validation&amp;lt;br&amp;gt;
+  7. Modeling for Tabular Competitions&amp;lt;br&amp;gt;
+  8. Hyperparameter Optimization&amp;lt;br&amp;gt;
+  9. Ensembling with Blending and Stacking Solutions&amp;lt;br&amp;gt;
+  10. Modeling for Computer Vision&amp;lt;br&amp;gt;
+  11. Modeling for NLP&amp;lt;br&amp;gt;
+  12. Simulation and Optimization Competitions&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+
+  &amp;lt;strong&amp;gt;Part III: Leveraging Competitions for Your Career&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+  13. Creating Your Portfolio of Projects and Ideas&amp;lt;br&amp;gt;
+  14. Finding New Professional Opportunities
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/details&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       
     </item>
     
