@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/notes/reinforcement-learning/</loc>
+    <lastmod>2025-09-18T20:31:40+08:00</lastmod>
+  </url><url>
     <loc>/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</loc>
     <lastmod>2025-09-18T20:19:09+08:00</lastmod>
   </url><url>
