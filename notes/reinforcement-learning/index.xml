@@ -8,6 +8,38 @@
     <language>en</language>
     <lastBuildDate>Thu, 18 Sep 2025 20:31:40 +0800</lastBuildDate><atom:link href="/notes/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>K臂赌博机的增量实现以及追踪非平衡问题</title>
+      <link>/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 20 Sep 2025 22:04:16 +0800</pubDate>
+      
+      <guid>/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</guid>
+      
+        <description>&lt;h2 id=&#34;一增量实现以及非平稳问题&#34;&gt;一：增量实现以及非平稳问题&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;首先是数学公式的推到，先推到对于之前求平均值的公式&lt;/p&gt;
+&lt;p&gt;$$
+\begin{align}
+Q_{n+1} &amp;amp; = \frac{R_1+R2+\dots +R_{n}}{n} \
+&amp;amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \
+&amp;amp; = \frac{1}{n} (R_n + \sum_{i=1}^{n-1} R_{i}) \
+&amp;amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \
+&amp;amp; = \frac{1}{n} (R_n + (n-1)Q_n) \
+&amp;amp; = Q_n + \frac{1}{n}(R_n - Q_n)
+\end{align}
+$$&lt;/p&gt;
+&lt;p&gt;将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：&lt;/p&gt;
+&lt;p&gt;$$
+\begin{align}
+Q_{n+1} &amp;amp; = Q_n + \alpha(R_n - Q_n) \
+&amp;amp; = \alpha R_n + (1-\alpha)Q_n \
+&amp;amp; = (1-\alpha)^{n}Q_1 + \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i
+\end{align}
+$$&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>K臂平稳赌博机</title>
       <link>/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</link>
       <pubDate>Sat, 20 Sep 2025 17:55:23 +0800</pubDate>

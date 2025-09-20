@@ -1,0 +1,626 @@
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  
+    class="html theme--light"
+  
+><head>
+  <meta charset="utf-8" />
+  <title>
+    惜日短
+        |
+        K臂赌博机的增量实现以及追踪非平衡问题
+      
+
+    
+
+  </title>
+
+  <meta name="generator" content="Hugo 0.147.9"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="惜日短" />
+  <meta
+    name="description"
+    content="A master&#39;s student from Northwestern Polytechnical University.
+The road ahead is long and arduous; I shall tirelessly seek and explore, high and low.
+A miracle lasts but a moment; fate unfolds over a lifetime.
+"
+  />
+  
+  
+        <link rel="stylesheet" href="/css/anatole.min.9afca1435bf22634690a78ac9e9168ed60abcc28b1591d0a7f28e592626e4a2b.css" integrity="sha256-mvyhQ1vyJjRpCnisnpFo7WCrzCixWR0KfyjlkmJuSis=" crossorigin="anonymous" />
+      
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/" />
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.8724ddf9268dee451060f191961647573c7f592fbccc6d858746236b3f915813.js"
+      integrity="sha256-hyTd&#43;SaN7kUQYPGRlhZHVzx/WS&#43;8zG2Fh0Yjaz&#43;RWBM="
+      crossorigin="anonymous"
+    ></script>
+  
+
+  
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="K臂赌博机的增量实现以及追踪非平衡问题">
+  <meta name="twitter:description" content="一：增量实现以及非平稳问题 所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和
+首先是数学公式的推到，先推到对于之前求平均值的公式
+$$ \begin{align} Q_{n&#43;1} &amp; = \frac{R_1&#43;R2&#43;\dots &#43;R_{n}}{n} \ &amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \ &amp; = \frac{1}{n} (R_n &#43; \sum_{i=1}^{n-1} R_{i}) \ &amp; = \frac{1}{n} (R_n &#43; (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \ &amp; = \frac{1}{n} (R_n &#43; (n-1)Q_n) \ &amp; = Q_n &#43; \frac{1}{n}(R_n - Q_n) \end{align} $$
+将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：
+$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
+
+
+
+  
+  <meta property="og:url" content="/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/">
+  <meta property="og:site_name" content="Wu KaiTong(惜日短)">
+  <meta property="og:title" content="K臂赌博机的增量实现以及追踪非平衡问题">
+  <meta property="og:description" content="一：增量实现以及非平稳问题 所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和
+首先是数学公式的推到，先推到对于之前求平均值的公式
+$$ \begin{align} Q_{n&#43;1} &amp; = \frac{R_1&#43;R2&#43;\dots &#43;R_{n}}{n} \ &amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \ &amp; = \frac{1}{n} (R_n &#43; \sum_{i=1}^{n-1} R_{i}) \ &amp; = \frac{1}{n} (R_n &#43; (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \ &amp; = \frac{1}{n} (R_n &#43; (n-1)Q_n) \ &amp; = Q_n &#43; \frac{1}{n}(R_n - Q_n) \end{align} $$
+将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：
+$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="notes">
+    <meta property="article:published_time" content="2025-09-20T22:04:16+08:00">
+    <meta property="article:modified_time" content="2025-09-20T22:04:16+08:00">
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "notes",
+        "name": "K臂赌博机的增量实现以及追踪非平衡问题",
+        "headline": "K臂赌博机的增量实现以及追踪非平衡问题",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003ch2 id=\u0022一增量实现以及非平稳问题\u0022\u003e一：增量实现以及非平稳问题\u003c\/h2\u003e\n\u003cblockquote\u003e\n\u003cp\u003e所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003e首先是数学公式的推到，先推到对于之前求平均值的公式\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = \\frac{R_1\u002bR2\u002b\\dots \u002bR_{n}}{n} \\\n\u0026amp; = \\frac{1}{n} \\sum_{i=1}^{n} R_i \\\n\u0026amp; = \\frac{1}{n} (R_n \u002b \\sum_{i=1}^{n-1} R_{i}) \\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)\\frac{1}{n-1}Q_n\\sum_{i=1}^{n-1} R_{i}) \\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)Q_n) \\\n\u0026amp; = Q_n \u002b \\frac{1}{n}(R_n - Q_n)\n\\end{align}\n$$\u003c\/p\u003e\n\u003cp\u003e将$\\frac{1}{n}$替换为$\\alpha, \\quad \\alpha \\in (0,1] \\quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = Q_n \u002b \\alpha(R_n - Q_n) \\\n\u0026amp; = \\alpha R_n \u002b (1-\\alpha)Q_n \\\n\u0026amp; = (1-\\alpha)^{n}Q_1 \u002b \\sum_{i=1}^{n}\\alpha (1 - \\alpha )^{n-i}R_i\n\\end{align}\n$$\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "license": "",
+        
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/notes\/reinforcement-learning\/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "惜日短"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "惜日短"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "惜日短"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "惜日短"
+        },
+        "dateCreated": "2025-09-20T22:04:16.00Z",
+        "datePublished": "2025-09-20T22:04:16.00Z",
+        "dateModified": "2025-09-20T22:04:16.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "惜日短",
+            "url": "/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "\/notes\/reinforcement-learning\/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98\/",
+        "wordCount" : "568",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+
+
+  
+  
+  
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">Wu KaiTong(惜日短)</a>
+        </div>
+      
+      <div class="sidebar__introduction-description">
+        <p>A master's student from Northwestern Polytechnical University.<br />The road ahead is long and arduous; I shall tirelessly seek and explore, high and low.<br />A miracle lasts but a moment; fate unfolds over a lifetime.<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/HwsirZ"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:wkt_cherish@qq.com"
+            target="_blank"
+            rel="noopener me"
+            aria-label="wkt_cherish@qq.com"
+            title="wkt_cherish@qq.com"
+          >
+            <i class="fab fa-qq fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        惜日短
+        2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.9531b4a2217a70c5a1fce89c1f81c9ebbdd586708fcd4130b417320c7230c8d6.js"
+    integrity="sha256-lTG0oiF6cMWh/OicH4HJ673VhnCPzUEwtBcyDHIwyNY="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+        
+
+      
+        
+        
+
+          <li class="nav__list-item">
+            <div class="optionswitch">
+              <input class="optionswitch__picker" type="checkbox" id="1" hidden />
+
+              
+              
+                
+
+              
+
+
+              <label class="optionswitch__label" for="1"
+                >NOTES <i class="fa fa-angle-down" aria-hidden="true"></i
+              ></label>
+
+              <div class="optionswitch__triangle"></div>
+              <ul class="optionswitch__list">
+                
+                  <li class="optionswitch__list-item">
+                    
+                    <a
+                      href="/notes/reinforcement-learning"
+                      
+                      title=""
+                      >Reinforcement Learning</a
+                    >
+                  </li>
+                
+              </ul>
+            </div>
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/publications/"
+              
+              title=""
+              >Publications</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/paperreading/"
+              
+              title=""
+              >PaperReading</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/bookreading/"
+              
+              title=""
+              >BookReading</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+    <div class="post__content">
+      
+        <h1>K臂赌博机的增量实现以及追踪非平衡问题</h1>
+      
+      <h2 id="一增量实现以及非平稳问题">一：增量实现以及非平稳问题</h2>
+<blockquote>
+<p>所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和</p></blockquote>
+<p>首先是数学公式的推到，先推到对于之前求平均值的公式</p>
+<p>$$
+\begin{align}
+Q_{n+1} &amp; = \frac{R_1+R2+\dots +R_{n}}{n} \
+&amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \
+&amp; = \frac{1}{n} (R_n + \sum_{i=1}^{n-1} R_{i}) \
+&amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \
+&amp; = \frac{1}{n} (R_n + (n-1)Q_n) \
+&amp; = Q_n + \frac{1}{n}(R_n - Q_n)
+\end{align}
+$$</p>
+<p>将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：</p>
+<p>$$
+\begin{align}
+Q_{n+1} &amp; = Q_n + \alpha(R_n - Q_n) \
+&amp; = \alpha R_n + (1-\alpha)Q_n \
+&amp; = (1-\alpha)^{n}Q_1 + \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i
+\end{align}
+$$</p>
+<p>权重之和$\quad (1-\alpha )^n + \sum_{i=1}^{n}\alpha(1-\alpha)^{n-i} = 1 \quad$ (使用等比数列的求和公式进行计算推导)，有时也称为<strong>指数新近加权平均值</strong>。</p>
+<blockquote>
+<p>这里还有一个收敛性的推导，$\sum_{n=1}^{\infty}\alpha <em>n(a) = \infty \text{以及}\sum</em>{n=1}^{\infty}\alpha _n^{2}(a) &lt; \infty$ 这个的计算也是对上述公式进行展开计算，看最后的Q值能否收敛到期望值，用到了一个叫做无穷级数收敛性的定理。</p></blockquote>
+<h4 id="alpha为常数时可以得到公式">$\alpha$为常数时，可以得到公式：</h4>
+<p>$$
+Q_n = (1 - \alpha)^{n-1} Q_1 + \sum_{i=1}^{n-1} \alpha (1 - \alpha)^{n-1-i} R_i
+$$</p>
+<p>即：$ Q_n $ 是初始值 $ Q_1 $ 和历史奖励 $ R_1 $ 到 $ R_{n-1} $ 的<strong>指数加权平均</strong>。</p>
+<h4 id="推导当--alpha_n--是任意序列时-q_n--的表达式">推导：当 $ \alpha_n $ 是任意序列时，$ Q_n $ 的表达式</h4>
+<p>$$
+Q_n = \left( \prod_{k=1}^{n-1} (1 - \alpha_k) \right) Q_1 + \sum_{i=1}^{n-1} \left( \alpha_i \cdot \prod_{k=i+1}^{n-1} (1 - \alpha_k) \right) R_i
+$$</p>
+<p>在步长参数 $ \alpha_n $ 随时间变化的一般情况下，第 $ n $ 步的动作价值估计 $ Q_n $ 中：</p>
+<blockquote>
+<ul>
+<li>
+<p><strong>初始值 $ Q_1 $ 的权重</strong>为：</p>
+<p>$$
+w_0^{(n)} = \prod_{k=1}^{n-1} (1 - \alpha_k)
+$$</p>
+</li>
+<li>
+<p><strong>第 $ i $ 个奖励 $ R_i $（$ i = 1, 2, \dots, n-1 $）的权重</strong>为：</p>
+<p>$$
+w_i^{(n)} = \alpha_i \cdot \prod_{k=i+1}^{n-1} (1 - \alpha_k)
+$$</p>
+</li>
+</ul>
+<p>其中，<strong>如果乘积的下标上界小于下界（如 $ i+1 &gt; n-1 $），则乘积定义为 1</strong>（空乘积）</p></blockquote>
+<blockquote>
+<p>对于一般步长序列 $ {\alpha_1, \alpha_2, \dots, \alpha_{n-1}} $，估计值 $ Q_n $ 可表示为：</p>
+<p>$$
+Q_n = \underbrace{\left( \prod_{k=1}^{n-1} (1 - \alpha_k) \right)}<em>{\text{初始值权重}} Q_1 + \sum</em>{i=1}^{n-1} \underbrace{\left( \alpha_i \prod_{k=i+1}^{n-1} (1 - \alpha_k) \right)}_{\text{奖励 } R_i \text{ 的权重}} R_i
+$$</p></blockquote>
+<h4 id="推导收敛性">推导收敛性</h4>
+<p>先假设<strong>奖励无噪声</strong>，即每次 $ R_n = q^* $（确定性情形）</p>
+<blockquote>
+<p>$$
+Q_{n+1} = Q_n + \alpha_n (q^* - Q_n) = (1 - \alpha_n) Q_n + \alpha_n q^*
+$$</p></blockquote>
+<blockquote>
+<p>$$
+Q_n = \left( \prod_{i=1}^{n-1} (1 - \alpha_i) \right) Q_1 + \left( 1 - \prod_{i=1}^{n-1} (1 - \alpha_i) \right) q^*
+$$</p></blockquote>
+<p>取极限 n → ∞</p>
+<p>令：</p>
+<blockquote>
+<p>$$
+C = \lim_{n \to \infty} \prod_{i=1}^{n-1} (1 - \alpha_i)
+$$</p></blockquote>
+<p>则：</p>
+<blockquote>
+<p>$$
+\lim_{n \to \infty} Q_n = C \cdot Q_1 + (1 - C) \cdot q^*
+$$</p></blockquote>
+<p>分析 C 的值 —— 无穷乘积与无穷级数的关系</p>
+<p>我们关心的是：</p>
+<blockquote>
+<p><strong>C 是否等于 0？</strong></p></blockquote>
+<p>因为：</p>
+<ul>
+<li>若 $ C = 0 $ → $ Q_\infty = q^* $ ✅ 收敛到真实值；</li>
+<li>若 $ C &gt; 0 $ → $ Q_\infty = C Q_1 + (1 - C) q^* \ne q^* $（除非 $ Q_1 = q^* $）❌ 有初始偏差。</li>
+</ul>
+<p>数学定理（无穷乘积收敛性）：</p>
+<p>对序列 $ 0 &lt; \alpha_i &lt; 1 $，有：</p>
+<blockquote>
+<p>$$
+\prod_{i=1}^\infty (1 - \alpha_i) &gt; 0 \quad \text{当且仅当} \quad \sum_{i=1}^\infty \alpha_i &lt; \infty
+$$</p></blockquote>
+<p>换句话说：</p>
+<blockquote>
+<p>$$
+\sum_{i=1}^\infty \alpha_i = \infty \quad \Longleftrightarrow \quad \prod_{i=1}^\infty (1 - \alpha_i) = 0
+$$</p></blockquote>
+<p>证明思路（取对数）：</p>
+<p>令：</p>
+<blockquote>
+<p>$$
+P_n = \prod_{i=1}^{n} (1 - \alpha_i)
+\Rightarrow \ln P_n = \sum_{i=1}^{n} \ln(1 - \alpha_i)
+$$</p></blockquote>
+<p>利用近似：当 $ \alpha_i \to 0 $，有 $ \ln(1 - \alpha_i) \approx -\alpha_i - \frac{\alpha_i^2}{2} - \cdots \le -\alpha_i $</p>
+<p>所以：</p>
+<blockquote>
+<p>$$
+\ln P_n \le - \sum_{i=1}^n \alpha_i
+\Rightarrow P_n \le \exp\left( -\sum_{i=1}^n \alpha_i \right)
+$$</p></blockquote>
+<p>因此：</p>
+<ul>
+<li>若 $ \sum \alpha_i = \infty $ → $ \ln P_n \to -\infty $ → $ P_n \to 0 $</li>
+<li>若 $ \sum \alpha_i &lt; \infty $ → $ \ln P_n $ 收敛 → $ P_n $ 收敛到某个正数</li>
+</ul>
+<p>回到 Qₙ 的极限</p>
+<p>因此：</p>
+<table>
+  <thead>
+      <tr>
+          <th>条件</th>
+          <th>$ \sum \alpha_n $</th>
+          <th>$ C = \lim \prod (1-\alpha_i) $</th>
+          <th>$ Q_\infty $</th>
+          <th>是否收敛到 q*</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>步长和有限</td>
+          <td>&lt; $\infty$</td>
+          <td>&gt; 0</td>
+          <td>$ C Q_1 + (1 - C) q^* $</td>
+          <td>❌ 否</td>
+      </tr>
+      <tr>
+          <td>步长和无限</td>
+          <td>= ∞</td>
+          <td>= 0</td>
+          <td>$ q^* $</td>
+          <td>✅ 是</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>上述公式推导借助于AI,(AI)写公式真的快啊，省了很多时间</p></blockquote>
+<h2 id="二k臂赌博机的增量实现以及k臂赌博机非平稳问题的实验">二：K臂赌博机的增量实现以及K臂赌博机非平稳问题的实验</h2>
+</div>
+    <div class="post__footer">
+      
+
+      
+    </div>
+
+    
+  </div>
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        惜日短
+        2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.9531b4a2217a70c5a1fce89c1f81c9ebbdd586708fcd4130b417320c7230c8d6.js"
+    integrity="sha256-lTG0oiF6cMWh/OicH4HJ673VhnCPzUEwtBcyDHIwyNY="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
