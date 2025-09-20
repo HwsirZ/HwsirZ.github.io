@@ -201,7 +201,7 @@ $$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alph
 
     ,
         "url" : "\/notes\/reinforcement-learning\/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98\/",
-        "wordCount" : "568",
+        "wordCount" : "1017",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -593,6 +593,189 @@ $$</p></blockquote>
 <blockquote>
 <p>上述公式推导借助于AI,(AI)写公式真的快啊，省了很多时间</p></blockquote>
 <h2 id="二k臂赌博机的增量实现以及k臂赌博机非平稳问题的实验">二：K臂赌博机的增量实现以及K臂赌博机非平稳问题的实验</h2>
+<blockquote>
+<p>写道这里注意到上次写的K臂赌博机用的就是标准增量公式，因此下面只给出K臂赌博机非平稳问题的实验</p></blockquote>
+<h3 id="关于k臂赌博机的非平稳性问题">关于k臂赌博机的非平稳性问题</h3>
+<blockquote>
+<p>什么是非平稳性？</p></blockquote>
+<blockquote>
+<p>对于k臂赌博机，每个拉杆的期望不变就是平稳性，而每个拉杆的期望随着时间的变化改变了，就是非平稳性</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#设置中文字体与美化样式</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#34;font.sans-serif&#34;</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;SimHei&#34;</span>]
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#34;axes.unicode_minus&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>sns<span style="color:#f92672">.</span>set(style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;whitegrid&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#定义赌博机环境</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KArmedBandit</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, seed <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        初始化k臂赌博机
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        K: 动作数量
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        seed: 随机种子，使实验可复现
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>k <span style="color:#f92672">=</span> k
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> seed <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(seed)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>q_star <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(k)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>best_action <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmax(self<span style="color:#f92672">.</span>q_star)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_q_star</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>q_star
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">step</span>(self,action):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        执行动作，返回奖励
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        奖励 ~ N(q_star[action],1)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 每走一步，对期望添加均值为0且标准差为0.01的正态分布增量</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>q_star <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(self<span style="color:#f92672">.</span>k)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.01</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn()<span style="color:#f92672">+</span>self<span style="color:#f92672">.</span>q_star[action]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义 ε-贪婪智能体</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpsilonGreedyAgent</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self,k, epsilon, seed<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        k: 动作数量
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        epsilon: 探索概率
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>k <span style="color:#f92672">=</span> k
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>epsilon <span style="color:#f92672">=</span> epsilon
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> seed <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(seed)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Q <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(k)    <span style="color:#75715e"># 定义奖励函数</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>N <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(k)    <span style="color:#75715e"># 保存每个动作被选择的次数，方便计算状态奖励</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_action</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        动作选择
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand()<span style="color:#f92672">&lt;</span>self<span style="color:#f92672">.</span>epsilon:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># exploration 探索，选择随机动作</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(self<span style="color:#f92672">.</span>k)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># exploitation</span>
+</span></span><span style="display:flex;"><span>            max_Q <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(self<span style="color:#f92672">.</span>Q)
+</span></span><span style="display:flex;"><span>            best_actions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(self<span style="color:#f92672">.</span>Q<span style="color:#f92672">==</span>max_Q)[<span style="color:#ae81ff">0</span>]  <span style="color:#75715e">#where函数返回满足条件的位置索引</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(best_actions)   <span style="color:#75715e">#当有多个最大奖励时，随机返回一个，这里也认为是一次贪婪行为 </span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update</span>(self,action,reward):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        更新
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>N[action] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">## 修改此处的更新为常量增量更新</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">## self.Q[action] += (reward-self.Q[action])/self.N[action]</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Q[action] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>Q[action] <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.1</span><span style="color:#f92672">*</span>(reward <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>Q[action])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 运行单次实验</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_expriment</span>(bandit, agent, steps<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    运行一次实验
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    返回: 每一步的奖励，是否选择了最优动作
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    rewards <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(steps)
+</span></span><span style="display:flex;"><span>    is_best_actions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(steps,dtype<span style="color:#f92672">=</span>bool)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(steps):
+</span></span><span style="display:flex;"><span>        action <span style="color:#f92672">=</span> agent<span style="color:#f92672">.</span>select_action()
+</span></span><span style="display:flex;"><span>        reward <span style="color:#f92672">=</span> bandit<span style="color:#f92672">.</span>step(action)
+</span></span><span style="display:flex;"><span>        agent<span style="color:#f92672">.</span>update(action,reward)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        rewards[t] <span style="color:#f92672">=</span> reward
+</span></span><span style="display:flex;"><span>        is_best_actions[t] <span style="color:#f92672">=</span> (action <span style="color:#f92672">==</span> bandit<span style="color:#f92672">.</span>best_action)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rewards, is_best_actions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主实验</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main_expriment</span>(epsilons <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>], runs <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    对每一个epsilon，运行runs次实验，每次steps步。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    return: 平均奖励矩阵, 最优动作选择矩阵
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    average_rewards <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((len(epsilons),steps))
+</span></span><span style="display:flex;"><span>    average_best_actions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((len(epsilons),steps))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i,epsilon <span style="color:#f92672">in</span> enumerate(epsilons):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;running expriments for E = </span><span style="color:#e6db74">{</span>epsilon<span style="color:#e6db74">}</span><span style="color:#e6db74">...&#34;</span>)
+</span></span><span style="display:flex;"><span>        total_rewards <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(steps)
+</span></span><span style="display:flex;"><span>        total_best_actions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(steps)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> run <span style="color:#f92672">in</span> range(runs):
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            为每次运行创建新的赌博机
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            bandit <span style="color:#f92672">=</span> KArmedBandit(k <span style="color:#f92672">=</span> k, seed<span style="color:#f92672">=</span>seed <span style="color:#f92672">+</span>run)
+</span></span><span style="display:flex;"><span>            agent <span style="color:#f92672">=</span> EpsilonGreedyAgent(k <span style="color:#f92672">=</span> k, epsilon<span style="color:#f92672">=</span>epsilon, seed <span style="color:#f92672">=</span> seed<span style="color:#f92672">+</span>run)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(bandit.get_q_star())</span>
+</span></span><span style="display:flex;"><span>            rewards, is_best <span style="color:#f92672">=</span> run_expriment(bandit,agent,steps)
+</span></span><span style="display:flex;"><span>            total_rewards <span style="color:#f92672">+=</span> rewards
+</span></span><span style="display:flex;"><span>            total_best_actions <span style="color:#f92672">+=</span> is_best
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        average_best_actions[i] <span style="color:#f92672">=</span> total_best_actions<span style="color:#f92672">/</span>runs
+</span></span><span style="display:flex;"><span>        average_rewards[i] <span style="color:#f92672">=</span> total_rewards<span style="color:#f92672">/</span>runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> average_rewards, average_best_actions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plot_results</span>(avg_rewards, avg_best_action_rates, epsilons, steps<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>    fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 平均奖励</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, epsilon <span style="color:#f92672">in</span> enumerate(epsilons):
+</span></span><span style="display:flex;"><span>        axes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>plot(range(<span style="color:#ae81ff">1</span>, steps <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), avg_rewards[i], label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;ε = </span><span style="color:#e6db74">{</span>epsilon<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Steps&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Average Reward&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Average Reward over Time&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 最优动作选择率</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, epsilon <span style="color:#f92672">in</span> enumerate(epsilons):
+</span></span><span style="display:flex;"><span>        axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>plot(range(<span style="color:#ae81ff">1</span>, steps <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), avg_best_action_rates[i], label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;ε = </span><span style="color:#e6db74">{</span>epsilon<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Steps&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;% Optimal Action&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>    axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Optimal Action Selection Rate over Time&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 设置参数</span>
+</span></span><span style="display:flex;"><span>    EPSILONS <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.01</span>, <span style="color:#ae81ff">0.1</span>]
+</span></span><span style="display:flex;"><span>    RUNS <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>
+</span></span><span style="display:flex;"><span>    STEPS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 运行实验</span>
+</span></span><span style="display:flex;"><span>    avg_rewards, avg_best_action_rates <span style="color:#f92672">=</span> main_expriment(
+</span></span><span style="display:flex;"><span>        epsilons<span style="color:#f92672">=</span>EPSILONS,
+</span></span><span style="display:flex;"><span>        runs<span style="color:#f92672">=</span>RUNS,
+</span></span><span style="display:flex;"><span>        steps<span style="color:#f92672">=</span>STEPS,
+</span></span><span style="display:flex;"><span>        k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>        seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>  <span style="color:#75715e"># 为了复现性，你可以改变或移除</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    print(avg_rewards<span style="color:#f92672">.</span>shape,avg_best_action_rates<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(avg_best_action_rates,avg_rewards)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 绘图</span>
+</span></span><span style="display:flex;"><span>    plot_results(avg_rewards, avg_best_action_rates, EPSILONS, STEPS)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 打印长期（最后100步）平均表现</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">=== 长期表现（最后100步平均） ===&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, eps <span style="color:#f92672">in</span> enumerate(EPSILONS):
+</span></span><span style="display:flex;"><span>        last_100_reward <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(avg_rewards[i, <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>:])
+</span></span><span style="display:flex;"><span>        last_100_optimal <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(avg_best_action_rates[i, <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>:])
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ε = </span><span style="color:#e6db74">{</span>eps<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: 平均奖励 = </span><span style="color:#e6db74">{</span>last_100_reward<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, 最优动作率 = </span><span style="color:#e6db74">{</span>last_100_optimal<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="结果">结果</h3>
+<p><img src="/images/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%BB%93%E6%9E%9C/%E9%9D%9E%E5%B9%B3%E7%A8%B3%E9%97%AE%E9%A2%98%E7%9A%84%E5%9B%B0%E9%9A%BE%E6%80%A7.png" alt=""></p>
+<p>=== 长期表现（最后100步平均） ===
+ε = 0.00: 平均奖励 = 1.306, 最优动作率 = 0.546
+ε = 0.01: 平均奖励 = 1.361, 最优动作率 = 0.571
+ε = 0.10: 平均奖励 = 1.397, 最优动作率 = 0.669</p>
 </div>
     <div class="post__footer">
       
