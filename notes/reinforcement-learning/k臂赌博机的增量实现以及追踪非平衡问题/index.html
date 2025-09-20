@@ -531,7 +531,7 @@ $$</p></blockquote>
 <li>若 $ C = 0 $ → $ Q_\infty = q^* $ ✅ 收敛到真实值；</li>
 <li>若 $ C &gt; 0 $ → $ Q_\infty = C Q_1 + (1 - C) q^* \ne q^* $（除非 $ Q_1 = q^* $）❌ 有初始偏差。</li>
 </ul>
-<p>数学定理（无穷乘积收敛性）：</p>
+<p>数学定理（无穷乘积收敛性）</p>
 <p>对序列 $ 0 &lt; \alpha_i &lt; 1 $，有：</p>
 <blockquote>
 <p>$$
@@ -647,7 +647,7 @@ $$</p></blockquote>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>epsilon <span style="color:#f92672">=</span> epsilon
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> seed <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>            np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(seed)
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Q <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(k)    <span style="color:#75715e"># 定义奖励函数</span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>N <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(k)    <span style="color:#75715e"># 保存每个动作被选择的次数，方便计算状态奖励</span>
 </span></span><span style="display:flex;"><span>
@@ -663,7 +663,7 @@ $$</p></blockquote>
 </span></span><span style="display:flex;"><span>            max_Q <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(self<span style="color:#f92672">.</span>Q)
 </span></span><span style="display:flex;"><span>            best_actions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(self<span style="color:#f92672">.</span>Q<span style="color:#f92672">==</span>max_Q)[<span style="color:#ae81ff">0</span>]  <span style="color:#75715e">#where函数返回满足条件的位置索引</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(best_actions)   <span style="color:#75715e">#当有多个最大奖励时，随机返回一个，这里也认为是一次贪婪行为 </span>
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update</span>(self,action,reward):
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
@@ -717,7 +717,7 @@ $$</p></blockquote>
 </span></span><span style="display:flex;"><span>            rewards, is_best <span style="color:#f92672">=</span> run_expriment(bandit,agent,steps)
 </span></span><span style="display:flex;"><span>            total_rewards <span style="color:#f92672">+=</span> rewards
 </span></span><span style="display:flex;"><span>            total_best_actions <span style="color:#f92672">+=</span> is_best
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        average_best_actions[i] <span style="color:#f92672">=</span> total_best_actions<span style="color:#f92672">/</span>runs
 </span></span><span style="display:flex;"><span>        average_rewards[i] <span style="color:#f92672">=</span> total_rewards<span style="color:#f92672">/</span>runs
 </span></span><span style="display:flex;"><span>
