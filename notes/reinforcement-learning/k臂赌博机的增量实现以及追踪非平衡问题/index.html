@@ -115,7 +115,7 @@ A miracle lasts but a moment; fate unfolds over a lifetime.
 首先是数学公式的推到，先推到对于之前求平均值的公式
 $$ \begin{align} Q_{n&#43;1} &amp; = \frac{R_1&#43;R2&#43;\dots &#43;R_{n}}{n} \\ &amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \\ &amp; = \frac{1}{n} (R_n &#43; \sum_{i=1}^{n-1} R_{i}) \\ &amp; = \frac{1}{n} (R_n &#43; (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \\ &amp; = \frac{1}{n} (R_n &#43; (n-1)Q_n) \\ &amp; = Q_n &#43; \frac{1}{n}(R_n - Q_n) \end{align} $$
 将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：
-$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
+$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \\ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \\ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
 
 
 
@@ -127,7 +127,7 @@ $$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alph
 首先是数学公式的推到，先推到对于之前求平均值的公式
 $$ \begin{align} Q_{n&#43;1} &amp; = \frac{R_1&#43;R2&#43;\dots &#43;R_{n}}{n} \\ &amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \\ &amp; = \frac{1}{n} (R_n &#43; \sum_{i=1}^{n-1} R_{i}) \\ &amp; = \frac{1}{n} (R_n &#43; (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \\ &amp; = \frac{1}{n} (R_n &#43; (n-1)Q_n) \\ &amp; = Q_n &#43; \frac{1}{n}(R_n - Q_n) \end{align} $$
 将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：
-$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
+$$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \\ &amp; = \alpha R_n &#43; (1-\alpha)Q_n \\ &amp; = (1-\alpha)^{n}Q_1 &#43; \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -150,7 +150,7 @@ $$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alph
         "alternativeHeadline": "",
         "description": "
       
-        \u003ch2 id=\u0022一增量实现以及非平稳问题\u0022\u003e一：增量实现以及非平稳问题\u003c\/h2\u003e\n\u003cblockquote\u003e\n\u003cp\u003e所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和。\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003e首先是数学公式的推到，先推到对于之前求平均值的公式\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = \\frac{R_1\u002bR2\u002b\\dots \u002bR_{n}}{n} \\\\\n\u0026amp; = \\frac{1}{n} \\sum_{i=1}^{n} R_i \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b \\sum_{i=1}^{n-1} R_{i}) \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)\\frac{1}{n-1}Q_n\\sum_{i=1}^{n-1} R_{i}) \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)Q_n) \\\\\n\u0026amp; = Q_n \u002b \\frac{1}{n}(R_n - Q_n)\n\\end{align}\n$$\u003c\/p\u003e\n\u003cp\u003e将$\\frac{1}{n}$替换为$\\alpha, \\quad \\alpha \\in (0,1] \\quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = Q_n \u002b \\alpha(R_n - Q_n) \\\n\u0026amp; = \\alpha R_n \u002b (1-\\alpha)Q_n \\\n\u0026amp; = (1-\\alpha)^{n}Q_1 \u002b \\sum_{i=1}^{n}\\alpha (1 - \\alpha )^{n-i}R_i\n\\end{align}\n$$\u003c\/p\u003e
+        \u003ch2 id=\u0022一增量实现以及非平稳问题\u0022\u003e一：增量实现以及非平稳问题\u003c\/h2\u003e\n\u003cblockquote\u003e\n\u003cp\u003e所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和。\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003e首先是数学公式的推到，先推到对于之前求平均值的公式\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = \\frac{R_1\u002bR2\u002b\\dots \u002bR_{n}}{n} \\\\\n\u0026amp; = \\frac{1}{n} \\sum_{i=1}^{n} R_i \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b \\sum_{i=1}^{n-1} R_{i}) \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)\\frac{1}{n-1}Q_n\\sum_{i=1}^{n-1} R_{i}) \\\\\n\u0026amp; = \\frac{1}{n} (R_n \u002b (n-1)Q_n) \\\\\n\u0026amp; = Q_n \u002b \\frac{1}{n}(R_n - Q_n)\n\\end{align}\n$$\u003c\/p\u003e\n\u003cp\u003e将$\\frac{1}{n}$替换为$\\alpha, \\quad \\alpha \\in (0,1] \\quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：\u003c\/p\u003e\n\u003cp\u003e$$\n\\begin{align}\nQ_{n\u002b1} \u0026amp; = Q_n \u002b \\alpha(R_n - Q_n) \\\\\n\u0026amp; = \\alpha R_n \u002b (1-\\alpha)Q_n \\\\\n\u0026amp; = (1-\\alpha)^{n}Q_1 \u002b \\sum_{i=1}^{n}\\alpha (1 - \\alpha )^{n-i}R_i\n\\end{align}\n$$\u003c\/p\u003e
 
 
       
@@ -201,7 +201,7 @@ $$ \begin{align} Q_{n&#43;1} &amp; = Q_n &#43; \alpha(R_n - Q_n) \ &amp; = \alph
 
     ,
         "url" : "\/notes\/reinforcement-learning\/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98\/",
-        "wordCount" : "1018",
+        "wordCount" : "1019",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -479,14 +479,18 @@ $$</p>
 <p>将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：</p>
 <p>$$
 \begin{align}
-Q_{n+1} &amp; = Q_n + \alpha(R_n - Q_n) \
-&amp; = \alpha R_n + (1-\alpha)Q_n \
+Q_{n+1} &amp; = Q_n + \alpha(R_n - Q_n) \\
+&amp; = \alpha R_n + (1-\alpha)Q_n \\
 &amp; = (1-\alpha)^{n}Q_1 + \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i
 \end{align}
 $$</p>
 <p>权重之和$\quad (1-\alpha )^n + \sum_{i=1}^{n}\alpha(1-\alpha)^{n-i} = 1 \quad$ (使用等比数列的求和公式进行计算推导)，有时也称为<strong>指数新近加权平均值</strong>。</p>
 <blockquote>
-<p>这里还有一个收敛性的推导, $\sum_{n=1}^{\infty}\alpha <em>n(a) = \infty \text{以及}\sum</em>{n=1}^{\infty}\alpha _n^{2}(a) &lt; \infty $这个的计算也是对上述公式进行展开计算，看最后的Q值能否收敛到期望值，用到了一个叫做无穷级数收敛性的定理。</p></blockquote>
+<p>这里还有一个收敛性的推导</p></blockquote>
+<blockquote>
+<p>$\sum_{n=1}^{\infty}\alpha <em>n(a) = \infty \text{以及}\sum</em>{n=1}^{\infty}\alpha _n^{2}(a) &lt; \infty $</p></blockquote>
+<blockquote>
+<p>这个的计算也是对上述公式进行展开计算，看最后的Q值能否收敛到期望值，用到了一个叫做无穷级数收敛性的定理。</p></blockquote>
 <h4 id="alpha为常数时可以得到公式">$\alpha$为常数时，可以得到公式：</h4>
 <p>$$
 Q_n = (1 - \alpha)^{n-1} Q_1 + \sum_{i=1}^{n-1} \alpha (1 - \alpha)^{n-1-i} R_i
@@ -515,10 +519,9 @@ $$</p>
 <p>其中，<strong>如果乘积的下标上界小于下界（如 $ i+1 &gt; n-1 $），则乘积定义为 1</strong>（空乘积）</p></blockquote>
 <blockquote>
 <p>对于一般步长序列 $ {\alpha_1, \alpha_2, \dots, \alpha_{n-1}} $，估计值 $ Q_n $ 可表示为：</p></blockquote>
-<blockquote>
 <p>$$
 Q_n = \underbrace{\left( \prod_{k=1}^{n-1} (1 - \alpha_k) \right)}<em>{\text{初始值权重}} Q_1 + \sum</em>{i=1}^{n-1} \underbrace{\left( \alpha_i \prod_{k=i+1}^{n-1} (1 - \alpha_k) \right)}_{\text{奖励 } R_i \text{ 的权重}} R_i
-$$</p></blockquote>
+$$</p>
 <h4 id="推导收敛性">推导收敛性</h4>
 <p>先假设<strong>奖励无噪声</strong>，即每次 $ R_n = q^* $（确定性情形）</p>
 <blockquote>
