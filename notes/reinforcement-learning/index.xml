@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Reinforcement Learning on </title>
-    <link>//localhost:1313/notes/reinforcement-learning/</link>
+    <link>/notes/reinforcement-learning/</link>
     <description>Recent content in Reinforcement Learning on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 18 Sep 2025 20:31:40 +0800</lastBuildDate><atom:link href="//localhost:1313/notes/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Sep 2025 20:31:40 +0800</lastBuildDate><atom:link href="/notes/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>K臂赌博机的增量实现以及追踪非平衡问题</title>
-      <link>//localhost:1313/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</link>
+      <link>/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</link>
       <pubDate>Sat, 20 Sep 2025 22:04:16 +0800</pubDate>
       
-      <guid>//localhost:1313/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</guid>
+      <guid>/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</guid>
       
         <description>&lt;h2 id=&#34;一增量实现以及非平稳问题&#34;&gt;一：增量实现以及非平稳问题&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -41,37 +41,37 @@ $$&lt;/p&gt;</description>
     
     <item>
       <title>K臂平稳赌博机</title>
-      <link>//localhost:1313/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</link>
+      <link>/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</link>
       <pubDate>Sat, 20 Sep 2025 17:55:23 +0800</pubDate>
       
-      <guid>//localhost:1313/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</guid>
+      <guid>/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</guid>
       
         <description>&lt;div class=&#34;pdf-container&#34; style=&#34;width: 100%; height: 0; padding-bottom: 140%; position: relative; margin: 20px 0;&#34;&gt;
-  &lt;iframe src=&#34;//localhost:1313/pdfFiles/k臂平稳赌博机.pdf&#34; 
+  &lt;iframe src=&#34;/pdfFiles/k臂平稳赌博机.pdf&#34; 
           style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;&#34;
           title=&#34;k臂平稳赌博机PDF&#34;&gt;
   &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 无法显示？&lt;a href=&#34;//localhost:1313/pdfFiles/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA.pdf&#34;&gt;点击下载&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;💡 无法显示？&lt;a href=&#34;/pdfFiles/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA.pdf&#34;&gt;点击下载&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
       
     </item>
     
     <item>
       <title>马尔可夫决策过程</title>
-      <link>//localhost:1313/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</link>
+      <link>/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Thu, 18 Sep 2025 20:19:09 +0800</pubDate>
       
-      <guid>//localhost:1313/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</guid>
+      <guid>/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</guid>
       
         <description>&lt;div class=&#34;pdf-container&#34; style=&#34;width: 100%; height: 0; padding-bottom: 140%; position: relative; margin: 20px 0;&#34;&gt;
-  &lt;iframe src=&#34;//localhost:1313/pdfFiles/强化学习-马尔可夫决策过程.pdf&#34; 
+  &lt;iframe src=&#34;/pdfFiles/强化学习-马尔可夫决策过程.pdf&#34; 
           style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;&#34;
           title=&#34;强化学习-马尔可夫决策过程PDF&#34;&gt;
   &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 无法显示？&lt;a href=&#34;//localhost:1313/pdfFiles/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B.pdf&#34;&gt;点击下载&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;💡 无法显示？&lt;a href=&#34;/pdfFiles/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B.pdf&#34;&gt;点击下载&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
       
     </item>
     
