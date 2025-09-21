@@ -20,11 +20,11 @@
 &lt;p&gt;首先是数学公式的推到，先推到对于之前求平均值的公式&lt;/p&gt;
 &lt;p&gt;$$
 \begin{align}
-Q_{n+1} &amp;amp; = \frac{R_1+R2+\dots +R_{n}}{n} \
-&amp;amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \
-&amp;amp; = \frac{1}{n} (R_n + \sum_{i=1}^{n-1} R_{i}) \
-&amp;amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \
-&amp;amp; = \frac{1}{n} (R_n + (n-1)Q_n) \
+Q_{n+1} &amp;amp; = \frac{R_1+R2+\dots +R_{n}}{n} \\
+&amp;amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \\
+&amp;amp; = \frac{1}{n} (R_n + \sum_{i=1}^{n-1} R_{i}) \\
+&amp;amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \\
+&amp;amp; = \frac{1}{n} (R_n + (n-1)Q_n) \\
 &amp;amp; = Q_n + \frac{1}{n}(R_n - Q_n)
 \end{align}
 $$&lt;/p&gt;
