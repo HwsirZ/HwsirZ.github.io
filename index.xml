@@ -26,15 +26,16 @@ Q_{n+1} &amp;amp; = \frac{R_1+R2+\dots +R_{n}}{n} \
 &amp;amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \
 &amp;amp; = \frac{1}{n} (R_n + (n-1)Q_n) \
 &amp;amp; = Q_n + \frac{1}{n}(R_n - Q_n)
-\end{align}&lt;/p&gt;
-&lt;p&gt;$$&lt;/p&gt;
+\end{align}
+$$&lt;/p&gt;
 &lt;p&gt;将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：&lt;/p&gt;
 &lt;p&gt;$$
 \begin{align}
 Q_{n+1} &amp;amp; = Q_n + \alpha(R_n - Q_n) \
 &amp;amp; = \alpha R_n + (1-\alpha)Q_n \
 &amp;amp; = (1-\alpha)^{n}Q_1 + \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i
-\end{align}&lt;/p&gt;</description>
+\end{align}
+$$&lt;/p&gt;</description>
       
     </item>
     
