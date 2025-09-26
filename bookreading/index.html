@@ -627,6 +627,279 @@ A miracle lasts but a moment; fate unfolds over a lifetime.
   </details>
 </div>
 </div>
+<div>
+<div style="font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; max-width: 800px; margin: 2rem auto; background: white; border-radius: 14px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); overflow: hidden;">
+  <!-- 封面图与信息区（Flex 布局） -->
+  <div style="display: flex; padding: 20px; gap: 20px; align-items: flex-start;">
+    <!-- 左侧：书籍封面 -->
+    <div style="flex-shrink: 0;">
+      <img 
+        src="/images/强化学习导论.png" 
+        alt="《强化学习导论》封面"
+        style="width: 140px; height: 180px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"
+      >
+    </div>
+    <!-- 右侧：书籍信息 -->
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; line-height: 1.7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 1.4rem; color: #2d3748; font-weight: 600;">
+        📘 《Reinforcement Learning: An introduction》
+      </h3>
+      <p style="margin: 0 0 12px 0; font-size: 1.05rem; color: #4a5568;">
+        <strong>作者：</strong>Richard S.Sutton and Andrew G.Barto  <!-- 右侧：书籍信息 -->
+      </p>
+      <!-- 阅读进度条 -->
+      <div style="margin: 10px 0;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #718096; margin-bottom: 6px;">
+          <span>阅读进度</span>
+          <span>10%</span>
+        </div>
+        <div style="height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+          <div style="height: 100%; background: linear-gradient(90deg, #48bb78, #38a169); width: 10%;"></div>
+        </div>
+      </div>
+      <!-- 当前阅读章节 -->
+      <p style="margin: 8px 0 0; font-size: 1rem; color: #2b6cb0;">
+        <strong>当前阅读：</strong>
+      </p>
+    </div>
+  </div>
+  <!-- 下方：可折叠章节目录 -->
+  <details style="padding: 0 20px 20px; margin-top: -10px; border-top: 1px dashed #e2e8f0;">
+    <summary style="cursor: pointer; user-select: none; outline: none; padding: 12px 0; font-weight: 600; color: #2d3748; font-size: 1.05rem;">
+      📚 点击展开查看全书目录
+    </summary>
+    <div style="margin-top: 12px; font-size: 16px; color: #4a5568; line-height: padding-left: 5px;">
+     	<h2>第一部分：表格方法（Tabular Solution Methods）</h2>
+    <div class="chapter">
+        <h3>第1章 引言</h3>
+        <div class="section">
+            <p>1.1 强化学习</p>
+            <p>1.2 示例：井字棋</p>
+            <p>1.3 强化学习要素</p>
+            <p>1.4 局限性与范围</p>
+            <p>1.5 扩展阅读</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第2章 多臂赌博机问题</h3>
+        <div class="section">
+            <p>2.1 一个 k 臂赌博机问题</p>
+            <p>2.2 行动价值方法</p>
+            <p>2.3 10臂测试平台</p>
+            <p>2.4 增量实现</p>
+            <p>2.5 跟踪非平稳问题</p>
+            <p>2.6 乐观初始值</p>
+            <p>2.7 上置信界（UCB）行动选择</p>
+            <p>2.8 梯度赌博机算法</p>
+            <p>2.9 关联搜索（上下文赌博机）</p>
+            <p>2.10 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第3章 有限马尔可夫决策过程</h3>
+        <div class="section">
+            <p>3.1 智能体–环境交互</p>
+            <p>3.2 目标与回报</p>
+            <p>3.3 回报与分幕</p>
+            <p>3.4 分幕与持续任务的统一表示</p>
+            <p>3.5 策略与价值函数</p>
+            <p>3.6 最优策略与最优价值函数</p>
+            <p>3.7 最优性与近似</p>
+            <p>3.8 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第4章 动态规划</h3>
+        <div class="section">
+            <p>4.1 策略评估（预测）</p>
+            <p>4.2 策略改进</p>
+            <p>4.3 策略迭代</p>
+            <p>4.4 价值迭代</p>
+            <p>4.5 异步动态规划</p>
+            <p>4.6 广义策略迭代</p>
+            <p>4.7 动态规划的效率</p>
+            <p>4.8 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第5章 蒙特卡洛方法</h3>
+        <div class="section">
+            <p>5.1 蒙特卡洛预测</p>
+            <p>5.2 动作价值的蒙特卡洛估计</p>
+            <p>5.3 蒙特卡洛控制</p>
+            <p>5.4 无探索启动的蒙特卡洛控制</p>
+            <p>5.5 通过重要性采样的离策略预测</p>
+            <p>5.6 增量式实现</p>
+            <p>5.7 离策略蒙特卡洛控制</p>
+            <p>5.8 *折扣感知重要性采样（选读）</p>
+            <p>5.9 *每决策重要性采样（选读）</p>
+            <p>5.10 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第6章 时序差分学习</h3>
+        <div class="section">
+            <p>6.1 TD预测</p>
+            <p>6.2 TD(0) 的优势</p>
+            <p>6.3 最优性TD(0)</p>
+            <p>6.4 Sarsa：同策略TD控制</p>
+            <p>6.5 Q-learning：离策略TD控制</p>
+            <p>6.6 期望Sarsa</p>
+            <p>6.7 最大化偏差与双学习</p>
+            <p>6.8 游戏、AFTER状态和其他特例</p>
+            <p>6.9 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第7章 n步引导（n-step Bootstrapping）</h3>
+        <div class="section">
+            <p>7.1 n步TD预测</p>
+            <p>7.2 n步Sarsa</p>
+            <p>7.3 n步离策略学习</p>
+            <p>7.4 *带控制变量的离策略学习（选读）</p>
+            <p>7.5 总结</p>
+        </div>
+    </div>
+    <div class="chapter">
+        <h3>第8章 基于表格方法的规划与学习</h3>
+        <div class="section">
+            <p>8.1 模型与规划</p>
+            <p>8.2 Dyna：集成规划、动作与学习</p>
+            <p>8.3 当模型错误时</p>
+            <p>8.4 优先扫描</p>
+            <p>8.5 预期与样本更新</p>
+            <p>8.6 轨迹采样</p>
+            <p>8.7 实际中的实时动态规划</p>
+            <p>8.8 决策时规划</p>
+            <p>8.9 与启发式搜索的关系</p>
+            <p>8.10 总结</p>
+        </div>
+    </div>
+<pre><code>&lt;h2&gt;第二部分：近似方法（Approximate Solution Methods）&lt;/h2&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+    &lt;h3&gt;第9章 在策略预测的函数逼近&lt;/h3&gt;
+    &lt;div class=&quot;section&quot;&gt;
+        &lt;p&gt;9.1 函数逼近的价值预测&lt;/p&gt;
+        &lt;p&gt;9.2 预测目标（VE）&lt;/p&gt;
+        &lt;p&gt;9.3 随机梯度与半梯度方法&lt;/p&gt;
+        &lt;p&gt;9.4 线性方法&lt;/p&gt;
+        &lt;p&gt;9.5 线性方法的特征构造&lt;/p&gt;
+        &lt;p&gt;9.6 非线性函数逼近：人工神经网络&lt;/p&gt;
+        &lt;p&gt;9.7 最小二乘TD（LSTD）&lt;/p&gt;
+        &lt;p&gt;9.8 基于记忆的方法&lt;/p&gt;
+        &lt;p&gt;9.9 基于核的方法&lt;/p&gt;
+        &lt;p&gt;9.10 决策树方法&lt;/p&gt;
+        &lt;p&gt;9.11 手工设计与自动发现特征&lt;/p&gt;
+        &lt;p&gt;9.12 总结&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+    &lt;h3&gt;第10章 在策略控制的函数逼近&lt;/h3&gt;
+    &lt;div class=&quot;section&quot;&gt;
+        &lt;p&gt;10.1 分层复合动作&lt;/p&gt;
+        &lt;p&gt;10.2 瓦片编码&lt;/p&gt;
+        &lt;p&gt;10.3 稀疏表示的径向基函数&lt;/p&gt;
+        &lt;p&gt;10.4 在策略控制中的线性方法&lt;/p&gt;
+        &lt;p&gt;10.5 在策略控制中的非线性函数逼近&lt;/p&gt;
+        &lt;p&gt;10.6 总结&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+    &lt;h3&gt;第11章 离策略方法的函数逼近&lt;/h3&gt;
+    &lt;div class=&quot;section&quot;&gt;
+        &lt;p&gt;11.1 半梯度方法&lt;/p&gt;
+        &lt;p&gt;11.2 离策略发散的例子&lt;/p&gt;
+        &lt;p&gt;11.3 死亡三角：离策略、函数逼近与引导&lt;/p&gt;
+        &lt;p&gt;11.4 线性值函数几何&lt;/p&gt;
+        &lt;p&gt;11.5 Bellman误差的梯度下降&lt;/p&gt;
+        &lt;p&gt;11.6 强贝尔曼方程&lt;/p&gt;
+        &lt;p&gt;11.7 梯度TD方法&lt;/p&gt;
+        &lt;p&gt;11.8 强调TD方法&lt;/p&gt;
+        &lt;p&gt;11.9 减少方差&lt;/p&gt;
+        &lt;p&gt;11.10 总结&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+    &lt;h3&gt;第12章 资格迹（Eligibility Traces）&lt;/h3&gt;
+    &lt;div class=&quot;section&quot;&gt;
+        &lt;p&gt;12.1 λ-回报&lt;/p&gt;
+        &lt;p&gt;12.2 TD(λ)&lt;/p&gt;
+        &lt;p&gt;12.3 n步引导与资格迹&lt;/p&gt;
+        &lt;p&gt;12.4 重新定义资格迹&lt;/p&gt;
+        &lt;p&gt;12.5 用资格迹进行控制&lt;/p&gt;
+        &lt;p&gt;12.6 用资格迹进行离策略学习&lt;/p&gt;
+        &lt;p&gt;12.7 实现问题&lt;/p&gt;
+        &lt;p&gt;12.8 总结&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+    &lt;h3&gt;第13章 策略梯度方法&lt;/h3&gt;
+    &lt;div class=&quot;section&quot;&gt;
+        &lt;p&gt;13.1 策略近似与优势&lt;/p&gt;
+        &lt;p&gt;13.2 策略梯度定理&lt;/p&gt;
+        &lt;p&gt;13.3 REINFORCE：蒙特卡洛策略梯度&lt;/p&gt;
+        &lt;p&gt;13.4 带基线的REINFORCE&lt;/p&gt;
+        &lt;p&gt;13.5 动作价值的策略梯度&lt;/p&gt;
+        &lt;p&gt;13.6 策略参数化的连续动作&lt;/p&gt;
+        &lt;p&gt;13.7 总结&lt;/p&gt;
+  	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>第三部分：前瞻主题（Looking Deeper）</h2>
+<div class="chapter">
+    <h3>第14章 心理学关联</h3>
+    <div class="section">
+        <p>探讨强化学习与动物学习行为之间的相似性</p>
+        <p>分析神经科学中关于奖励系统的研究如何影响强化学习算法设计</p>
+        <p>研究不同学习规则在动物和机器中的应用</p>
+    </div>
+</div>
+<div class="chapter">
+    <h3>第15章 神经科学关联</h3>
+    <div class="section">
+        <p>多巴胺信号与时间差分（TD）误差的对应关系研究</p>
+        <p>基底神经节在决策过程中的作用及其对强化学习模型的影响</p>
+        <p>利用脑成像技术探索人类大脑中的强化学习机制</p>
+    </div>
+</div>
+<div class="chapter">
+    <h3>第16章 应用与案例研究</h3>
+    <div class="section">
+        <p>16.1 TD-Gammon：使用强化学习提升棋盘游戏AI的能力</p>
+        <p>16.2 自动驾驶直升机：通过强化学习优化飞行控制策略</p>
+        <p>16.3 机器人控制：探讨强化学习在提高机器人操作灵活性方面的应用</p>
+        <p>16.4 个性化教学：利用强化学习改进教育软件，以适应不同学习者的需求</p>
+        <p>16.5 投资组合管理：分析强化学习在金融市场预测和投资组合优化中的潜力</p>
+        <p>16.6 能源系统：研究如何使用强化学习优化能源消耗和分配</p>
+        <p>16.7 总结</p>
+    </div>
+</div>
+<div class="chapter">
+    <h3>第17章 前沿研究方向</h3>
+    <div class="section">
+        <p>17.1 强化学习与人工智能的未来发展趋势</p>
+        <p>17.2 表征学习与模型学习的新方法探索</p>
+        <p>17.3 如何设计激励机制来增强智能体的探索能力</p>
+        <p>17.4 分层强化学习的设计理念与实际挑战</p>
+        <p>17.5 多智能体系统中合作与竞争的平衡</p>
+        <p>17.6 元学习和终身学习的概念及其应用场景</p>
+        <p>17.7 强化学习的安全性和伦理问题讨论</p>
+        <p>17.8 总结</p>
+    </div>
+</div>
+<!-- 附录 -->
+<h2>附录</h2>
+<div class="section">
+    <p>A. 符号说明</p>
+    <p>B. 数学基础回顾</p>
+    <p>C. 参考文献</p>
+    <p>D. 术语表</p>
+    <p>E. 在线补充材料说明</p>
+</div>
+    </div>
+  </details>
+</div>
+</div>
 </div>
     <div class="post__footer">
       
