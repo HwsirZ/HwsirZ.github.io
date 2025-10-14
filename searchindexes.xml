@@ -1,1 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Visual Detection Model</title><url>/notes/visual-detection-model/</url><categories/><tags/><content type="html">    </content></entry><entry><title>Reinforcement Learning</title><url>/notes/reinforcement-learning/</url><categories/><tags/><content type="html">    </content></entry><entry><title>Publications</title><url>/publications/</url><categories/><tags/><content type="html">  文章  </content></entry><entry><title>非所经历，不能感悟</title><url>/post/</url><categories/><tags/><content type="html">  这是post文件下的内容  </content></entry><entry><title>主页</title><url>/home/</url><categories/><tags/><content type="html">     </content></entry></search>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>YoloV10入门</title><url>/notes/visual-detection-model/yolov10%E5%85%A5%E9%97%A8/</url><categories/><tags/><content type="html">  一：YOLO的版本演进您观察得非常仔细！这里涉及到 YOLO 发展史上一个重要的演变过程。您的问题引出了一个关键点：YOLO 的“发明者”和后来的“主要发展者”发生了变化。
+让我为您清晰地梳理一下：
+YOLO 的原始发明者核心人物：Joseph Redmon 和 Ali Farhadi。 所在机构：当时他们在华盛顿大学。 贡献：他们在 2015 年的 CVPR 会议上发表了第一篇 YOLO 论文，创造了 YOLO 算法本身。从 YOLOv1 到 YOLOv3，主要是由 Joseph Redmon 领导开发的。 后续：由于 YOLO 技术可能被应用于军事、隐私侵犯等伦理问题，Joseph Redmon 在 2020 年宣布停止对 YOLO 的研究。这之后，YOLO 的发展进入了“百家争鸣”的时代。 版本 主要开发团队/机构 特点与备注 YOLOv1-v3 Joseph Redmon（华盛顿大学） YOLO 的创始版本 YOLOv4, v7 Alexey Bochkovskiy 等 侧重于算法创新，性能强劲 YOLOv5, v8 Ultralytics 侧重工程应用，极度易用，最流行 YOLOv9 Alexey Bochkovskiy 等 &amp;amp; Ultralytics 两大团队合作产物 YOLOv10 清华大学 率先发布，后被 Ultralytics 集成 二：  </content></entry><entry><title>炒股心得</title><url>/post/%E7%82%92%E8%82%A1%E5%BF%83%E5%BE%97/</url><categories/><tags/><content type="html">  一：炒股的心态炒股应该有良好的心态，把炒股看作一种兴趣，而不是一种盈利的手段，就好比如玩游戏，胜利固然是最终目的，但是不要忘了过程的乐趣。因为我并不懂经济学金融这些专业知识，所以暂且避开谈论这些过于专业性的东西。
+买股票和基金大概有两个月了，只要是开盘日，到了开盘时间，就忍不住要时不时看一看股票和基金的涨跌情况，其实我意识到这是徒劳的行为，股票和基金不会因为我多看一眼或者少看一眼而波动，波动是背后的金融经济逻辑。而我目前当然没有分析其背后逻辑的知识能力，目前只是搜寻一些信息，凭自己的感觉在试水。
+为什么今天写这个，是因为今天是这两个月跌损最多的一天，差不多是我十天的饭钱了，当然我并没有因为这而过于沮丧，有两点：
+股市有涨就有跌，希望投资赚钱的同时，也应该有承担风险的心里预期，显然，我有这样的心里预期
+虽然持仓的股票和基金今天跌了，但是对于长期还是有一些信心的（虽然我也不知道哪里来的信息）
+所以接下来，应该避免一些行为，让时间充分利用的同时，也尽力把事情做好，频繁的看涨跌情况是无意义的，同时，还有“追涨杀跌”，毫无疑问，今天追涨了，同时也不出所料，被埋了，资本不会给散户追涨的机会，要么提前埋伏，要么看别人盈利，在股市，散户是绵羊，游资与庄家是恶狼，绵羊是抢不过恶狼的，还可能成为恶狼的盘中餐。就会出现这样一种场景，本来在座位上的散户，慢慢上了餐桌。
+吃一堑、长一智。今天确实判断失误，同时也有些头脑发昏，所以在利益面前，应该深思熟虑，保持理性。
+二：炒股与人生同时我也意识到，炒股就好像人生，人生不可能一帆风顺，有上升期也有低谷期，这是任何事物不可避免的铁律，就好像哲学上的否定之否定，任何事物，都要经历否定、肯定、再否定，同时，哲学意义上，没有人会处于最高峰（就好像人不能两次站在同一条河流一样），这种哲思是有趣的。
+股票和基金的涨跌就如同人生的起伏，最近确实也在生活和学业上有些压力，不过这都是人生的常态，所以不管是面对股市的涨跌，还是人生的起伏，应该有这样一种心态，不以物喜，不以己悲。不过喜怒哀乐也是人之本性，无可厚非，可以理解。
+  </content></entry><entry><title>K臂赌博机的增量实现以及追踪非平衡问题</title><url>/notes/reinforcement-learning/k%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0%E4%BB%A5%E5%8F%8A%E8%BF%BD%E8%B8%AA%E9%9D%9E%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/</url><categories/><tags/><content type="html"><![CDATA[  一：增量实现以及非平稳问题所谓增量实现，就是对$Q_n$的计算方法，之前的计算是对过去所有奖励的一个平均值来估计奖励，而增量更新中，对于过去的奖励，有不同的权重，此时，$Q_n$的计算是过去所有奖励的权重和。
+首先是数学公式的推到，先推到对于之前求平均值的公式
+$$ \begin{align} Q_{n+1} &amp;amp; = \frac{R_1+R2+\dots +R_{n}}{n} \\ &amp;amp; = \frac{1}{n} \sum_{i=1}^{n} R_i \\ &amp;amp; = \frac{1}{n} (R_n + \sum_{i=1}^{n-1} R_{i}) \\ &amp;amp; = \frac{1}{n} (R_n + (n-1)\frac{1}{n-1}Q_n\sum_{i=1}^{n-1} R_{i}) \\ &amp;amp; = \frac{1}{n} (R_n + (n-1)Q_n) \\ &amp;amp; = Q_n + \frac{1}{n}(R_n - Q_n) \end{align} $$
+将$\frac{1}{n}$替换为$\alpha, \quad \alpha \in (0,1] \quad$即表示增量更新的公式，用于非平稳问题的求解，此时的公式可以表示为：
+$$ \begin{align} Q_{n+1} &amp;amp; = Q_n + \alpha(R_n - Q_n) \\ &amp;amp; = \alpha R_n + (1-\alpha)Q_n \\ &amp;amp; = (1-\alpha)^{n}Q_1 + \sum_{i=1}^{n}\alpha (1 - \alpha )^{n-i}R_i \end{align} $$
+权重之和$\quad (1-\alpha )^n + \sum_{i=1}^{n}\alpha(1-\alpha)^{n-i} = 1 \quad$ (使用等比数列的求和公式进行计算推导)，有时也称为指数新近加权平均值。
+这里还有一个收敛性的推导：
+$\sum_{n=1}^{\infty}\alpha_n(a) = \infty \text{ 以及 } \sum_{n=1}^{\infty}\alpha_n^{2}(a) &amp;lt; \infty$
+这个的计算也是对上述公式进行展开计算，看最后的Q值能否收敛到期望值，用到了一个 …  ]]></content></entry><entry><title>K臂平稳赌博机</title><url>/notes/reinforcement-learning/k%E8%87%82%E5%B9%B3%E7%A8%B3%E8%B5%8C%E5%8D%9A%E6%9C%BA/</url><categories/><tags/><content type="html">   💡 无法显示？点击下载  </content></entry><entry><title>马尔可夫决策过程</title><url>/notes/reinforcement-learning/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</url><categories/><tags/><content type="html">   💡 无法显示？点击下载  </content></entry><entry><title>香积寺</title><url>/post/%E9%A6%99%E7%A7%AF%E5%AF%BA/</url><categories/><tags/><content type="html">  香积寺第一次听说香积寺是玩游戏，游戏名字叫《燕云十六声》，以下简称为燕云，故事背景设定为五代十国末期至北宋初年，唐朝是公元618年-907年，五代十国是907年-979年，北宋是960年-1127年。燕云十六声虽然没有复刻这段历史，但是这段历史想必也是这个游戏剧情策划的参考。
+香积寺之战的简介时间：唐肃宗至德二年（公元757年）9月
+地点：长安城以西，香积寺以北、沣水以东
+交战双方：
+唐军：广平王李淑、名将郭子仪统帅，联合回纥骑兵
+叛军：按时叛军，由安守忠、李归仁等率领
+兵力对比
+唐军+回纥联军：约15万人
+叛军：约10万人
+结果：唐军惨胜，收复长安，燕君被斩首六万，俘虏两万，短短四个时辰，两军二十五万人，阵亡十三万人。
+有一个很有趣的说法，“香积寺互砍，谁输谁叛军”。今天终于来到了香积寺看一看，正如开篇的香积寺实物图，十分宏伟。进了寺庙后，偶然听到路人说，这里面之前不是现在这个样子，翻修过，更宏伟了，游览的过程中确实看到有正在修缮的房屋。里面有大雄宝殿，还有一个善导塔，有些鼓楼，图书馆，还有免费提供的香，我认为这点非常不错，有些寺庙的香价格昂贵，而实际上香的成本却很低廉。
+净土祖庭香积寺作为与少林寺齐名的净土祖庭，也是佛系的顶流存在，寺内的善导塔更是“千年不倒翁”。
+后记门口有许多算命的，我站到门口，有个人给我打招呼，辛亏我当时在打电话，我俩并没有进一步交流，我向来是不信这个的。其中有一位，我站在旁边听了听，算命先生说的内容也是一言难尽，但是听者却很认真。我认为这个东西，还在于自己是否相信，要有自己的想法，有自己的价值观与行事准则。算命无非是用别人的道理来指导自己的行为。
+奇迹总是一时，命运总是漫长。（摘自诡秘之主）
+  </content></entry><entry><title>主页</title><url>/home/main/</url><categories/><tags/><content type="html">     </content></entry><entry><title>泰山之行</title><url>/post/%E6%B3%B0%E5%B1%B1%E4%B9%8B%E8%A1%8C/</url><categories/><tags/><content type="html"><![CDATA[  关于泰山之行——7月5日夜爬泰山一：夜爬泰山1.初到泰山站我是从郑州出发，坐的火车硬卧到达的泰山站，行程五个半小时，因为是卧铺，所以并不累（硬座的话，由于火车硬座的直角设计以及狭小的空间，估计有些吃不消）。下了火车站，映入眼帘的是泰山站三个标志性文字，映衬着泰山，还有周围建筑，看起来很不错。
+从泰山站出站口出来，回头看，可以看到一个仿古建筑，如果你是傍晚出站，准备夜爬，那么你将看到下图景色。
+出了站就是站前广场，广场上可以存包，买登山杖，买些登山物资什么的，对于登山物资，我建议提前买好一些，感觉泰山站附近的东西都不便宜。登山杖个人感觉没必要买，不过出于好奇买一根也无妨，但是全程下来我觉得用处不大（下山途中有个乘坐客车的地方说什么“公益回收登山杖”，应该真的是公益吧，只是公交车票挺贵的，40元每人，我果断步行下山了）。
+2. 出发去红门夜爬泰山，大多数人会选择从红门出发，我也不例外，从泰山站出口到达红门可以乘坐公交车，两块钱，大概40分钟，比较划算。自己打车应该也挺方便，但是路口拉客的出租车司机，说什么5块一个人，但是半路上会拉着你去一个买福牌的店，给你推销，我就是坐了出租车，当然也没强制买，司机师傅也讲了泰山爬山的一些事项。到达红门，遵循司机师傅的建议，不用进入红门游客中心，直接去左侧的阶梯上山。
+3. 登山之旅从红门出发，登山路线基本也就确定了，红门-&amp;gt;中天门-&amp;gt;十八盘-&amp;gt;南天门-&amp;gt;碧霞祠-&amp;gt;（五岳独尊，日观峰）-&amp;gt;玉皇顶。红门前往中天门，以及十八盘这两段是夜爬泰山的重头戏，到了南天门，往后的路程就轻松许多。夜晚看不到什么风景，只能看到一些石头上的红色刻字。印象最深的是渐入佳境。 由于前面很多登山路段都是短阶梯+平台的模式，所以爬起来不是很费力，快到南天门有很长的阶梯，一口气爬下来会有些吃力，抬头是长长的台阶，回头是灯光点点的泰安市。 一件觉得有趣的事的是，在这之前拍到了泰山的猫，刚好图片也是向前看的背影和回头看的背影。 到了南天门，人有些多，就不是很想拍照片，有趣的是，就在去年的这天，也就是7月5号，去了老君山的南天门，但是两次的心情与心境完全不一样，一年过去了，&amp;quot;非所经历，不能感悟&amp;quot;。 老君山的南天门 泰山的南天门 再往上，夜里其实也没啥看的，就单纯继续爬，夜里的碧霞祠、五岳独尊、日观峰、玉皇顶 …  ]]></content></entry></search>
