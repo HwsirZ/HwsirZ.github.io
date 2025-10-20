@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>蒙特卡洛方法</title><url>/reinforcement-learning/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/</url><categories/><tags/><content type="html"><![CDATA[  蒙特卡洛方法基于对样本回报求平均值的办法来解决问题，与环境进行真实或者模拟的交互得到状态、动作、奖励的样本序列，不需要对环境有完全的了解，在概率上，通过与环境交互，得到样本，用足够多的样本去估计总体，得到一个近似。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Windows下载wsl_linux子系统并配置可视化界面</title><url>/linux/windows%E4%B8%8B%E8%BD%BDwsl_linux%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2/</url><categories/><tags/><content type="html">  由于很多项目都是在linux系统下做开发，而目前很多人使用的还都是windows系统的笔记本电脑或者主机电脑，因此windows下的linux子系统是一个不错的选择，但是配置方面仍然会遇到一些问题，本文章主要记录linux子系统的安装以及可视化GUI的配置以及使用
+一、安装前的准备确认 Windows 版本：WSL 2（推荐版本）需要：
+Windows 10 2004 及以上版本（内部版本 19041+）
+Windows 11 任意版本
+检查方法：按下 Win + R，输入 winver 回车，查看 “内部版本号”。
+开启硬件虚拟化：WSL 依赖硬件虚拟化技术（如 Intel VT-x/AMD-V），需在 BIOS 中开启（多数电脑默认开启，若后续安装报错，再按此步骤排查）。
+二、安装 WSL（推荐自动安装，10 分钟搞定）步骤 1：用命令自动安装（最简单）以 管理员身份 打开 PowerShell 或 命令提示符（CMD）：
+按下 Win 键，搜索 “PowerShell”，右键选择 “以管理员身份运行”。 输入以下命令，自动启用 WSL 功能并安装默认 Linux 发行版（通常是 Ubuntu）：
+powershell
+1 wsl --install 这个命令会自动完成：
+启用 “适用于 Linux 的 Windows 子系统” 和 “虚拟机平台” 两个核心功能； 下载并安装 WSL 2 内核； 安装默认的 Linux 发行版（Ubuntu，社区最活跃，适合新手）。 等待安装完成后，重启电脑（必须重启，否则功能不生效）。
+步骤 2：手动选择发行版（可选，若需其他 Linux 系统）如果想安装 Ubuntu 以外的发行版（如 Debian、Fedora）：
+先执行命令查看可用发行版：
+powershell
+1 wsl --list --online 会显示类似列表：
+plaintext
+1 2 3 4 5 以下是可安装的有效分发版: NAME FRIENDLY NAME Ubuntu Ubuntu Debian Debian GNU/Linux kali-linux Kali Linux Rolling 安装指定发行版（例如 Debian）：
+powershell
+1 wsl --install -d Debian 三、初始化 Linux 系统（首次启 …  </content></entry><entry><title>蒙特卡洛方法</title><url>/reinforcement-learning/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/</url><categories/><tags/><content type="html"><![CDATA[  蒙特卡洛方法基于对样本回报求平均值的办法来解决问题，与环境进行真实或者模拟的交互得到状态、动作、奖励的样本序列，不需要对环境有完全的了解，在概率上，通过与环境交互，得到样本，用足够多的样本去估计总体，得到一个近似。
 一：蒙特卡洛的预测在给定策略的情况下，用蒙特卡洛方法学习状态-价值函数。
 一个状态的价值等于从这个状态开始的期望回报——期望的累计未来折扣奖励。
 我们用$V_\pi$表示在策略$\pi$下状态s的价值，通过不断模拟采样计算平均值，这个值会收敛于状态的价值的期望。
