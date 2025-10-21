@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Embodied Intelligence on 惜日短</title><link>https://hwsirz.github.io/embodied-intelligence/</link><description>Recent content in Embodied Intelligence on 惜日短</description><generator>Hugo</generator><language>en-US</language><lastBuildDate/><atom:link href="https://hwsirz.github.io/embodied-intelligence/rss.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Embodied Intelligence on 惜日短</title><link>https://hwsirz.github.io/embodied-intelligence/</link><description>Recent content in Embodied Intelligence on 惜日短</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 20 Oct 2025 11:00:34 +0800</lastBuildDate><atom:link href="https://hwsirz.github.io/embodied-intelligence/rss.xml" rel="self" type="application/rss+xml"/><item><title>具身智能Habitat库安装使用(一)</title><link>https://hwsirz.github.io/embodied-intelligence/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDhabitat%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%B8%80/</link><pubDate>Mon, 20 Oct 2025 11:00:34 +0800</pubDate><guid>https://hwsirz.github.io/embodied-intelligence/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDhabitat%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%B8%80/</guid><description>&lt;h2 id="一habitat-sim--habitat-lab-and-habitat-marl">一：Habitat-sim 、 Habitat-lab and Habitat-MARL
+&lt;a class="header-anchor" href="#%e4%b8%80habitat-sim--habitat-lab-and-habitat-marl">&lt;/a>
+&lt;/h2>&lt;p>Habitat是一个具身智能仿真平台，核心组件包括&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Habitat-Sim&lt;/strong>：高性能 3D 模拟器，支持物理引擎（如 Bullet）、多模态传感器（RGB、深度图、语义分割）和真实场景数据集（如 MatterPort3D）。&lt;/li>
+&lt;li>&lt;strong>Habitat-Lab&lt;/strong>：模块化库，用于定义任务（如导航、指令遵循）、配置代理（机器人或人形）和训练算法（强化学习或模仿学习）。&lt;/li>
+&lt;li>&lt;strong>Habitat-MARL&lt;/strong>：扩展模块，支持多智能体协作训练，适用于多机器人导航、资源分配等场景。&lt;/li>
+&lt;/ul>
+&lt;h2 id="二habitat-sim的安装">二：Habitat-Sim的安装
+&lt;a class="header-anchor" href="#%e4%ba%8chabitat-sim%e7%9a%84%e5%ae%89%e8%a3%85">&lt;/a>
+&lt;/h2>
+ &lt;blockquote>
+ &lt;p>目前Habitat-Sim应该只有Linux版本与Mac版本，而且Mac版本也只有基本功能，在Windows上确实可以通过cmake重新编译来使用，但是难免会有兼容性问题，因此我尝试在Windows的linux子系统中使用。这个库毕竟是一个3D场景的模拟库，需要可视化界面，因此尝试配置linux的Gui后使用.&lt;/p></description></item></channel></rss>
