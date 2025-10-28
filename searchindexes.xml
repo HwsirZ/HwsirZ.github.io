@@ -22,7 +22,7 @@ Link: https://doi.org/10.1145/3727642本文是对上述综述内容的部分翻
 惯性测量单元（inertial measurement unit IMU）
 旋转编码器（rotary encoder）
 路径规划方法分类：
-传统方法&mdash; $A^$ 算法、Dijkstra算法***
+传统方法&mdash; $ A^* $ 算法、Dijkstra算法
 基于AI&mdash; 强化学习(RL)、遗传算法
 混合方法&mdash; 传统方法与AI方法的结合
 另一种分类：
