@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>人机均衡——“人类与机器的边界”</title><url>/post/%E4%BA%BA%E6%9C%BA%E5%9D%87%E8%A1%A1%E4%BA%BA%E7%B1%BB%E4%B8%8E%E6%9C%BA%E5%99%A8%E7%9A%84%E8%BE%B9%E7%95%8C/</url><categories/><tags/><content type="html">  人机均衡 关于AI游戏智能体引发的思考，人类与计算机应该达到怎样的平衡？最初是要做一个机器学习的课程设计，选择了强化学习玩斗地主，从对DouZero模型的学习中，有了一些相关的思考。如今，智能与人类生活紧密融合，但是人类与计算机或者说智能设备的边界又在哪里呢，计算机所控制的智能体能否真正完全替代人类呢？
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>机器人自主导航（一）</title><url>/embodied-intelligence/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA%E4%B8%80/</url><categories/><tags/><content type="html"><![CDATA[  综述《A Comprehensive Review on Autonomous Navigation》
+Link: https://doi.org/10.1145/3727642本文是对上述综述内容的部分翻译与总结
+机器人技术的应用领域医疗
+军事
+工业
+太空
+农业
+&hellip;&hellip;
+一：第一台自主移动机器人ShakeyShakey 机器人是世界上第一台移动机器人，由查理·罗森（Charlie Rosen）领导的美国斯坦福研究所于1956年至1972年研制而成。Shakey首次全面应用了人工智能技术，能够自主进行感知、环境建模、行为规划并执行任务，如寻找木箱并将其推到指定位置。它装备了电子摄像机、三角测距仪、碰撞传感器以及驱动电机，并通过无线通信系统由两台计算机控制，如下图所示。
+二：第一辆自动驾驶汽车Stanford Cart据了解，Stanford Cart使用一台帧率为1Hz的黑白相机，可以在道路上沿着一条不间断的白线行驶15m，当然移动速度很慢，以下是搜到的实物图
+三：综述描述的主要内容传统避障方法和现代避障方法（基于强化学习与深度学习）
+著名的SLAM方法
+流行的机器人模拟器以及与机器人操作系统（ROS）的适配性
+基于操作环境的移动机器人平台类型与特性
+著名的传感器融合方法（卡尔曼滤波及其扩展以及粒子滤波器）
+开源SLAM数据集
+3.1 路径规划方法(一)环境信息的获取绝对定位传感器GPS
+障碍物检测传感器
+视觉传感器：RGBD摄像机
+范围传感器：雷达、脉冲激光、超声波
+相对定位传感器
+惯性测量单元（inertial measurement unit IMU）
+旋转编码器（rotary encoder）
+路径规划方法分类：
+传统方法&mdash; $A^$ 算法、Dijkstra算法***
+基于AI&mdash; 强化学习(RL)、遗传算法
+混合方法&mdash; 传统方法与AI方法的结合
+另一种分类：
+几何模型搜索方法 （Geometric Model Search Methods）
+随机抽样方法 （Random Sampling Methods）
+生物启发方法 （Bio-inspired Methods）
+人工智能方法 （Artificial Potential Filed Method）
+（二）路径规划方法介绍1.Geometric Model Search Methods（几何搜索方法）  ]]></content></entry><entry><title>人机均衡——“人类与机器的边界”</title><url>/post/%E4%BA%BA%E6%9C%BA%E5%9D%87%E8%A1%A1%E4%BA%BA%E7%B1%BB%E4%B8%8E%E6%9C%BA%E5%99%A8%E7%9A%84%E8%BE%B9%E7%95%8C/</url><categories/><tags/><content type="html">  人机均衡 关于AI游戏智能体引发的思考，人类与计算机应该达到怎样的平衡？最初是要做一个机器学习的课程设计，选择了强化学习玩斗地主，从对DouZero模型的学习中，有了一些相关的思考。如今，智能与人类生活紧密融合，但是人类与计算机或者说智能设备的边界又在哪里呢，计算机所控制的智能体能否真正完全替代人类呢？
 先从游戏说起，对于游戏，在计算机领域，不可避免的想到Alpha Go，这个强大的围棋AI，围棋游戏是一个完全可观测环境，对于围棋，所谓完全可观测环境就是所有信息已经在棋盘上显示出来了，而斗地主这个游戏属于部分可观测环境，也就是你无法知道其他玩家的手牌。试想，如果围棋也是一个多人游戏，假定为四人吧，2v2，那么在完全可观测环境下，队友的完美合作完全是有可能的。但是对于斗地主这样的部分可观测环境呢，两个农民也只知道自己的手牌。对于AI程序，当然可以从训练中计算出某一个出牌决策的优劣度，但是面对随机发放的手牌，即使再好的出牌策略可能也无能为力。可以想象到，由于洗牌是随机的，每个人拿到的手牌的好坏程度概率是一样的，因此很难说训练的地主模型一定优于农民模型。或者农民模型一定优于地主模型。对于这种部分可观测娱乐游戏，尤其是带有随机性的，机器对人的替代似乎必要性很少。斗地主这个游戏还不是很明显，接下来将从另一个游戏说起。
 从一个山东朋友那里了解到保皇这个游戏，四副扑克牌，五人游戏，一个皇帝，一个侍卫，三个平民。这比斗地主更具有游戏性与合作性。玩过三国杀的玩家应该很熟悉，主公、反贼、忠臣。由于目前斗地主的AI已经训练的很好的，不管是？DouZero还是使用ResNet训练的DouZero，还是PredictDou等模型。所以我在想能不能仿照着做一个保皇游戏的AI，首先让我望而却步的是保皇游戏中的诸多规则，进贡、明保、暗保等。上述已经是一个月之前的事情了。而今天突然想到，先假设已经训练了这样一个玩保皇游戏的模型，那么，想想一下，这个游戏里所体现的合作、欺骗、竞争又该怎么体现呢，人们玩这类游戏的初衷便是体验游戏的过程，保子(侍卫)可能享受冒充平民的乐趣，平民也在提放着保子，我认为这正是人类玩这个游戏的初衷。就好像三国杀，忠臣、反贼的扮演本身带给了玩家乐趣。而机器是没有这种感情的，人类和机器玩这种游戏，当然也无法从机器身上感受到任何感情，也许对于如今快速发展的大语言模型，是可以模拟这种感 …  </content></entry><entry><title>Linux常用命令汇总</title><url>/linux/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</url><categories/><tags/><content type="html">  一：远程Linux文件传输SCP 传输SCP（Secure Copy）是一种安全的文件传输方法，可以在不同主机之间传输文件。SCP命令通过SSH协议加密传输文件，提高了安全性，但相对速度会慢一些。
 1 2 3 4 # 从本地复制文件到远程主机 scp [local directory] [username]@[ip adress]:[remote directory] # 从远程主机复制文件到本地 scp -rp [ip adress]:[directory] [local adress]   </content></entry><entry><title>Windows下载wsl_linux子系统并配置可视化界面</title><url>/linux/windows%E4%B8%8B%E8%BD%BDwsl_linux%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2/</url><categories/><tags/><content type="html">  由于很多项目都是在linux系统下做开发，而目前很多人使用的还都是windows系统的笔记本电脑或者主机电脑，因此windows下的linux子系统是一个不错的选择，但是配置方面仍然会遇到一些问题，本文章主要记录linux子系统的安装以及可视化GUI的配置以及使用
