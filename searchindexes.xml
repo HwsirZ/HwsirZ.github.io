@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>机器人自主导航（一）</title><url>/embodied-intelligence/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA%E4%B8%80/</url><categories/><tags/><content type="html"><![CDATA[  综述《A Comprehensive Review on Autonomous Navigation》
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Windows下wsl文件传输</title><url>/linux/windows%E4%B8%8Bwsl%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</url><categories/><tags/><content type="html"><![CDATA[  WSL中，windows系统的目录在/mnt下，使用mv指令进行文件移动
+mv指令使用方式作用移动文件/目录到新位置
+重命名文件/目录
+（在同一文件系统内通常是“改名”而非复制——更快，不占额外空间）
+基本语法1 2 3 4 # 重命名 mv 源路径 目标路径 # 移动多个文件到目录 mv 源1 源2 ... 目标目录/ 常用选项（GNU coreutils）-i：交互式，覆盖前询问（安全）
+-n：不覆盖已存在目标（no-clobber）
+-f：强制覆盖（不提示）
+-u：仅在源更新或目标不存在时才移动（update）
+-v：显示过程（verbose）
+-t DIR：把目标目录放前面，后面全是源（脚本里更安全）
+-T：把目标严格当作文件名，即使它是目录也不当目录用（防止误把东西塞进目录）
+常见场景与例子1) 重命名文件/目录1 2 mv report.txt report_old.txt mv data_2024/ data_backup/ 2) 移动多个文件到某目录1 2 3 mv a.jpg b.jpg c.jpg images/ # 或者 mv -t images/ a.jpg b.jpg c.jpg 3) 安全地避免覆盖1 2 3 mv -n result.csv /dest/ # 或者先询问 mv -i result.csv /dest/ 4) 仅在目标较旧时才替换1 mv -u model.pt /models/ 5) 显示详细过程1 mv -v *.png assets/ 6) 处理带空格/特殊字符的路径（务必加引号）1 mv &#34;My File.txt&#34; &#34;My File (old).txt&#34; 7) 移动“隐藏文件”（以 . 开头）1 2 3 4 # 常见做法：匹配 . 开头但排除 . 和 .. mv .[^.]* ..?* target_dir/ 2&gt;/dev/null # 或在 bash 中临时让 * 匹配隐藏文件 shopt -s dotglob; mv * target_dir/; shopt -u dotglob 8) 用通配/批量改名（配合 brace/参数展开）1 2 # 批量改后缀 .txt -&gt; .bak for f in *.txt; do mv &#34;$f&#34; &#34;${f%.txt}.bak&#34;; done 9) 防“把文件错丢进目录”的保险1 2 # 若你期望把 a 移成名字叫 dest 的文件，而不是放入目录 dest/ mv -T a dest 10) 跨文件系统移动（EXDEV）同一文件系统内：mv 只是改目录项（快，inode 不变）
+跨文件系统：mv 会复制再删除（慢）。如果报 Invalid cross-device link，就是不支持直接改名，这时 mv 会回退成 copy+remove，或你可手动：
+1 cp -a src /otherfs/dir/ &amp;&amp; rm -rf src -a 会尽量保留权限/时间戳/链接属性。
+覆盖策略小抄最安全：mv -i 或 mv -n
+自动化脚本：mv -f（配合校验更稳）
+只替换较旧：mv -u
+进阶小提示结束选项：--，可防文件名以 - 开头被当成参数
+1 mv -- --weird-name.txt normal.txt 观察符号链接：mv 对 symlink 本身移动/改名，不会解引用
+目录时间戳：父目录的 mtime 会改变，被移动文件的 mtime 通常不变（同一文件系统改名）
+  ]]></content></entry><entry><title>机器人自主导航（一）</title><url>/embodied-intelligence/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA%E4%B8%80/</url><categories/><tags/><content type="html"><![CDATA[  综述《A Comprehensive Review on Autonomous Navigation》
 Link: https://doi.org/10.1145/3727642本文是对上述综述内容的部分翻译与总结
 机器人技术的应用领域医疗
 军事
