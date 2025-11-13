@@ -62,7 +62,9 @@ mv指令使用方式作用移动文件/目录到新位置
 进阶小提示结束选项：--，可防文件名以 - 开头被当成参数
 1 mv -- --weird-name.txt normal.txt 观察符号链接：mv 对 symlink 本身移动/改名，不会解引用
 目录时间戳：父目录的 mtime 会改变，被移动文件的 mtime 通常不变（同一文件系统改名）
-  ]]></content></entry><entry><title>机器人自主导航（一）</title><url>/embodied-intelligence/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA%E4%B8%80/</url><categories/><tags/><content type="html"><![CDATA[  综述《A Comprehensive Review on Autonomous Navigation》
+  ]]></content></entry><entry><title>Habitat Sim库介绍(二)</title><url>/embodied-intelligence/habitat-sim%E5%BA%93%E4%BB%8B%E7%BB%8D%E4%BA%8C/</url><categories/><tags/><content type="html">  一：Habitat-sim介绍Habitat-sim是一个灵活、高性能的3D模拟器，具有可配置的代理，多个传感器和通用3D数据集处理器（内置支持MatterPort3D、Gibson、Replica 和其他数据集）
+官方网站以及文档官方网站：AI Habitat文档：Habitat Simulator | Habitat Sim Docs官方教程：
+How to Train Your [Dragon] Embodied Agent (with AI Habitat) | AI HabitatGithub 地址：facebookresearch/habitat-sim: A flexible, high-performance 3D simulator for Embodied AI research.一：Habitat-sim 仓库目录结构1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 📁 habitat-lab ├── 📁 .circleci ├── 📁 .github ├── 📁 configs ├── 📁 docs ├── 📁 examples ├── 📁 habitat ├── 📁 habitat_baselines ├── 📁 res ├── 📁 scripts ├── 📁 test ├── 📄 .editorconfig (575 bytes) ├── 📄 .gitignore (1.1 KB) ├── 📄 .pre-commit-config.yaml (3.1 KB) ├── 📄 CODE_OF_CONDUCT.md (249 bytes) ├── 📄 CONTRIBUTING.md (2.7 KB) ├── 📄 Dockerfile (1.7 KB) ├── 📄 LICENSE (1.1 KB) ├── 📄 MANIFEST.in (105 bytes) ├── 📄 mypy.ini (755 bytes) ├── 📄 pyproject.toml (391 bytes) ├── 📄 README.md (21.1 KB) ├── 📄 requirements.txt (269 bytes) ├── 📄 setup.cfg (859 bytes) └── 📄 setup.py (3.4 KB)   </content></entry><entry><title>机器人自主导航（一）</title><url>/embodied-intelligence/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA%E4%B8%80/</url><categories/><tags/><content type="html"><![CDATA[  综述《A Comprehensive Review on Autonomous Navigation》
 Link: https://doi.org/10.1145/3727642本文是对上述综述内容的部分翻译与总结
 机器人技术的应用领域医疗
 军事
