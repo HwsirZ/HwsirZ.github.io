@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>具身智能Habitat(二)</title><url>/embodied-intelligence/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDhabitat%E4%BA%8C/</url><categories/><tags/><content type="html">  一：Habitat-sim安装方式安装Habitat-sim库的方式有很多：
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>MobaXterm使用教程</title><url>/linux/mobaxterm%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url><categories/><tags/><content type="html">  MobaXterm使用教程一：关于MobaXtermMobaXterm是一个集成了大量终端功能的应用程序，为计算机行业人员提供简便的远程服务器连接。
+二：集成的远程网络工具  </content></entry><entry><title>具身智能Habitat(二)</title><url>/embodied-intelligence/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDhabitat%E4%BA%8C/</url><categories/><tags/><content type="html">  一：Habitat-sim安装方式安装Habitat-sim库的方式有很多：
 通过cmake自己编译，即通过setup.py进行编译后安装
 安装编译过程中需要下载其他git依赖仓库
 cmake编译时可能因为内存不足编译失败（可设置parallel）
