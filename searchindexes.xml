@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>MobaXterm使用教程</title><url>/linux/mobaxterm%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url><categories/><tags/><content type="html">  MobaXterm使用教程一：关于MobaXtermMobaXterm是一个集成了大量终端功能的应用程序，为计算机行业人员提供简便的远程服务器连接。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>（一）UniGoal：通用零样本目标导航</title><url>/paperreadingnotes/%E4%B8%80unigoal%E9%80%9A%E7%94%A8%E9%9B%B6%E6%A0%B7%E6%9C%AC%E7%9B%AE%E6%A0%87%E5%AF%BC%E8%88%AA/</url><categories/><tags/><content type="html">  一：论文信息Title: UniGoal: Towards Universal Zero-shot Goal-oriented Navigation
+Link: https://arxiv.org/pdf/2503.10630二：研究背景Goal-Oriented navigation Classified by Goal TypeObject category: 即Object Goal Navigation
+eg：go to the sofa，目标是指定的具体物品的类别 instance image: 即Instance Image Goal Navigaion
+eg: 找到图中的沙发，目标是给定图片中物品 text description: 即Text Goal Navigation
+eg: go to the chair next to the window，目标是自然语言所描述的物品 三者都是目标导航，但是输入数据的形式不同。其他研究都是针对其中一种进行方法设计，而本文是要提出一个能同时处理上述三个任务的通用架构方法
+现存的问题现实场景中的人类的指令非常灵活，可以是&amp;amp;quot;类别+图像+自然语言描述&amp;amp;quot;等多种方式出现，因此需要更通用的方法
+方法路线的缺陷
+预训练方法需要在大规模模拟环境中进行预训练，容易对仿真环境过拟合，从而在真实世界中表现不佳
+基于LLM的零样本方法又只针对单一任务进行设计，难以扩展
+Frontier-Based Exploration1. what is Frontier?在occupancy grid里，每个格子有三种状态（free，occupied，unknow），Frontier是介于unknow与free之间的状态，也就是在frontier这里，你可以看到unknow这个区域的真实状态
+2. FBE的工作流程流程: 利用位姿+RGB-D/激光数据 构建occupied grid，也就是将当前的场景映射为2D的栅格图，检测Frontier，评估每个Fontier并选择其中一个进行探索以更新地图和寻找目标。
+规划方法: A*/D* Lite/FMM(Fast Marching Method)
+FMM也叫做最快行军法，
+相关工作背景1. Zero-shot Navigation …  </content></entry><entry><title>MobaXterm使用教程</title><url>/linux/mobaxterm%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url><categories/><tags/><content type="html">  MobaXterm使用教程一：关于MobaXtermMobaXterm是一个集成了大量终端功能的应用程序，为计算机行业人员提供简便的远程服务器连接。
 二：集成的远程网络工具  </content></entry><entry><title>具身智能Habitat(二)</title><url>/embodied-intelligence/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDhabitat%E4%BA%8C/</url><categories/><tags/><content type="html">  一：Habitat-sim安装方式安装Habitat-sim库的方式有很多：
 通过cmake自己编译，即通过setup.py进行编译后安装
 安装编译过程中需要下载其他git依赖仓库
