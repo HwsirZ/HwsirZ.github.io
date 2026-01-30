@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <h1 class="page-title">{{ .Title }}</h1>
+
+  {{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+    <ul class="post-list">
+      {{ range .Pages }}
+        <li class="post-item">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ if and .Date (eq .Kind "page") }}
+            <span class="muted">{{ .Date.Format "2006-01-02" }}</span>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <ul class="post-list">
+      {{ range .Pages }}
+        <li class="post-item">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="muted">{{ .Date.Format "2006-01-02" }}</span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

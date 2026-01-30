@@ -1,0 +1,33 @@
+<div class="profile">
+  {{ with .Site.Params.avatar }}
+    <img class="avatar" src="{{ . | relURL }}" alt="avatar" />
+  {{ end }}
+
+  <div class="profile-text">
+    {{ with .Site.Params.tagline }}<div class="tagline">{{ . }}</div>{{ end }}
+    {{ with .Site.Params.bio }}<div class="bio">{{ . }}</div>{{ end }}
+  </div>
+
+    {{ $s := .Site.Params.social }}
+    {{ if $s }}
+    <div class="social">
+        {{ with $s.email }}<a href="{{ . }}">Email</a>{{ end }}
+        {{ with $s.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
+        {{ with $s.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+        {{ with $s.twitter }}<a href="{{ . }}" target="_blank" rel="noopener">X</a>{{ end }}
+        {{ with $s.homepage }}<a href="{{ . }}" target="_blank" rel="noopener">Home</a>{{ end }}
+    </div>
+    {{ end }}
+
+</div>
+
+<hr class="sep">
+
+<div class="sidebar-block">
+  <div class="sidebar-title">Recent</div>
+  <ul class="sidebar-list">
+    {{ range first 8 (where .Site.RegularPages "Section" "posts") }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</div>
