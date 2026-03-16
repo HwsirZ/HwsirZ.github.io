@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 生生不息</title>
-    <link>https://github.com/HwsirZ/HwsirZ.github.io.git/categories/</link>
-    <description>Recent content from 生生不息</description>
+    <title>Categories on 非所经历，不得感悟</title>
+    <link>https://example.com/categories/</link>
+    <description>Recent content from 非所经历，不得感悟</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     
@@ -13,7 +13,7 @@
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
     
-    <atom:link href="https://github.com/HwsirZ/HwsirZ.github.io.git/categories/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
