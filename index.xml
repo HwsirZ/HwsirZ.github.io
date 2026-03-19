@@ -12,12 +12,32 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 18 Mar 2026 22:15:16 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Mar 2026 10:54:52 +0800</lastBuildDate>
     
     
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>机器学习(1)</title>
+      <link>http://localhost:1313/post/20260319_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/</link>
+      <pubDate>Thu, 19 Mar 2026 10:54:52 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260319_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/</guid>
+      <description>
+        <![CDATA[<h1>机器学习(1)</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          第二章 模型评估与选择
+        
+        <hr><p>本文2026-03-19首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-19</p>]]>
+      </description>
+      
+        <category>机器学习-周志华-学习笔记</category>
+      
+    </item>
     
     
 
