@@ -3,9 +3,9 @@
   --footer-icon: url(../images/taichi.svg);
   --top-icon: url(/images/taichi.svg);
   --sponsor-icon: url(/images/taichi.svg);
-  --cursor-default: url(../images/cursor/jierui.svg), auto;
-  --cursor-pointer: url(../images/cursor/jierui.svg), pointer;
-  --cursor-text: url(../images/cursor/tangmu.svg), text;
+  --cursor-default: url(../images/cursor/jerry.svg), auto;
+  --cursor-pointer: url(../images/cursor/jerry.svg), pointer;
+  --cursor-text: url(../images/cursor/Tom-blue.svg), text;
 }
 
 :root {
