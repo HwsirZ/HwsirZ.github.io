@@ -8,11 +8,11 @@ textarea,
 select,
 label,
 [role="button"] {
-  cursor: url("https://hwsirz.github.io/images/cursor/jerry.svg"), auto !important;
+  cursor: url("https://github.com/HwsirZ/HwsirZ.github.io/blob/master/images/cursor/jerry.svg"), auto !important;
 }
 
 input,
 textarea,
 [contenteditable="true"] {
-  cursor: url("https://hwsirz.github.io/images/cursor/Tom-blue.svg"), text !important;
+  cursor: url("https://github.com/HwsirZ/HwsirZ.github.io/blob/master/images/cursor/Tom-blue.svg"), text !important;
 }
