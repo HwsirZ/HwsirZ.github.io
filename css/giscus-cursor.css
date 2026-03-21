@@ -1,0 +1,18 @@
+html,
+body,
+*,
+a,
+button,
+input,
+textarea,
+select,
+label,
+[role="button"] {
+  cursor: url("https://hwsirz.github.io/images/cursor/jerry.svg"), auto !important;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  cursor: url("https://hwsirz.github.io/images/cursor/Tom-blue.svg"), text !important;
+}
