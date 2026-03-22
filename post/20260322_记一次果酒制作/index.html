@@ -276,12 +276,13 @@
 <h3 id="23-图片展示">
 <a class="header-anchor" href="#23-%e5%9b%be%e7%89%87%e5%b1%95%e7%a4%ba"></a>
 2.3 图片展示
-</h3><div id="carousel-1774165603063870600" style="position: relative; width: 800px; max-width: 100%; height: 600px; margin: 20px auto; overflow: hidden; border-radius: 8px; background: #f0f0f0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-  <button class="prev-btn-1774165603063870600" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; z-index: 10; opacity: 0.5; transition: opacity 0.3s;">
+</h3><div id="carousel-1774165958826666200" style="position: relative; width: 800px; max-width: 100%; height: 600px; margin: 20px auto; overflow: hidden; border-radius: 8px; background: #f0f0f0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+  
+  <button id="prev-1774165958826666200" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">
     ❮
   </button>
   
-  <div class="slide-container-1774165603063870600" style="display: flex; height: 100%; transition: transform 0.3s;">
+  <div id="slides-1774165958826666200" style="display: flex; height: 100%; transition: transform 0.3s ease;">
     <div style="flex: 0 0 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
       <img src="/images/blog/202603/%e7%99%bd%e9%85%92-%e6%b1%be%e9%85%92.jpg" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
@@ -308,57 +309,43 @@
     </div>
   </div>
   
-  <button class="next-btn-1774165603063870600" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; z-index: 10; opacity: 0.5; transition: opacity 0.3s;">
+  <button id="next-1774165958826666200" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">
     ❯
   </button>
 </div>
 
 <script>
 (function() {
-  var id =  1774165603063870600 ;
-  var container = document.getElementById('carousel-' + id);
-  if (!container) return;
-  
-  var slides = container.querySelector('.slide-container-' + id);
-  var prev = container.querySelector('.prev-btn-' + id);
-  var next = container.querySelector('.next-btn-' + id);
-  var total = container.querySelectorAll('.slide-container-' + id + ' > div').length;
+  var id = '1774165958826666200';
+  var slides = document.getElementById('slides-' + id);
+  var prev = document.getElementById('prev-' + id);
+  var next = document.getElementById('next-' + id);
+  var total = slides.children.length;
+  var current = 0;
   
   if (total <= 1) {
-    if (prev) prev.style.display = 'none';
-    if (next) next.style.display = 'none';
+    prev.style.display = 'none';
+    next.style.display = 'none';
     return;
   }
   
-  var currentIndex = 0;
+  function update() {
+    slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+  }
   
-  
-  var newPrev = prev.cloneNode(true);
-  var newNext = next.cloneNode(true);
-  prev.parentNode.replaceChild(newPrev, prev);
-  next.parentNode.replaceChild(newNext, next);
-  
-  newPrev.onclick = function(e) {
-    e.stopPropagation();
-    currentIndex = (currentIndex - 1 + total) % total;
-    slides.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+  prev.onclick = function() {
+    current = current - 1;
+    if (current < 0) current = total - 1;
+    update();
   };
   
-  newNext.onclick = function(e) {
-    e.stopPropagation();
-    currentIndex = (currentIndex + 1) % total;
-    slides.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+  next.onclick = function() {
+    current = current + 1;
+    if (current >= total) current = 0;
+    update();
   };
   
-  
-  container.onmouseenter = function() {
-    newPrev.style.opacity = '1';
-    newNext.style.opacity = '1';
-  };
-  container.onmouseleave = function() {
-    newPrev.style.opacity = '0.5';
-    newNext.style.opacity = '0.5';
-  };
+  update();
 })();
 </script>
 <h2 id="3-提醒">
@@ -383,7 +370,7 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="https://ts2.tc.mm.bing.net/th/id/OIP-C.JWlnsZF-dkGUS7I61tlPYwHaEK?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3"
+              data-src="https://mcdn.wallpapersafari.com/medium/82/57/3EroTL.jpg"
               data-sizes="auto"
               alt="habitat Sim版本发展"
               class="lazyload"
