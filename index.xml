@@ -12,12 +12,52 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 25 Mar 2026 14:36:39 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 20:08:41 +0800</lastBuildDate>
     
     
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>habitat 自定义环境配置</title>
+      <link>http://localhost:1313/post/20260327_habitat-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 27 Mar 2026 20:08:41 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260327_habitat-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
+      <description>
+        <![CDATA[<h1>habitat 自定义环境配置</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          Habitat-自定义环境的配置
+        
+        <hr><p>本文2026-03-27首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-27</p>]]>
+      </description>
+      
+        <category>habitat</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>habitat 环境与配置加载</title>
+      <link>http://localhost:1313/post/20260326_habitat-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Thu, 26 Mar 2026 10:12:06 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260326_habitat-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD/</guid>
+      <description>
+        <![CDATA[<h1>habitat 环境与配置加载</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          Habitat 环境与数据集的加载配置
+        
+        <hr><p>本文2026-03-26首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-26</p>]]>
+      </description>
+      
+        <category>habitat</category>
+      
+    </item>
     
     
 

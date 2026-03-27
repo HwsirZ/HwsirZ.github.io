@@ -8,7 +8,7 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  单智能体目标导航概述 | wkt_cherish
+  habitat 环境与配置加载 | wkt_cherish
 </title>
 <meta name="description" content="我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣"/><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":20},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
@@ -33,20 +33,20 @@
     type="font/woff2"
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.css" /><meta property="og:type" content="website" />
-  <meta property="og:title" content="单智能体目标导航概述 | wkt_cherish" />
+  <meta property="og:title" content="habitat 环境与配置加载 | wkt_cherish" />
   <meta
     property="og:description"
     content="我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣"
   />
-  <meta property="og:url" content="http://localhost:1313/post/20260318_%E5%8D%95%E6%99%BA%E8%83%BD%E4%BD%93%E7%9B%AE%E6%A0%87%E5%AF%BC%E8%88%AA%E7%BB%BC%E8%BF%B0/" />
+  <meta property="og:url" content="http://localhost:1313/post/20260326_habitat-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD/" />
   <meta
     property="og:site_name"
     content="非所经历，不得感悟"
   />
   <meta property="og:image" content="http://localhost:1313/images/banner.webp" />
   <meta property="article:author" content="wkt_cherish" />
-  <meta property="article:published_time" content="2026-03-16T22:15:16&#43;08:00" />
-  <meta property="article:modified_time" content="2026-03-18T22:15:16&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="http://localhost:1313/images/banner.webp" />
+  <meta property="article:published_time" content="2026-03-26T10:12:06&#43;08:00" />
+  <meta property="article:modified_time" content="2026-03-26T10:12:06&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="http://localhost:1313/images/banner.webp" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" /><link
     rel="preload"
     as="style"
@@ -122,9 +122,9 @@
   <nav id="sub-nav" aria-label="Secondary navigation"></nav><a href="https://github.com/HwsirZ" class="triangle-badge" title="github" target="_blank" rel="noopener nofollow noreferrer">
       <div class="icon icon-github triangle-badge-icon"></div>
     </a></div>
-<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="单智能体目标导航概述"><div id="header-outer">
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="habitat 环境与配置加载"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">单智能体目标导航概述</h1>
+            <h1 data-aos="slide-up">habitat 环境与配置加载</h1>
           </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
@@ -141,22 +141,8 @@
 <div class="sidebar-toc-wrapper toc-div-class">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-具身智能与目标导航">1 具身智能与目标导航</a></li>
-    <li><a href="#2-研究现状">2 研究现状</a>
-      <ul>
-        <li><a href="#21-目标导航基本概念">2.1 目标导航基本概念</a></li>
-        <li><a href="#22-主流仿真环境与数据集">2.2 主流仿真环境与数据集</a></li>
-        <li><a href="#23-已有研究进展">2.3 已有研究进展</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-方法概述">3 方法概述</a>
-      <ul>
-        <li><a href="#31-端到端方法">3.1 端到端方法</a></li>
-        <li><a href="#32-模块化方法">3.2 模块化方法</a></li>
-        <li><a href="#33-llmvlm-融合方法">3.3 LLM/VLM 融合方法</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-未来展望">4 未来展望</a></li>
+    <li><a href="#1-配置文件">1. 配置文件</a></li>
+    <li><a href="#2-attributes-json">2. Attributes Json</a></li>
   </ul>
 </nav>
 </div></div>
@@ -236,76 +222,53 @@
     class="article-date-link icon-calendar"
     data-aos="zoom-in"
   >
-    <time datetime="2026-03-16 22:15:16 &#43;0800 CST" itemprop="datePublished"
-      >2026-03-16</time
+    <time datetime="2026-03-26 10:12:06 &#43;0800 CST" itemprop="datePublished"
+      >2026-03-26</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-03-18</time
+      >2026-03-26</time
     >
   </span></div>
-</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h2 id="1-具身智能与目标导航">
-<a class="header-anchor" href="#1-%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd%e4%b8%8e%e7%9b%ae%e6%a0%87%e5%af%bc%e8%88%aa"></a>
-1 具身智能与目标导航
-</h2><p>具身智能（Embodied Intelligence）是指智能体通过身体与环境的动态交互，自主完成感知、学习与进化的智能形态。它与流水线上执行固定、重复任务的机械臂有着本质区别：具身智能更强调对环境的感知、理解与自主决策能力。</p>
-<p>目标导航是具身智能的核心基础任务。所谓目标导航，即智能体依据给定的目标信息，在复杂环境中自主规划路径、抵达目标位置，这几乎是所有具身智能系统落地应用的前提。以家居场景为例，家用服务机器人必须具备精准导航能力 —— 目标既可以是一个明确的空间坐标，也可以是某类物品所在的位置。</p>
-<p>当前具身智能与目标导航研究的主要难点，集中在三个方面：一是对开放词汇目标的语义理解能力；二是对复杂、动态环境的感知与建模能力；三是在未知、未见过环境中的泛化与自适应能力。</p>
-<h2 id="2-研究现状">
-<a class="header-anchor" href="#2-%e7%a0%94%e7%a9%b6%e7%8e%b0%e7%8a%b6"></a>
-2 研究现状
-</h2><h3 id="21-目标导航基本概念">
-<a class="header-anchor" href="#21-%e7%9b%ae%e6%a0%87%e5%af%bc%e8%88%aa%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5"></a>
-2.1 目标导航基本概念
-</h3><p>现有的具身智能与目标导航多数针对单智能体目标导航进行，本文也主要对单智能体目标导航的研究进行总结与论述。</p>
-<p>首先，关于导航任务，在导航任务之前，人们常研究的是路径规划，也就是在一个未知环境中，从起始点到目标点如何规划一个最优或者相对最优的路线，这类研究已经非常成熟，不论是单智能体的还是多智能体的，常用的路径规划算法有Dijkstra、A*、RRT等算法。但是目标导航的重点不在路径规划，而在于对未知环境的感知与理解，路径规划仅仅是其中一个底层细节。</p>
-<p>目前目标导航任务有3种形式，点导航(Point Goal Navigation)，也就是导航到指定的坐标点，这其实和路径规划很相似，但是面对的是复杂的真实场景，而不是原先那种栅格障碍图；目标导航(Object Goal Navigation)，也就是在未知环境中，导航到指定类别物体旁；实例导航(Instance Goal Navigation)，这个任务对物体进行了限定，必须是指定的物体，而不是泛泛的类别。</p>
-<h3 id="22-主流仿真环境与数据集">
-<a class="header-anchor" href="#22-%e4%b8%bb%e6%b5%81%e4%bb%bf%e7%9c%9f%e7%8e%af%e5%a2%83%e4%b8%8e%e6%95%b0%e6%8d%ae%e9%9b%86"></a>
-2.2 主流仿真环境与数据集
-</h3><p>2017年 <a href="https://ieeexplore.ieee.org/abstract/document/7989381/">Zhu et al</a> 提出了一个具身智能训练平台<strong>AI2-THOR</strong>，并使用强化学习解决问题。同年(2017年)<a href="https://doi.org/10.48550/arXiv.1709.06158">MP3D数据集</a>被提出，是一个大规模真实室内RGB-D/3D场景数据集。2018年，<a href="https://doi.org/10.48550/arXiv.1808.10654">Gibson数据集</a>被提出。2019年 <a href="https://doi.org/10.48550/arXiv.1904.01201">habitat</a>被提出，这是目前主流的具身智能仿真平台，habiat还连续4年举办了相关比赛。2021年，一个更大规模、更高保真、更适合做导航训练与评测的数据集<a href="https://doi.org/10.48550/arXiv.2109.08238">HM3D</a> 被提出。这是目标主流的仿真环境与数据集。</p>
-<h3 id="23-已有研究进展">
-<a class="header-anchor" href="#23-%e5%b7%b2%e6%9c%89%e7%a0%94%e7%a9%b6%e8%bf%9b%e5%b1%95"></a>
-2.3 已有研究进展
-</h3><p>2019年<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Wortsman_Learning_to_Learn_How_to_Learn_Self-Adaptive_Visual_Navigation_Using_CVPR_2019_paper.pdf">SAVN</a>针对泛化问题，引入 meta-learning 思想，学习可在测试时自适应更新的自监督交互损失，以提升导航策略的适应能力；同年<a href="https://aclanthology.org/D19-1063/">HANNA</a>针对智能体迷失问题，引入协助的概念，在智能体迷失或者困惑的时候请求人类协助。</p>
-<p>2020年<a href="https://proceedings.neurips.cc/paper_files/paper/2020/file/2c75cf2681788adaca63aa95ae028b22-Paper.pdf">SemExp</a>将显式语义地图与长程子目标规划结合到 ObjectNav的模块化框架中，显著提升了探索效率与成功率；同年<a href="https://ojs.aaai.org/index.php/AAAI/article/view/5627">Just Ask</a>也引入人类协助，将提问动作本身加入动作空间，通过reward shap进行学习；<a href="https://proceedings.neurips.cc/paper/2020/hash/6e01383fd96a17ae51cc3e15447e7533-Abstract.html">MultiOn</a>针对地图记忆的有效性问题做了研究，也就是连续的多目标导航问题，设置了一个新的benchmark。</p>
-<p>2021年<a href="http://openaccess.thecvf.com/content/ICCV2021/html/Ye_Auxiliary_Tasks_and_Exploration_Enable_ObjectGoal_Navigation_ICCV_2021_paper.html">EEAux</a>针对端到端方法样本效率低的问题，通过设置辅助任务和探索奖励的方法提高学习效率；<a href="http://openaccess.thecvf.com/content/ICCV2021/html/Zhang_Hierarchical_Object-to-Zone_Graph_for_Object_Navigation_ICCV_2021_paper.html">HOZ</a>提出一种分层框架来对环境信息进行表征。</p>
-<p>2022年<a href="https://link.springer.com/chapter/10.1007/978-3-031-19842-7_29">MAANS</a>在habitat环境中做多智能体环境探索，虽然不是目标导航，以往的探索都是栅格化的简单环境，而MAANS在真实的仿真环境中做研究，同时论文提出了一个完整的工程实现，SLAM建图+特征提取+规划+底层执行，很有参考意义；<a href="https://ieeexplore.ieee.org/abstract/document/9981646/">stubborn</a>在<strong>SemExp</strong>与<strong>EEAux</strong>两个工作的基础上，针对实际运行中出现的错误检测、未检测到、受困、循环等问题作了优化改进；<a href="https://ieeexplore.ieee.org/abstract/document/9812179/">HREM</a>构建了一个3D Scene Graphs进行环境表征，并使用图神经网络方法。</p>
-<p>2023年后方法大都偏向于使用LLM/VLM进行开放词汇目标理解、常识推理与高层决策，但传统模块化与学习式方法仍然持续发展。这里列出一些LLM/VLM融合方法杰出的工作，具体内容不再赘述。<a href="https://ieeexplore.ieee.org/abstract/document/10342512/">L3mvn</a>，<a href="https://arxiv.org/abs/2411.11609">Vln-Game</a>，<a href="https://ieeexplore.ieee.org/abstract/document/10610712/">Vlfm</a>，<a href="https://openaccess.thecvf.com/content/CVPR2025/html/Yin_UniGoal_Towards_Universal_Zero-shot_Goal-oriented_Navigation_CVPR_2025_paper.html">Unigoal</a>，<a href="https://arxiv.org/abs/2310.07937">Co-NavGpt</a>，<a href="https://ojs.aaai.org/index.php/AAAI/article/view/33607">MCoCoNav</a>，<a href="https://openreview.net/pdf?id=ow65qpDY3Q">SpNav</a> 等。</p>
-<h2 id="3-方法概述">
-<a class="header-anchor" href="#3-%e6%96%b9%e6%b3%95%e6%a6%82%e8%bf%b0"></a>
-3 方法概述
-</h2><p>上述提到的以及未提到的方法，可以分为三种：</p>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h2 id="1-配置文件">
+<a class="header-anchor" href="#1-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6"></a>
+1. 配置文件
+</h2><p>要设置的配置文件有三种</p>
 <ol>
-<li>端到端方法</li>
-<li>模块化方法</li>
-<li>LLM/VLM 融合方法</li>
+<li>yaml config</li>
 </ol>
-<h3 id="31-端到端方法">
-<a class="header-anchor" href="#31-%e7%ab%af%e5%88%b0%e7%ab%af%e6%96%b9%e6%b3%95"></a>
-3.1 端到端方法
-</h3><p>端到端的方法直接将多模态信息(agent的位姿、RGB、RGB-D等)作为策略网络的输入，学习隐式记忆与策略，直接输出具体的动作，对于处理复杂任务比较方便，但是训练成本高、难以泛化、可解释性不强。</p>
 <blockquote>
-<p>对于单智能体的端到端的方法，难以泛化是一个很大的问题，训练场景与测试场景往往有不同的布局，此外，对于导航的目标，有些目标可能本身就是弱语义的，与环境信息关系不大。而对于多智能体而言，随着环境的复杂、智能体数量的增加，状态和动作空间就会爆炸性增长，更加难以训练和泛化。</p>
+<p>传给habitat的环境类用于创建初始化环境</p>
 </blockquote>
-<h3 id="32-模块化方法">
-<a class="header-anchor" href="#32-%e6%a8%a1%e5%9d%97%e5%8c%96%e6%96%b9%e6%b3%95"></a>
-3.2 模块化方法
-</h3><p>模块化方法通常为 建图+前沿/目标推理+规划+底层动作执行，工程可控，可解释性强，但是实际构建中各个模块的对齐难度高。模块化方法研究的很多，大都聚焦于如何对环境信息进行有效的提取和表征，比如构建语义地图、占据地图、利用先验语义知识、构建3D语义信息图等。</p>
-<h3 id="33-llmvlm-融合方法">
-<a class="header-anchor" href="#33-llmvlm-%e8%9e%8d%e5%90%88%e6%96%b9%e6%b3%95"></a>
-3.3 LLM/VLM 融合方法
-</h3><p>LLM/VLM融合方法是最近几年研究的热点，通过引入大语言模型的知识推理能力，在探索阶段通过LLM/VLM生成语义指导，通过视觉语言模型跨模态对齐能力提升开放词汇目标匹配精度。通过大模型进行任务分解、角色分配、协作对话，问题是大模型的可控性、成本、实时性、安全约束，目前大模型主要用于高层进行环境理解、语言交互、任务推理，一般是给出探索子目标和方向，底层控制仍为传统方法或者轻量策略网络。</p>
-<h2 id="4-未来展望">
-<a class="header-anchor" href="#4-%e6%9c%aa%e6%9d%a5%e5%b1%95%e6%9c%9b"></a>
-4 未来展望
-</h2><p>目前的导航成功率实际上并不高，尽管近年来导航性能不断提升，但在真实复杂场景、开放词汇目标和未见环境泛化等设置下，现有方法仍远未达到稳定可靠的水平。智能体对于场景理解的能力还有待提升，传统方法(端到端、模块化)对于场景的理解能力实际上有限，工程实现也比较复杂，使用LLM/VLM方法虽然能很快得到场景信息内容并像人类一样进行推理，但是大模型的可控性、成本、实时性等方面仍存在问题，Meta RL的方法仍有优化的空间。</p>
-<p>相信随着技术的不断进步，尤其是大模型的飞速进化，智能体的目标导航能力将会有质的提升和飞跃。</p>
+<ol start="2">
+<li>scene_dataset config</li>
+</ol>
+<blockquote>
+<p>是yaml中的配置项，指明场景数据的配置，也就用到哪些场景</p>
+</blockquote>
+<ol start="3">
+<li>episode path</li>
+</ol>
+<blockquote>
+<p>datasets数据的路径，一般设置为 <code>path/data/datasets/objectnav/hm3d/v2/{split}/{split}.json.gz</code>，这个数据是每个场景的episodes，包括初始位姿信息，要找的目标等</p>
+</blockquote>
+<p><strong>注意</strong>
+<img src="/images/blog/202603/episode.png" alt="alt text"></p>
+<p>这里的episode数据又指定了一个路径，因此这里需要在项目目录下建对应的目录，然后使用软链接链接到数据目录。</p>
+<h2 id="2-attributes-json">
+<a class="header-anchor" href="#2-attributes-json"></a>
+2. Attributes Json
+</h2><p><strong>概览</strong></p>
+<p><img src="/images/blog/202603/jsonConfig.png" alt="概览"></p>
+<blockquote>
+<p>json配置文件由元数据管理器读取并管理，之后simulator去查模板、注册资源、实例化场景</p>
+</blockquote>
 </div>
     <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
     <a
       class="article-category-link"
-      href="/categories/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd%e4%b8%8e%e7%9b%ae%e6%a0%87%e5%af%bc%e8%88%aa"
+      href="/categories/habitat"
       data-aos="zoom-in"
-      >具身智能与目标导航</a
+      >habitat</a
     >
     </li></ul>
 <ul class="article-tag-list" itemprop="keywords"></ul>
@@ -314,18 +277,30 @@
     id="article-nav"
     aria-label="Article navigation"
     data-aos="fade-up"
-  ><div class="article-nav-link-wrap right"><img
-              data-src="https://ts2.tc.mm.bing.net/th/id/OIP-C.MtG5BHWcXTADVW7trlPvpAHaEJ?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://mcdn.wallpapersafari.com/medium/82/57/3EroTL.jpg"
               data-sizes="auto"
-              alt="注意力机制与transformer架构"
+              alt="一些常用的linux命令"
               class="lazyload"
             /><a
-          href="/post/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8Etransformer%E6%9E%B6%E6%9E%84/"
-          aria-label="后一篇:注意力机制与transformer架构"
-          title="后一篇:注意力机制与transformer架构"
+          href="/post/20260325_linux_cmd_mostused/"
+          aria-label="前一篇:一些常用的linux命令"
+          title="前一篇:一些常用的linux命令"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">一些常用的linux命令</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://ts2.tc.mm.bing.net/th/id/OIP-C.MtG5BHWcXTADVW7trlPvpAHaEJ?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3"
+              data-sizes="auto"
+              alt="habitat 自定义环境配置"
+              class="lazyload"
+            /><a
+          href="/post/20260327_habitat-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+          aria-label="后一篇:habitat 自定义环境配置"
+          title="后一篇:habitat 自定义环境配置"
         ></a>
         <div class="article-nav-caption">后一篇</div>
-        <h3 class="article-nav-title">注意力机制与transformer架构</h3>
+        <h3 class="article-nav-title">habitat 自定义环境配置</h3>
       </div></nav></article><section id="comments" data-aos="fade-up">
 <div class="comment-header"><h2 class="comment-title">Leave a comment</h2>
   <div class="comment-selector">
@@ -356,22 +331,8 @@
 <div class="sidebar-toc-wrapper toc-div-class">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-具身智能与目标导航">1 具身智能与目标导航</a></li>
-    <li><a href="#2-研究现状">2 研究现状</a>
-      <ul>
-        <li><a href="#21-目标导航基本概念">2.1 目标导航基本概念</a></li>
-        <li><a href="#22-主流仿真环境与数据集">2.2 主流仿真环境与数据集</a></li>
-        <li><a href="#23-已有研究进展">2.3 已有研究进展</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-方法概述">3 方法概述</a>
-      <ul>
-        <li><a href="#31-端到端方法">3.1 端到端方法</a></li>
-        <li><a href="#32-模块化方法">3.2 模块化方法</a></li>
-        <li><a href="#33-llmvlm-融合方法">3.3 LLM/VLM 融合方法</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-未来展望">4 未来展望</a></li>
+    <li><a href="#1-配置文件">1. 配置文件</a></li>
+    <li><a href="#2-attributes-json">2. Attributes Json</a></li>
   </ul>
 </nav>
 </div></div>
@@ -474,9 +435,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "wkt_cherish",
-          title: "单智能体目标导航概述",
-          url: "http:\/\/localhost:1313\/post\/20260318_%E5%8D%95%E6%99%BA%E8%83%BD%E4%BD%93%E7%9B%AE%E6%A0%87%E5%AF%BC%E8%88%AA%E7%BB%BC%E8%BF%B0\/",
-          description: "关于单智能体目标导航的总结概述",
+          title: "habitat 环境与配置加载",
+          url: "http:\/\/localhost:1313\/post\/20260326_habitat-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD\/",
+          description: "Habitat 环境与数据集的加载配置",
           cover: "http:\/\/localhost:1313\/images\/banner.webp",
         };
       </script><script src="/js/insert_highlight.js" data-pjax ></script><script src="/js/tabs.js" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
