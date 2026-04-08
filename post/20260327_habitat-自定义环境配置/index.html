@@ -146,6 +146,7 @@
       <ul>
         <li><a href="#21-scene-data">2.1 scene Data</a></li>
         <li><a href="#22-episode-dataset">2.2 Episode Dataset</a></li>
+        <li><a href="#23-simulator">2.3 Simulator</a></li>
       </ul>
     </li>
   </ul>
@@ -259,6 +260,14 @@
 <blockquote>
 <p>理论上，并不需要yaml配置文件去设置，可以自己定义各部分的内容，然后用于环境的初始化，官方给的yaml配置都是针对特定任务的，很难适应自己的任务类型，所以构建自己的环境很有必要。</p>
 </blockquote>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>habitat-lab封装的Env以及RLEnv只针对单智能体，要想支持多智能体，需要自己更改 Simulator、Datasets、Task的相关代码，也就是Simulator中的多智能体配置，为每个agent设置其传感器，为每个agent设置初始的位姿(因为episode datasets只支持单智能体的)，读取 episode datesets，设置多智能体的Task，也就是设置episode结束的标志，任务成功的标志，此外还可以自定义评测，也就是自动评测，什么成功率之类的。</p></p>
+  </blockquote>
+
 <h2 id="2-各子部分详解">
 <a class="header-anchor" href="#2-%e5%90%84%e5%ad%90%e9%83%a8%e5%88%86%e8%af%a6%e8%a7%a3"></a>
 2. 各子部分详解
@@ -326,7 +335,33 @@
 </span></span><span class="line"><span class="cl">0
 </span></span><span class="line"><span class="cl">data/scene_datasets/hm3d_v0.2/train/00006-HkseAnWCgqk/HkseAnWCgqk.basis.glb
 </span></span><span class="line"><span class="cl">chair
-</span></span></code></pre></div><p><strong>数据字段</strong></p>
+</span></span></code></pre></div><h3 id="23-simulator">
+<a class="header-anchor" href="#23-simulator"></a>
+2.3 Simulator
+</h3>
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p><strong>以 Habitat-lab 的Env代码的 Sim-V0 为例介绍</strong></p></p>
+  </blockquote>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@registry.register_simulator</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;Sim-v0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HabitatSim</span><span class="p">(</span><span class="n">habitat_sim</span><span class="o">.</span><span class="n">Simulator</span><span class="p">,</span> <span class="n">Simulator</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="s2">&#34;SimulatorConfig&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">   <span class="k">def</span> <span class="nf">create_sim_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">habitat_sim</span><span class="o">.</span><span class="n">Configuration</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nd">@property</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">sensor_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SensorSuite</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agent_sensor_suites</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1"># ......</span>
+</span></span></code></pre></div><p>HabitatSim 继承自两个类，一个是Habitat_sim.Simulator，一个是Simulator，Habitat_sim.Simulator是Habitat_sim库真正的仿真器类，负责场景的加载、agent的创建、传感器的渲染、物理仿真、动作执行；而Simulator是Habitat-lab自己定义的一个提供抽象接口的基类，定义HabitatSim应该有哪些属性与方法。</p>
+<p>官方的代码逻辑如下:</p>
+<p><img src="/images/blog/202603/%E7%BB%98%E5%9B%BE4.svg" alt=""></p>
 </div>
     <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
     <a
@@ -389,6 +424,7 @@
       <ul>
         <li><a href="#21-scene-data">2.1 scene Data</a></li>
         <li><a href="#22-episode-dataset">2.2 Episode Dataset</a></li>
+        <li><a href="#23-simulator">2.3 Simulator</a></li>
       </ul>
     </li>
   </ul>
