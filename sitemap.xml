@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/post/20260408_codex%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2026-04-08T14:11:13+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2026-03-27T20:08:41+08:00</lastmod>
+    <lastmod>2026-04-08T14:11:13+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/codex/</loc>
+    <lastmod>2026-04-08T14:11:13+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-04-08T14:11:13+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/habitat/</loc>
     <lastmod>2026-03-27T20:08:41+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/20260327_habitat-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2026-03-27T20:08:41+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
     <lastmod>2026-03-27T20:08:41+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/20260326_habitat-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD/</loc>

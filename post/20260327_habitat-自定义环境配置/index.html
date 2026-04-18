@@ -164,12 +164,12 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">9</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
     <div class="sidebar-state-number">
-      6
+      7
     </div>
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
@@ -335,6 +335,92 @@
 </span></span><span class="line"><span class="cl">0
 </span></span><span class="line"><span class="cl">data/scene_datasets/hm3d_v0.2/train/00006-HkseAnWCgqk/HkseAnWCgqk.basis.glb
 </span></span><span class="line"><span class="cl">chair
+</span></span></code></pre></div><h4 id="223-json文件内容">
+<a class="header-anchor" href="#223-json%e6%96%87%e4%bb%b6%e5%86%85%e5%ae%b9"></a>
+2.2.3 Json文件内容
+</h4><p>Json文件包括四个部分的内容，<code>['goals_by_category', 'episodes', 'category_to_task_category_id', 'category_to_scene_annotation_category_id']</code>, 具体内容如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span><span class="err">Top-level</span> <span class="err">schema</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;goals_by_category&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_plant&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_chair&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_sofa&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_toilet&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_bed&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;1S7LAXRdDqK.basis.glb_tv_monitor&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;dict&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;episodes&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;episode_id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;scene_id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;scene_dataset_config&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;additional_obj_config_paths&#34;</span><span class="p">:</span> <span class="s2">&#34;list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_position&#34;</span><span class="p">:</span> <span class="s2">&#34;list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_rotation&#34;</span><span class="p">:</span> <span class="s2">&#34;list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;info&#34;</span><span class="p">:</span> <span class="s2">&#34;dict&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;goals&#34;</span><span class="p">:</span> <span class="s2">&#34;list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_room&#34;</span><span class="p">:</span> <span class="s2">&#34;NoneType&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;shortest_paths&#34;</span><span class="p">:</span> <span class="s2">&#34;NoneType&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;object_category&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;category_to_task_category_id&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;chair&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bed&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;plant&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;toilet&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;tv_monitor&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sofa&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;category_to_scene_annotation_category_id&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;chair&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bed&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;plant&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;toilet&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;tv_monitor&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sofa&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>goals_by_category</code>下的每个类别都有多个实例位置，以HkseAnWCgqk场景的episode为例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">=== HkseAnWCgqk.basis.glb_chair ===
+</span></span><span class="line"><span class="cl">num_objects=8
+</span></span><span class="line"><span class="cl">[0] object_id=17, object_name=chair_17, object_category=chair, room_id=None, position=[-6.7917, 0.47493, -4.63808]
+</span></span><span class="line"><span class="cl">[1] object_id=56, object_name=desk chair_56, object_category=chair, room_id=None, position=[-7.00681, 0.47756, 0.36129]
+</span></span><span class="line"><span class="cl">[2] object_id=338, object_name=dining chair_338, object_category=chair, room_id=None, position=[-3.18344, 3.31899, -1.39308]
+</span></span><span class="line"><span class="cl">[3] object_id=339, object_name=dining chair_339, object_category=chair, room_id=None, position=[-2.95105, 3.3132, -2.10662]
+</span></span><span class="line"><span class="cl">[4] object_id=340, object_name=dining chair_340, object_category=chair, room_id=None, position=[-2.94368, 3.31747, -3.08513]
+</span></span><span class="line"><span class="cl">[5] object_id=341, object_name=dining chair_341, object_category=chair, room_id=None, position=[-3.21206, 3.38205, -3.66333]
+</span></span><span class="line"><span class="cl">[6] object_id=342, object_name=dining chair_342, object_category=chair, room_id=None, position=[-3.61439, 3.32104, -2.93717]
+</span></span><span class="line"><span class="cl">[7] object_id=343, object_name=dining chair_343, object_category=chair, room_id=None, position=[-3.57938, 3.31687, -2.25662]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== HkseAnWCgqk.basis.glb_bed ===
+</span></span><span class="line"><span class="cl">num_objects=1
+</span></span><span class="line"><span class="cl">[0] object_id=24, object_name=bed_24, object_category=bed, room_id=None, position=[-4.84605, 0.50949, -3.92781]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== HkseAnWCgqk.basis.glb_sofa ===
+</span></span><span class="line"><span class="cl">num_objects=2
+</span></span><span class="line"><span class="cl">[0] object_id=90, object_name=couch_90, object_category=sofa, room_id=None, position=[-5.11725, 0.44389, 1.3839]
+</span></span><span class="line"><span class="cl">[1] object_id=299, object_name=couch_299, object_category=sofa, room_id=None, position=[-1.71469, 3.26904, 2.61803]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== HkseAnWCgqk.basis.glb_tv_monitor ===
+</span></span><span class="line"><span class="cl">num_objects=1
+</span></span><span class="line"><span class="cl">[0] object_id=115, object_name=tv_115, object_category=tv_monitor, room_id=None, position=[-4.51286, 1.00698, 4.42731]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== HkseAnWCgqk.basis.glb_toilet ===
+</span></span><span class="line"><span class="cl">num_objects=1
+</span></span><span class="line"><span class="cl">[0] object_id=275, object_name=toilet_275, object_category=toilet, room_id=None, position=[0.32255, 3.06824, -1.48663]
 </span></span></code></pre></div><h3 id="23-simulator">
 <a class="header-anchor" href="#23-simulator"></a>
 2.3 Simulator
@@ -378,7 +464,7 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="https://mcdn.wallpapersafari.com/medium/82/57/3EroTL.jpg"
+              data-src="https://ts2.tc.mm.bing.net/th/id/OIP-C.JWlnsZF-dkGUS7I61tlPYwHaEK?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3"
               data-sizes="auto"
               alt="habitat 环境与配置加载"
               class="lazyload"
@@ -389,6 +475,18 @@
         ></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">habitat 环境与配置加载</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://mcdn.wallpapersafari.com/medium/82/57/3EroTL.jpg"
+              data-sizes="auto"
+              alt="Codex基础使用"
+              class="lazyload"
+            /><a
+          href="/post/20260408_codex%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"
+          aria-label="后一篇:Codex基础使用"
+          title="后一篇:Codex基础使用"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Codex基础使用</h3>
       </div></nav></article><section id="comments" data-aos="fade-up">
 <div class="comment-header"><h2 class="comment-title">Leave a comment</h2>
   <div class="comment-selector">
@@ -442,12 +540,12 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">9</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
     <div class="sidebar-state-number">
-      6
+      7
     </div>
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
