@@ -139,7 +139,14 @@
       data-aos="fade-up"
     ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class">
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-frontier的定义">1. Frontier的定义</a></li>
+    <li><a href="#2-frontier的流程">2. Frontier的流程</a></li>
+    <li><a href="#3-多机器人前沿点探索">3. 多机器人前沿点探索</a></li>
+    <li><a href="#4-在habitat中实现基于frontier的探索">4. 在habitat中实现基于Frontier的探索</a></li>
+  </ul>
+</nav>
 </div></div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
@@ -224,7 +231,31 @@
       >2026-04-18</time
     >
   </span></div>
-</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote>
+<p>本文内容主要基于以下论文</p>
+<ol>
+<li><a href="https://www.robotfrontier.com/papers/cira97.pdf">A Frontier-Based Approach for Autonomous Exploration</a></li>
+<li><a href="http://www.robotfrontier.com/papers/agents98.pdf">Frontier-Based Exploration Using Multiple Robots</a></li>
+</ol>
+</blockquote>
+<h2 id="1-frontier的定义">
+<a class="header-anchor" href="#1-frontier%e7%9a%84%e5%ae%9a%e4%b9%89"></a>
+1. Frontier的定义
+</h2><p>Frontiers are regions on the boundary between open space and unexplored space. 边界区域是开放空间与未探索空间之间的交界地带。基于Frontier的探索将grid地图定义为三种状态，open(free)、unknown、occupied，所有与未知单元相邻的开放单元被定义为<strong>前沿点</strong>，相邻的边缘区域被定义为<strong>前沿区域</strong>，所有超过特定最小尺寸的区域被视为一个前沿。</p>
+<p><img src="/images/blog/202604/frontier.png" alt="Frontier"></p>
+<h2 id="2-frontier的流程">
+<a class="header-anchor" href="#2-frontier%e7%9a%84%e6%b5%81%e7%a8%8b"></a>
+2. Frontier的流程
+</h2><p>在初始建图的基础上检测前沿区域，机器人接下来尝试导航至最近的可到达、未访问的前沿区域，路径规划器在网格上执行深度优先搜索，尝试最短的可达路径，机器人到达目标位置后，目标位置被添加至已探索前沿区域列表，并进行地图更新接着机器人尝试导航到下一个检测到的前沿点。如果机器人无法向目标推进，则在预设条件下，判断该点不可达，放弃该点，并将该点添加到不可达前沿点列表。</p>
+<p><img src="/images/blog/202604/frontier_flow.png" alt="前沿点探索流程"></p>
+<h2 id="3-多机器人前沿点探索">
+<a class="header-anchor" href="#3-%e5%a4%9a%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%89%8d%e6%b2%bf%e7%82%b9%e6%8e%a2%e7%b4%a2"></a>
+3. 多机器人前沿点探索
+</h2><p>每个机器人拥有独立的全局地图，当一个机器人到达新的前沿点时，更新自身的网格，并与其他机器人进行信息共享。算法有很多变体，朴素前沿点检测、Expanding Wavefront Frontier Detection(EWDF)、Frontier Tracing Frontier Detection(FTFD)</p>
+<h2 id="4-在habitat中实现基于frontier的探索">
+<a class="header-anchor" href="#4-%e5%9c%a8habitat%e4%b8%ad%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8efrontier%e7%9a%84%e6%8e%a2%e7%b4%a2"></a>
+4. 在habitat中实现基于Frontier的探索
+</h2></div>
     <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
     <a
       class="article-category-link"
@@ -240,7 +271,7 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="https://ts2.tc.mm.bing.net/th/id/OIP-C.MtG5BHWcXTADVW7trlPvpAHaEJ?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3"
+              data-src="https://mcdn.wallpapersafari.com/medium/82/57/3EroTL.jpg"
               data-sizes="auto"
               alt="habitat:地图构建"
               class="lazyload"
@@ -279,7 +310,14 @@
       </div><nav id="mobile-nav" aria-label="Mobile navigation">
   <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class">
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-frontier的定义">1. Frontier的定义</a></li>
+    <li><a href="#2-frontier的流程">2. Frontier的流程</a></li>
+    <li><a href="#3-多机器人前沿点探索">3. 多机器人前沿点探索</a></li>
+    <li><a href="#4-在habitat中实现基于frontier的探索">4. 在habitat中实现基于Frontier的探索</a></li>
+  </ul>
+</nav>
 </div></div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
