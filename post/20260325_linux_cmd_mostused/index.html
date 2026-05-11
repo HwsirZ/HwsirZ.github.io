@@ -154,6 +154,29 @@
       </ul>
     </li>
     <li><a href="#3-软链接">3. 软链接</a></li>
+    <li><a href="#4-查看内存占用">4. 查看内存占用</a>
+      <ul>
+        <li><a href="#41-查看系统总体内存">4.1 查看系统总体内存</a></li>
+        <li><a href="#42-实时查看进程内存占用">4.2 实时查看进程内存占用</a></li>
+        <li><a href="#43-更直观地查看内存占用">4.3 更直观地查看内存占用</a></li>
+        <li><a href="#44-查看最占内存的进程">4.4 查看最占内存的进程</a></li>
+        <li><a href="#45-查看某个进程的内存占用">4.5 查看某个进程的内存占用</a></li>
+        <li><a href="#46-查看详细内存信息">4.6 查看详细内存信息</a></li>
+        <li><a href="#47-查看-gpu-显存占用">4.7 查看 GPU 显存占用</a></li>
+        <li><a href="#48-查看文件夹占用空间">4.8 查看文件夹占用空间</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-关机与重启">5. 关机与重启</a>
+      <ul>
+        <li><a href="#51-立即关机">5.1 立即关机</a></li>
+        <li><a href="#52-定时关机">5.2 定时关机</a></li>
+        <li><a href="#53-取消定时关机">5.3 取消定时关机</a></li>
+        <li><a href="#54-立即重启">5.4 立即重启</a></li>
+        <li><a href="#55-定时重启">5.5 定时重启</a></li>
+        <li><a href="#56-查看系统启动时间">5.6 查看系统启动时间</a></li>
+        <li><a href="#57-服务器关机注意事项">5.7 服务器关机注意事项</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>
@@ -248,12 +271,12 @@
 1.1 支持大文件断点传送
 </h3><p><strong>rsync</strong></p>
 <p>上传</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -avzP /localPath username:remoteIP:/path
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -avzP /localPath username@remoteIP:/path
 </span></span><span class="line"><span class="cl">-a 归档模式<span class="o">(</span>保留权限/时间<span class="o">)</span>
 </span></span><span class="line"><span class="cl">-z 压缩模式<span class="o">(</span>适合远程传输<span class="o">)</span>
 </span></span><span class="line"><span class="cl">-P <span class="o">=</span> --partial --progress 显示进度并保留未完成文件<span class="o">(</span>支持断点传输<span class="o">)</span>
 </span></span></code></pre></div><p>下载</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -avzP username:remoteIP:/path /localPath 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -avzP username@remoteIP:/path /localPath 
 </span></span></code></pre></div><h2 id="2-文件解压">
 <a class="header-anchor" href="#2-%e6%96%87%e4%bb%b6%e8%a7%a3%e5%8e%8b"></a>
 2. 文件解压
@@ -309,7 +332,197 @@
 <a class="header-anchor" href="#3-%e8%bd%af%e9%93%be%e6%8e%a5"></a>
 3. 软链接
 </h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln -s target_FileOrFolder linkName
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><h2 id="4-查看内存占用">
+<a class="header-anchor" href="#4-%e6%9f%a5%e7%9c%8b%e5%86%85%e5%ad%98%e5%8d%a0%e7%94%a8"></a>
+4. 查看内存占用
+</h2><p>Linux 中查看内存占用，常用命令包括 <code>free</code>、<code>top</code>、<code>htop</code>、<code>ps</code> 和 <code>/proc/meminfo</code>。</p>
+<h3 id="41-查看系统总体内存">
+<a class="header-anchor" href="#41-%e6%9f%a5%e7%9c%8b%e7%b3%bb%e7%bb%9f%e6%80%bb%e4%bd%93%e5%86%85%e5%ad%98"></a>
+4.1 查看系统总体内存
+</h3><p><strong>free</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">free -h
+</span></span></code></pre></div><p>常用参数说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-h  以人类可读的格式显示，例如 GB、MB
+</span></span><span class="line"><span class="cl">-m  以 MB 为单位显示
+</span></span><span class="line"><span class="cl">-g  以 GB 为单位显示
+</span></span><span class="line"><span class="cl">-s  每隔指定秒数刷新一次
+</span></span></code></pre></div><p>例如每 2 秒刷新一次：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">free -h -s <span class="m">2</span>
+</span></span></code></pre></div><p>输出中重点关注：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">total       总内存
+</span></span><span class="line"><span class="cl">used        已使用内存
+</span></span><span class="line"><span class="cl">free        完全空闲内存
+</span></span><span class="line"><span class="cl">buff/cache  被缓存占用的内存
+</span></span><span class="line"><span class="cl">available   当前实际可用内存，最有参考价值
+</span></span></code></pre></div><p>一般判断服务器内存是否够用，主要看 <code>available</code>，不要只看 <code>free</code>。</p>
+<h3 id="42-实时查看进程内存占用">
+<a class="header-anchor" href="#42-%e5%ae%9e%e6%97%b6%e6%9f%a5%e7%9c%8b%e8%bf%9b%e7%a8%8b%e5%86%85%e5%ad%98%e5%8d%a0%e7%94%a8"></a>
+4.2 实时查看进程内存占用
+</h3><p><strong>top</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top
+</span></span></code></pre></div><p>进入 <code>top</code> 后，可以按：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">M   按内存占用排序
+</span></span><span class="line"><span class="cl">P   按 CPU 占用排序
+</span></span><span class="line"><span class="cl">q   退出
+</span></span></code></pre></div><p>常见字段说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PID      进程 ID
+</span></span><span class="line"><span class="cl">USER     进程所属用户
+</span></span><span class="line"><span class="cl">%CPU     CPU 占用率
+</span></span><span class="line"><span class="cl">%MEM     内存占用比例
+</span></span><span class="line"><span class="cl">RES      实际占用的物理内存
+</span></span><span class="line"><span class="cl">COMMAND  进程命令
+</span></span></code></pre></div><h3 id="43-更直观地查看内存占用">
+<a class="header-anchor" href="#43-%e6%9b%b4%e7%9b%b4%e8%a7%82%e5%9c%b0%e6%9f%a5%e7%9c%8b%e5%86%85%e5%ad%98%e5%8d%a0%e7%94%a8"></a>
+4.3 更直观地查看内存占用
+</h3><p><strong>htop</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">htop
+</span></span></code></pre></div><p>如果没有安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install htop
+</span></span></code></pre></div><p><code>htop</code> 比 <code>top</code> 更直观，可以直接看到 CPU、内存、Swap 的使用情况，也可以方便地查找和结束进程。</p>
+<h3 id="44-查看最占内存的进程">
+<a class="header-anchor" href="#44-%e6%9f%a5%e7%9c%8b%e6%9c%80%e5%8d%a0%e5%86%85%e5%ad%98%e7%9a%84%e8%bf%9b%e7%a8%8b"></a>
+4.4 查看最占内存的进程
+</h3><p><strong>ps</strong></p>
+<p>查看内存占用最高的前 10 个进程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps aux --sort<span class="o">=</span>-%mem <span class="p">|</span> head
+</span></span></code></pre></div><p>查看内存占用最高的前 20 个进程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps aux --sort<span class="o">=</span>-%mem <span class="p">|</span> head -20
+</span></span></code></pre></div><p>常见字段说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">USER     进程所属用户
+</span></span><span class="line"><span class="cl">PID      进程 ID
+</span></span><span class="line"><span class="cl">%CPU     CPU 占用率
+</span></span><span class="line"><span class="cl">%MEM     内存占用比例
+</span></span><span class="line"><span class="cl">VSZ      虚拟内存大小
+</span></span><span class="line"><span class="cl">RSS      实际物理内存占用
+</span></span><span class="line"><span class="cl">COMMAND  启动命令
+</span></span></code></pre></div><h3 id="45-查看某个进程的内存占用">
+<a class="header-anchor" href="#45-%e6%9f%a5%e7%9c%8b%e6%9f%90%e4%b8%aa%e8%bf%9b%e7%a8%8b%e7%9a%84%e5%86%85%e5%ad%98%e5%8d%a0%e7%94%a8"></a>
+4.5 查看某个进程的内存占用
+</h3><p>根据进程 ID 查看：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps -p PID -o pid,ppid,cmd,%mem,rss,vsz
+</span></span></code></pre></div><p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps -p <span class="m">12345</span> -o pid,ppid,cmd,%mem,rss,vsz
+</span></span></code></pre></div><p>其中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rss  实际占用的物理内存，单位 KB
+</span></span><span class="line"><span class="cl">vsz  虚拟内存大小，单位 KB
+</span></span></code></pre></div><p>也可以结合 <code>grep</code> 查找指定程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps aux <span class="p">|</span> grep python
+</span></span></code></pre></div><h3 id="46-查看详细内存信息">
+<a class="header-anchor" href="#46-%e6%9f%a5%e7%9c%8b%e8%af%a6%e7%bb%86%e5%86%85%e5%ad%98%e4%bf%a1%e6%81%af"></a>
+4.6 查看详细内存信息
+</h3><p><strong>/proc/meminfo</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/meminfo
+</span></span></code></pre></div><p>常用筛选命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep -E <span class="s2">&#34;MemTotal|MemFree|MemAvailable|Buffers|Cached|SwapTotal|SwapFree&#34;</span> /proc/meminfo
+</span></span></code></pre></div><p>常见字段说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">MemTotal      总内存
+</span></span><span class="line"><span class="cl">MemFree       完全空闲内存
+</span></span><span class="line"><span class="cl">MemAvailable 估计可用内存
+</span></span><span class="line"><span class="cl">Buffers       块设备缓存
+</span></span><span class="line"><span class="cl">Cached        文件缓存
+</span></span><span class="line"><span class="cl">SwapTotal     交换分区总大小
+</span></span><span class="line"><span class="cl">SwapFree      剩余交换分区大小
+</span></span></code></pre></div><h3 id="47-查看-gpu-显存占用">
+<a class="header-anchor" href="#47-%e6%9f%a5%e7%9c%8b-gpu-%e6%98%be%e5%ad%98%e5%8d%a0%e7%94%a8"></a>
+4.7 查看 GPU 显存占用
+</h3><p>如果服务器有 NVIDIA GPU：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></div><p>持续刷新查看：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">watch -n <span class="m">1</span> nvidia-smi
+</span></span></code></pre></div><p>常见字段说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GPU Memory-Usage  显存占用
+</span></span><span class="line"><span class="cl">PID               占用 GPU 的进程 ID
+</span></span><span class="line"><span class="cl">Process name      进程名称
+</span></span></code></pre></div><p>根据 PID 查看对应进程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps -p PID -o pid,user,cmd,%mem,rss
+</span></span></code></pre></div><h3 id="48-查看文件夹占用空间">
+<a class="header-anchor" href="#48-%e6%9f%a5%e7%9c%8b%e6%96%87%e4%bb%b6%e5%a4%b9%e5%8d%a0%e7%94%a8%e7%a9%ba%e9%97%b4"></a>
+4.8 查看文件夹占用空间
+</h3><p>注意：文件夹占用的是磁盘空间，不是内存。</p>
+<p>查看当前目录下各文件夹大小：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du -h --max-depth<span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><p>查看指定文件夹大小：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du -sh folderName/
+</span></span></code></pre></div><p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du -sh ~/project
+</span></span></code></pre></div><p>按照大小排序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du -h --max-depth<span class="o">=</span><span class="m">1</span> <span class="p">|</span> sort -hr
+</span></span></code></pre></div><h2 id="5-关机与重启">
+<a class="header-anchor" href="#5-%e5%85%b3%e6%9c%ba%e4%b8%8e%e9%87%8d%e5%90%af"></a>
+5. 关机与重启
+</h2><p>Linux 中常用的关机和重启命令包括 <code>shutdown</code>、<code>reboot</code>、<code>poweroff</code> 和 <code>halt</code>。</p>
+<h3 id="51-立即关机">
+<a class="header-anchor" href="#51-%e7%ab%8b%e5%8d%b3%e5%85%b3%e6%9c%ba"></a>
+5.1 立即关机
+</h3><p><strong>shutdown</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown now
+</span></span></code></pre></div><p>也可以使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo poweroff
+</span></span></code></pre></div><p>或者：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo halt
+</span></span></code></pre></div><p>其中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">shutdown  系统关机命令，推荐使用
+</span></span><span class="line"><span class="cl">poweroff  关闭系统并断电
+</span></span><span class="line"><span class="cl">halt      停止系统运行
+</span></span><span class="line"><span class="cl">now       立即执行
+</span></span></code></pre></div><p>一般建议优先使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown now
+</span></span></code></pre></div><h3 id="52-定时关机">
+<a class="header-anchor" href="#52-%e5%ae%9a%e6%97%b6%e5%85%b3%e6%9c%ba"></a>
+5.2 定时关机
+</h3><p>10 分钟后关机：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown +10
+</span></span></code></pre></div><p>指定时间关机：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown 23:30
+</span></span></code></pre></div><p>向所有登录用户发送关机提示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown +10 <span class="s2">&#34;System will shutdown in 10 minutes&#34;</span>
+</span></span></code></pre></div><p>参数说明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">+10     <span class="m">10</span> 分钟后执行
+</span></span><span class="line"><span class="cl">23:30   在 23:30 执行
+</span></span></code></pre></div><h3 id="53-取消定时关机">
+<a class="header-anchor" href="#53-%e5%8f%96%e6%b6%88%e5%ae%9a%e6%97%b6%e5%85%b3%e6%9c%ba"></a>
+5.3 取消定时关机
+</h3><p>如果已经设置了定时关机，可以使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown -c
+</span></span></code></pre></div><p>其中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-c  cancel，取消已经设置的关机任务
+</span></span></code></pre></div><h3 id="54-立即重启">
+<a class="header-anchor" href="#54-%e7%ab%8b%e5%8d%b3%e9%87%8d%e5%90%af"></a>
+5.4 立即重启
+</h3><p><strong>reboot</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo reboot
+</span></span></code></pre></div><p>也可以使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown -r now
+</span></span></code></pre></div><p>其中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-r   reboot，重启系统
+</span></span><span class="line"><span class="cl">now  立即执行
+</span></span></code></pre></div><h3 id="55-定时重启">
+<a class="header-anchor" href="#55-%e5%ae%9a%e6%97%b6%e9%87%8d%e5%90%af"></a>
+5.5 定时重启
+</h3><p>10 分钟后重启：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown -r +10
+</span></span></code></pre></div><p>指定时间重启：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo shutdown -r 23:30
+</span></span></code></pre></div><h3 id="56-查看系统启动时间">
+<a class="header-anchor" href="#56-%e6%9f%a5%e7%9c%8b%e7%b3%bb%e7%bb%9f%e5%90%af%e5%8a%a8%e6%97%b6%e9%97%b4"></a>
+5.6 查看系统启动时间
+</h3><p>查看系统已经运行多久：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uptime
+</span></span></code></pre></div><p>查看最近的开关机记录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">last reboot
+</span></span></code></pre></div><p>查看系统启动时间：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">who -b
+</span></span></code></pre></div><h3 id="57-服务器关机注意事项">
+<a class="header-anchor" href="#57-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%85%b3%e6%9c%ba%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9"></a>
+5.7 服务器关机注意事项
+</h3><p>如果是远程服务器，关机前建议先确认是否还有重要进程在运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top
+</span></span></code></pre></div><p>或者查看当前登录用户：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">who
+</span></span></code></pre></div><p>查看 GPU 是否还有任务：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></div><p>如果是机房服务器或远程主机，执行关机后 SSH 会断开，普通用户无法再远程连接，除非有人现场开机或服务器支持远程电源管理。</p>
+</div>
     <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
     <a
       class="article-category-link"
@@ -325,7 +538,7 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/cover/cover_1.jpg"
+              data-src="/cover/cover_0.jpg"
               data-sizes="auto"
               alt="habitat ObjectNav Challenge数据集下载与配置"
               class="lazyload"
@@ -337,7 +550,7 @@
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">habitat ObjectNav Challenge数据集下载与配置</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="/cover/cover_3.jpg"
+              data-src="/cover/cover_0.jpg"
               data-sizes="auto"
               alt="habitat 环境与配置加载"
               class="lazyload"
@@ -391,6 +604,29 @@
       </ul>
     </li>
     <li><a href="#3-软链接">3. 软链接</a></li>
+    <li><a href="#4-查看内存占用">4. 查看内存占用</a>
+      <ul>
+        <li><a href="#41-查看系统总体内存">4.1 查看系统总体内存</a></li>
+        <li><a href="#42-实时查看进程内存占用">4.2 实时查看进程内存占用</a></li>
+        <li><a href="#43-更直观地查看内存占用">4.3 更直观地查看内存占用</a></li>
+        <li><a href="#44-查看最占内存的进程">4.4 查看最占内存的进程</a></li>
+        <li><a href="#45-查看某个进程的内存占用">4.5 查看某个进程的内存占用</a></li>
+        <li><a href="#46-查看详细内存信息">4.6 查看详细内存信息</a></li>
+        <li><a href="#47-查看-gpu-显存占用">4.7 查看 GPU 显存占用</a></li>
+        <li><a href="#48-查看文件夹占用空间">4.8 查看文件夹占用空间</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-关机与重启">5. 关机与重启</a>
+      <ul>
+        <li><a href="#51-立即关机">5.1 立即关机</a></li>
+        <li><a href="#52-定时关机">5.2 定时关机</a></li>
+        <li><a href="#53-取消定时关机">5.3 取消定时关机</a></li>
+        <li><a href="#54-立即重启">5.4 立即重启</a></li>
+        <li><a href="#55-定时重启">5.5 定时重启</a></li>
+        <li><a href="#56-查看系统启动时间">5.6 查看系统启动时间</a></li>
+        <li><a href="#57-服务器关机注意事项">5.7 服务器关机注意事项</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>

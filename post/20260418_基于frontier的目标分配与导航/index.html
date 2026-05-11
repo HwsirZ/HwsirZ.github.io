@@ -144,7 +144,16 @@
     <li><a href="#1-frontier的定义">1. Frontier的定义</a></li>
     <li><a href="#2-frontier的流程">2. Frontier的流程</a></li>
     <li><a href="#3-多机器人前沿点探索">3. 多机器人前沿点探索</a></li>
-    <li><a href="#4-在habitat中实现基于frontier的探索">4. 在habitat中实现基于Frontier的探索</a></li>
+    <li><a href="#4-在habitat中实现基于frontier的目标导航">4. 在Habitat中实现基于Frontier的目标导航</a>
+      <ul>
+        <li><a href="#41-地图构建">4.1 地图构建</a></li>
+        <li><a href="#42-单智能体导航流程">4.2 单智能体导航流程</a></li>
+        <li><a href="#43-路径规划与动作执行">4.3 路径规划与动作执行</a></li>
+        <li><a href="#44-目标检测与导航切换">4.4 目标检测与导航切换</a></li>
+        <li><a href="#45-多智能体目标分配">4.5 多智能体目标分配</a></li>
+        <li><a href="#46-可视化输出">4.6 可视化输出</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>
@@ -252,10 +261,88 @@
 <a class="header-anchor" href="#3-%e5%a4%9a%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%89%8d%e6%b2%bf%e7%82%b9%e6%8e%a2%e7%b4%a2"></a>
 3. 多机器人前沿点探索
 </h2><p>每个机器人拥有独立的全局地图，当一个机器人到达新的前沿点时，更新自身的网格，并与其他机器人进行信息共享。算法有很多变体，朴素前沿点检测、Expanding Wavefront Frontier Detection(EWDF)、Frontier Tracing Frontier Detection(FTFD)</p>
-<h2 id="4-在habitat中实现基于frontier的探索">
-<a class="header-anchor" href="#4-%e5%9c%a8habitat%e4%b8%ad%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8efrontier%e7%9a%84%e6%8e%a2%e7%b4%a2"></a>
-4. 在habitat中实现基于Frontier的探索
-</h2></div>
+<h2 id="4-在habitat中实现基于frontier的目标导航">
+<a class="header-anchor" href="#4-%e5%9c%a8habitat%e4%b8%ad%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8efrontier%e7%9a%84%e7%9b%ae%e6%a0%87%e5%af%bc%e8%88%aa"></a>
+4. 在Habitat中实现基于Frontier的目标导航
+</h2><p>本文在Habitat仿真环境中实现了基于Frontier的ObjectGoal Navigation。整体流程不是直接使用全局真实地图，而是由智能体根据RGB、Depth和Semantic观测在线构建地图，并在地图上完成Frontier检测、目标分配、路径规划和目标确认。</p>
+<h3 id="41-地图构建">
+<a class="header-anchor" href="#41-%e5%9c%b0%e5%9b%be%e6%9e%84%e5%bb%ba"></a>
+4.1 地图构建
+</h3><p>每个episode开始后，智能体先执行一圈原地旋转，获取周围环境观测并初始化地图。地图主要维护三类栅格状态：</p>
+<ul>
+<li><code>UNKNOWN</code>：未知区域；</li>
+<li><code>FREE</code>：已观测的可通行区域；</li>
+<li><code>OCCUPIED</code>：障碍物区域。</li>
+</ul>
+<p>深度图用于更新占据地图，语义观测用于构建语义栅格地图。为了提高路径规划稳定性，系统同时维护原始占据地图和膨胀障碍物地图。原始地图用于Frontier检测，膨胀地图用于A*路径规划，避免路径贴近障碍物。</p>
+<h3 id="42-单智能体导航流程">
+<a class="header-anchor" href="#42-%e5%8d%95%e6%99%ba%e8%83%bd%e4%bd%93%e5%af%bc%e8%88%aa%e6%b5%81%e7%a8%8b"></a>
+4.2 单智能体导航流程
+</h3><p>单智能体版本采用如下状态机：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">SPIN → EXPLORE → APPROACH → VERIFY → SUCCESS / FAILED
+</span></span></code></pre></div><p>各阶段含义如下：</p>
+<ul>
+<li><code>SPIN</code>：原地旋转一圈，完成初始建图；</li>
+<li><code>EXPLORE</code>：检测Frontier区域，选择可达探索目标；</li>
+<li><code>APPROACH</code>：发现目标类别后，规划到目标附近的可通行位置；</li>
+<li><code>VERIFY</code>：到达目标附近后，通过原地旋转确认目标是否在当前视野中；</li>
+<li><code>SUCCESS / FAILED</code>：满足目标可见和距离条件则成功，否则直到最大步数失败。</li>
+</ul>
+<p>Frontier目标选择不是直接选择单个前沿点，而是先进行区域聚类，再进行区域合并、区域切分和评分。评分主要考虑路径长度、未知区域增益、区域大小和安全距离。最终目标点选择在Frontier附近的可通行锚点，而不是未知区域本身。</p>
+<p><img src="/images/blog/202604/single_agent_frontier_nav.gif" alt="单智能体Frontier目标导航过程"></p>
+<h3 id="43-路径规划与动作执行">
+<a class="header-anchor" href="#43-%e8%b7%af%e5%be%84%e8%a7%84%e5%88%92%e4%b8%8e%e5%8a%a8%e4%bd%9c%e6%89%a7%e8%a1%8c"></a>
+4.3 路径规划与动作执行
+</h3><p>确定目标点后，系统在膨胀障碍物地图上执行A*路径规划。规划得到的路径再转换为Habitat中的离散动作：</p>
+<ul>
+<li><code>MOVE_FORWARD</code></li>
+<li><code>TURN_LEFT</code></li>
+<li><code>TURN_RIGHT</code></li>
+<li><code>STOP</code></li>
+</ul>
+<p>在探索阶段，<code>STOP</code>只表示到达当前子目标，不表示ObjectNav任务成功。真正的任务成功必须满足：</p>
+<ul>
+<li>当前视野中检测到目标类别；</li>
+<li>目标像素数量超过阈值；</li>
+<li>有效深度像素数量超过阈值；</li>
+<li>目标距离小于停止阈值。</li>
+</ul>
+<p>如果智能体执行前进动作后位置几乎不变，则认为发生碰撞或卡住。系统会放弃当前目标，并将路径前方区域加入临时障碍或拒绝列表，避免重复规划到失败位置。</p>
+<h3 id="44-目标检测与导航切换">
+<a class="header-anchor" href="#44-%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%8e%e5%af%bc%e8%88%aa%e5%88%87%e6%8d%a2"></a>
+4.4 目标检测与导航切换
+</h3><p>目标检测基于在线构建的语义栅格地图完成。系统统计目标类别在地图中的观测次数，只有当目标区域被多次观测到，并且附近存在可达位置时，才认为目标候选点有效。</p>
+<p>当目标候选点稳定出现后，智能体从<code>EXPLORE</code>切换到<code>APPROACH</code>。系统会在目标周围搜索一个可通行的接近点，并使用A*规划路径。到达目标附近后，如果当前视野中目标不可见，则进入<code>VERIFY</code>阶段，通过旋转重新观察目标。</p>
+<h3 id="45-多智能体目标分配">
+<a class="header-anchor" href="#45-%e5%a4%9a%e6%99%ba%e8%83%bd%e4%bd%93%e7%9b%ae%e6%a0%87%e5%88%86%e9%85%8d"></a>
+4.5 多智能体目标分配
+</h3><p>多智能体版本保留单智能体的状态机，但多个智能体共享同一个全局地图。每个智能体独立维护自身的导航状态，包括当前阶段、当前目标、拒绝目标集合、卡住计数和目标检测状态。</p>
+<p>多智能体探索的核心是Frontier目标分配。系统使用团队级分配器统一评估Frontier区域，并为不同智能体分配不同目标。分配时考虑：</p>
+<ul>
+<li>每个智能体到Frontier的路径代价；</li>
+<li>Frontier区域的信息增益；</li>
+<li>Frontier区域大小；</li>
+<li>目标点安全距离；</li>
+<li>已经被其他智能体占用的目标区域。</li>
+</ul>
+<p>已分配的目标会被加入reservation，避免多个智能体重复探索同一个Frontier区域。</p>
+<p>当Frontier耗尽后，系统会进一步分配未充分访问的已探索区域。该策略基于全局访问次数，优先选择访问次数少、局部空间开阔、且可达的位置。如果仍没有可用目标，智能体执行原地扫描，尝试通过新观测恢复可探索区域。</p>
+<p><img src="/images/blog/202604/multi_agent_frontier_nav.gif" alt="多智能体Frontier目标导航过程"></p>
+<h3 id="46-可视化输出">
+<a class="header-anchor" href="#46-%e5%8f%af%e8%a7%86%e5%8c%96%e8%be%93%e5%87%ba"></a>
+4.6 可视化输出
+</h3><p>单智能体可视化主要包括：</p>
+<ul>
+<li>RGB观测；</li>
+<li>Depth观测；</li>
+<li>Semantic观测；</li>
+<li>占据地图；</li>
+<li>膨胀障碍物地图；</li>
+<li>已探索区域；</li>
+<li>Frontier、目标点和规划路径。</li>
+</ul>
+<p>多智能体可视化采用两行布局，每行对应一个智能体。前几列显示每个智能体的局部观测，后几列显示共享全局地图，包括全局占据地图、Frontier/目标/路径图和语义栅格地图。</p>
+</div>
     <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
     <a
       class="article-category-link"
@@ -315,7 +402,16 @@
     <li><a href="#1-frontier的定义">1. Frontier的定义</a></li>
     <li><a href="#2-frontier的流程">2. Frontier的流程</a></li>
     <li><a href="#3-多机器人前沿点探索">3. 多机器人前沿点探索</a></li>
-    <li><a href="#4-在habitat中实现基于frontier的探索">4. 在habitat中实现基于Frontier的探索</a></li>
+    <li><a href="#4-在habitat中实现基于frontier的目标导航">4. 在Habitat中实现基于Frontier的目标导航</a>
+      <ul>
+        <li><a href="#41-地图构建">4.1 地图构建</a></li>
+        <li><a href="#42-单智能体导航流程">4.2 单智能体导航流程</a></li>
+        <li><a href="#43-路径规划与动作执行">4.3 路径规划与动作执行</a></li>
+        <li><a href="#44-目标检测与导航切换">4.4 目标检测与导航切换</a></li>
+        <li><a href="#45-多智能体目标分配">4.5 多智能体目标分配</a></li>
+        <li><a href="#46-可视化输出">4.6 可视化输出</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>
