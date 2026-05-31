@@ -12,12 +12,52 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 18 Apr 2026 21:09:32 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2026 10:49:55 +0800</lastBuildDate>
     
     
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>多智能体强化学习相关的顶级会议</title>
+      <link>http://localhost:1313/post/20260528_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E7%9A%84%E9%A1%B6%E7%BA%A7%E4%BC%9A%E8%AE%AE/</link>
+      <pubDate>Thu, 28 May 2026 10:49:55 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260528_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E7%9A%84%E9%A1%B6%E7%BA%A7%E4%BC%9A%E8%AE%AE/</guid>
+      <description>
+        <![CDATA[<h1>多智能体强化学习相关的顶级会议</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          多智能体强化学习领域相关的顶级会议
+        
+        <hr><p>本文2026-05-28首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-05-28</p>]]>
+      </description>
+      
+        <category>机器学习</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>habitat-Lab的VectorEnv</title>
+      <link>http://localhost:1313/post/20260522_habitat-lab%E7%9A%84vectorenv/</link>
+      <pubDate>Fri, 22 May 2026 20:51:45 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260522_habitat-lab%E7%9A%84vectorenv/</guid>
+      <description>
+        <![CDATA[<h1>habitat-Lab的VectorEnv</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          habitat-lab中的VectorEnv的使用，加速训练与批量评估
+        
+        <hr><p>本文2026-05-22首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-05-22</p>]]>
+      </description>
+      
+        <category>具身智能与目标导航</category>
+      
+    </item>
     
     
 
@@ -181,46 +221,6 @@
       </description>
       
         <category>生活</category>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>habitat Sim版本发展</title>
-      <link>http://localhost:1313/post/20260320_habitat-sim%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/</link>
-      <pubDate>Fri, 20 Mar 2026 20:43:02 &#43;0800</pubDate>
-      <author>wkt_cherish@qq.com (wkt_cherish)</author>
-      <guid>http://localhost:1313/post/20260320_habitat-sim%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/</guid>
-      <description>
-        <![CDATA[<h1>habitat Sim版本发展</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
-        
-          Habitat-sim 仿真环境介绍以及版本演进
-        
-        <hr><p>本文2026-03-20首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-20</p>]]>
-      </description>
-      
-        <category>具身智能与目标导航</category>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>机器学习(1)</title>
-      <link>http://localhost:1313/post/20260319_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/</link>
-      <pubDate>Thu, 19 Mar 2026 10:54:52 &#43;0800</pubDate>
-      <author>wkt_cherish@qq.com (wkt_cherish)</author>
-      <guid>http://localhost:1313/post/20260319_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/</guid>
-      <description>
-        <![CDATA[<h1>机器学习(1)</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
-        
-          第二章 模型评估与选择
-        
-        <hr><p>本文2026-03-19首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-19</p>]]>
-      </description>
-      
-        <category>机器学习-周志华-学习笔记</category>
       
     </item>
     

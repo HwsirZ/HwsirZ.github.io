@@ -12,12 +12,32 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 18 Apr 2026 21:09:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 20:51:45 +0800</lastBuildDate>
     
     
     <atom:link href="http://localhost:1313/categories/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E4%B8%8E%E7%9B%AE%E6%A0%87%E5%AF%BC%E8%88%AA/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>habitat-Lab的VectorEnv</title>
+      <link>http://localhost:1313/post/20260522_habitat-lab%E7%9A%84vectorenv/</link>
+      <pubDate>Fri, 22 May 2026 20:51:45 &#43;0800</pubDate>
+      <author>wkt_cherish@qq.com (wkt_cherish)</author>
+      <guid>http://localhost:1313/post/20260522_habitat-lab%E7%9A%84vectorenv/</guid>
+      <description>
+        <![CDATA[<h1>habitat-Lab的VectorEnv</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
+        
+          habitat-lab中的VectorEnv的使用，加速训练与批量评估
+        
+        <hr><p>本文2026-05-22首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-05-22</p>]]>
+      </description>
+      
+        <category>具身智能与目标导航</category>
+      
+    </item>
     
     
 
