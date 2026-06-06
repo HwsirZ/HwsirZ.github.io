@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on 非所经历，不得感悟</title>
-    <link>http://localhost:1313/categories/linux/</link>
+    <link>https://example.com/categories/linux/</link>
     <description>Recent content from 非所经历，不得感悟</description>
     <generator>Hugo</generator>
     <language>en-us</language>
@@ -15,7 +15,7 @@
     <lastBuildDate>Wed, 25 Mar 2026 14:36:39 +0800</lastBuildDate>
     
     
-    <atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="https://example.com/categories/linux/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,16 +23,16 @@
 
     <item>
       <title>一些常用的linux命令</title>
-      <link>http://localhost:1313/post/20260325_linux_cmd_mostused/</link>
+      <link>https://example.com/post/20260325_linux_cmd_mostused/</link>
       <pubDate>Wed, 25 Mar 2026 14:36:39 &#43;0800</pubDate>
       <author>wkt_cherish@qq.com (wkt_cherish)</author>
-      <guid>http://localhost:1313/post/20260325_linux_cmd_mostused/</guid>
+      <guid>https://example.com/post/20260325_linux_cmd_mostused/</guid>
       <description>
         <![CDATA[<h1>一些常用的linux命令</h1><p>作者：wkt_cherish（wkt_cherish@qq.com）</p>
         
           一些常用的 linux 命令
         
-        <hr><p>本文2026-03-25首发于<a href='http://localhost:1313/'>非所经历，不得感悟</a>，最后修改于2026-03-25</p>]]>
+        <hr><p>本文2026-03-25首发于<a href='https://example.com/'>非所经历，不得感悟</a>，最后修改于2026-03-25</p>]]>
       </description>
       
         <category>linux</category>
