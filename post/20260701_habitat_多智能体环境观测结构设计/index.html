@@ -1,0 +1,1065 @@
+<!doctype html>
+<html
+  lang="en-us" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Habitat-多智能体环境观测结构设计 | wkt_cherish
+</title>
+<meta name="description" content="我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":20},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Habitat-多智能体环境观测结构设计 | wkt_cherish" />
+  <meta
+    property="og:description"
+    content="我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/20260701_habitat_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%8E%AF%E5%A2%83%E8%A7%82%E6%B5%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" />
+  <meta
+    property="og:site_name"
+    content="非所经历，不得感悟"
+  />
+  <meta property="og:image" content="http://localhost:1313/images/banner.webp" />
+  <meta property="article:author" content="wkt_cherish" />
+  <meta property="article:published_time" content="2026-07-01T20:56:21&#43;08:00" />
+  <meta property="article:modified_time" content="2026-07-01T20:56:21&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="http://localhost:1313/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css"
+    integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj&#43;vDDLIL&#43;xBGQU/voDBY5XE2lVh" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><img src="/images/taichi.svg" alt="loading" /></div><div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon '><img src="/images/taichi.svg" alt="home icon" class="" style="height: 1em;"></div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/taichi.svg" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/mirror"><div class='main-nav-icon icon '><img src="/images/taichi.svg" alt="Mirror icon" class="" style="height: 1em;"></div><span class="main-nav-link">鉴心</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon '><img src="/images/taichi.svg" alt="about icon" class="" style="height: 1em;"></div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon '><img src="/images/taichi.svg" alt="friend icon" class="" style="height: 1em;"></div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav><a href="https://github.com/HwsirZ" class="triangle-badge" title="github" target="_blank" rel="noopener nofollow noreferrer">
+      <div class="icon icon-github triangle-badge-icon"></div>
+    </a></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="Habitat-多智能体环境观测结构设计"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Habitat-多智能体环境观测结构设计</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><meting-js
+        theme="var(--color-link)"
+        id="9683025532"server="tencent"type="playlist"fixed="false"autoplay="false"loop="all"order="list"preload="auto"volume="0.7"mutex="true"list-folded="true"lrc-type="3">
+      </meting-js><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-环境封装">1. 环境封装</a>
+      <ul>
+        <li><a href="#11-objctgoalnavigationrlenv-返回的观测数据格式">1.1 ObjctGoalNavigationRLEnv 返回的观测数据格式</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-构建观测">2. 构建观测</a>
+      <ul>
+        <li><a href="#21-space-结构">2.1 Space 结构</a></li>
+        <li><a href="#22-尺寸变量">2.2 尺寸变量</a></li>
+        <li><a href="#23-actor-观测-dict-全通道">2.3 Actor 观测 Dict 全通道</a></li>
+        <li><a href="#24-critic-观测-share_observation_space">2.4 Critic 观测 <code>share_observation_space</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="wkt_cherish"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">wkt_cherish</div>
+  <div class="sidebar-description">我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">16</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      5
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">1</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:wkt_cherish@qq.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/mirror"
+        aria-label="鉴心"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="Mirror icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">鉴心</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="about icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="friend icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-07-01 20:56:21 &#43;0800 CST" itemprop="datePublished"
+      >2026-07-01</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-07-01</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h2 id="1-环境封装">
+<a class="header-anchor" href="#1-%e7%8e%af%e5%a2%83%e5%b0%81%e8%a3%85"></a>
+1. 环境封装
+</h2><p>在原始多智能体环境的基础上，针对强化学习算法，构建需要用到的观测空间，原始环境 <code>ObjctGoalNavigationRLEnv</code> 根据配置文件，加载环境信息，提供 <code>reset()</code>, <code>step()</code> 等函数，但是这里 <code>reset()</code>, <code>step()</code> 函数返回的只是每个agent自身的RGB观测、depth观测、position等信息，这个时候需要在对这个环境进行一次封装，这个所谓的封装就需要 对这些观测数据进行处理，构造强化学习需要用到的数据格式，方便 <code>runner</code> 进行数据的 <code>collect -&gt; insert -&gt; compute -&gt; train</code> 。</p>
+<h3 id="11-objctgoalnavigationrlenv-返回的观测数据格式">
+<a class="header-anchor" href="#11-objctgoalnavigationrlenv-%e8%bf%94%e5%9b%9e%e7%9a%84%e8%a7%82%e6%b5%8b%e6%95%b0%e6%8d%ae%e6%a0%bc%e5%bc%8f"></a>
+1.1 ObjctGoalNavigationRLEnv 返回的观测数据格式
+</h3><h4 id="111-reset-返回--merged_obs">
+<a class="header-anchor" href="#111-reset-%e8%bf%94%e5%9b%9e--merged_obs"></a>
+1.1.1 reset() 返回 → merged_obs
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">merged_obs: Dict[str, Dict[str, Any]] = {
+</span></span><span class="line"><span class="cl">    &#34;agent_0&#34;: {
+</span></span><span class="line"><span class="cl">        &#34;obs&#34;: {                                      # 传感器观测
+</span></span><span class="line"><span class="cl">            &#34;rgb&#34;:      np.ndarray, shape (H, W, 3),  dtype uint8,    范围 [0, 255]
+</span></span><span class="line"><span class="cl">            &#34;depth&#34;:    np.ndarray, shape (H, W, 1),  dtype float32,   单位 米
+</span></span><span class="line"><span class="cl">            &#34;semantic&#34;: np.ndarray, shape (H, W, 1),  dtype int32,     值 [0, 40]（41类，已从 instance id 转换）
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        &#34;sensor_states&#34;: Any | None,                  # Habitat 内部传感器状态（通常不用）
+</span></span><span class="line"><span class="cl">        &#34;position&#34;:  np.ndarray, shape (3,),          dtype float32,   [x, y, z] 世界坐标
+</span></span><span class="line"><span class="cl">        &#34;rotation&#34;:  quaternion 对象,                   # Habitat quaternion（有 x, y, z, w 属性）
+</span></span><span class="line"><span class="cl">    },
+</span></span><span class="line"><span class="cl">    &#34;agent_1&#34;: { ... },                                # 同上，N 个 agent
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>其中 H, W 由 Habitat YAML 配置决定，默认配置是 480×640。</p>
+<h4 id="112-step-返回--merged_obs-reward-dones-info">
+<a class="header-anchor" href="#112-step-%e8%bf%94%e5%9b%9e--merged_obs-reward-dones-info"></a>
+1.1.2 step() 返回 → (merged_obs, reward, dones, info)
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">2.1 merged_obs — 同上，最新帧
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.2 reward
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">reward: Dict[str, float] = {
+</span></span><span class="line"><span class="cl">    &#34;agent_0&#34;: 0.0,                                   # 永远是 0.0
+</span></span><span class="line"><span class="cl">    &#34;agent_1&#34;: 0.0,
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.3 dones
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dones: np.ndarray, shape (N,), dtype float32          # 例: array([0., 0.], dtype=float32)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 值 0.0 = agent 未 done，1.0 = agent done
+</span></span><span class="line"><span class="cl">- 由 _build_termination() 填充：dones = max(terminated, truncated)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.4 info
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">info: Dict[str, Any] = {
+</span></span><span class="line"><span class="cl">    # ======== per-agent 诊断 ========
+</span></span><span class="line"><span class="cl">    &#34;agents&#34;: {
+</span></span><span class="line"><span class="cl">        &#34;agent_0&#34;: {
+</span></span><span class="line"><span class="cl">            &#34;position&#34;:       np.ndarray, shape (3,),  dtype float32,   # [x, y, z] 世界坐标
+</span></span><span class="line"><span class="cl">            &#34;rotation&#34;:       quaternion 对象,                            # 四元数朝向
+</span></span><span class="line"><span class="cl">            &#34;goal&#34;:           Dict[str, Any] | None,                      # 目标信息
+</span></span><span class="line"><span class="cl">            &#34;distance_to_goal&#34;: float | None,                             # 到目标的最短路径距离（米）；无路径时为 None
+</span></span><span class="line"><span class="cl">            &#34;success&#34;:        float,                                      # 0.0 或 1.0（stop + 距离 &lt; success_distance）
+</span></span><span class="line"><span class="cl">            &#34;spl&#34;:            float,                                      # Success weighted by Path Length [0, 1]
+</span></span><span class="line"><span class="cl">            &#34;soft_spl&#34;:       float,                                      # 软 SPL [0, 1]
+</span></span><span class="line"><span class="cl">            &#34;distance_to_goal_reward&#34;: float,                             # ★ 上一步距离 - 当前步距离（正=接近目标）
+</span></span><span class="line"><span class="cl">            &#34;is_stop_called&#34;: bool,                                       # agent 是否执行了 STOP
+</span></span><span class="line"><span class="cl">            &#34;done&#34;:           float,                                      # 0.0 | 1.0
+</span></span><span class="line"><span class="cl">            &#34;terminated&#34;:     float,                                      # 0.0 | 1.0  ← habitat episode_over
+</span></span><span class="line"><span class="cl">            &#34;truncated&#34;:      float,                                      # 0.0 | 1.0  ← 达到 max_episode_steps
+</span></span><span class="line"><span class="cl">            &#34;collided&#34;:       float,                                      # 0.0 | 1.0  ← 前进距离 &lt; forward_step_size × 0.9
+</span></span><span class="line"><span class="cl">            &#34;last_action&#34;:    int | None,                                 # 上一步动作 ID 或 None（reset 后第一步）
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        &#34;agent_1&#34;: { ... },                                                # 同上
+</span></span><span class="line"><span class="cl">    },
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # ======== 全局信息 ========
+</span></span><span class="line"><span class="cl">    &#34;episode_over&#34;:       bool,                                            # 是否任何 agent done
+</span></span><span class="line"><span class="cl">    &#34;termination_reason&#34;: str | None,                                      # &#34;success_stop&#34; | &#34;failed_stop&#34; | &#34;time_limit&#34; | None
+</span></span><span class="line"><span class="cl">    &#34;dones&#34;:              np.ndarray, shape (N,), dtype float32,           # per-agent dones 数组
+</span></span><span class="line"><span class="cl">    &#34;terminated&#34;:         np.ndarray, shape (N,), dtype float32,           # per-agent terminated 数组
+</span></span><span class="line"><span class="cl">    &#34;truncated&#34;:          np.ndarray, shape (N,), dtype float32,           # per-agent truncated 数组
+</span></span><span class="line"><span class="cl">    &#34;collided&#34;:           np.ndarray, shape (N,), dtype float32,           # per-agent collided 数组
+</span></span><span class="line"><span class="cl">    &#34;step&#34;:               int,                                             # 当前 episode 步数
+</span></span><span class="line"><span class="cl">    &#34;success&#34;:            bool,                                            # 任何 agent success == 1.0
+</span></span><span class="line"><span class="cl">    &#34;metrics&#34;:            Any,                                             # Habitat 官方 metrics（通常包含 top_down_map 等）
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><h4 id="113-get_info-返回--同上-info">
+<a class="header-anchor" href="#113-get_info-%e8%bf%94%e5%9b%9e--%e5%90%8c%e4%b8%8a-info"></a>
+1.1.3 get_info() 返回 — 同上 info
+</h4><h4 id="114-infoagentsaidgoal-格式">
+<a class="header-anchor" href="#114-infoagentsaidgoal-%e6%a0%bc%e5%bc%8f"></a>
+1.1.4 info[&ldquo;agents&rdquo;][aid][&ldquo;goal&rdquo;] 格式
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">goal: Dict[str, Any] = {
+</span></span><span class="line"><span class="cl">    &#34;object_category&#34;: str | None,     # 目标物体类别名，如 &#34;chair&#34;
+</span></span><span class="line"><span class="cl">    &#34;num_goals&#34;:       int,            # 目标候选位置数量
+</span></span><span class="line"><span class="cl">    &#34;goals&#34;: [                         # 目标候选列表
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            &#34;position&#34;:        list,   # [x, y, z] 世界坐标
+</span></span><span class="line"><span class="cl">            &#34;radius&#34;:          float,  # 目标半径
+</span></span><span class="line"><span class="cl">            &#34;object_id&#34;:       str,    # 物体 ID
+</span></span><span class="line"><span class="cl">            &#34;object_category&#34;: str,    # 物体类别名
+</span></span><span class="line"><span class="cl">            &#34;num_view_points&#34;: int,    # view points 数量
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">    ]
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><h2 id="2-构建观测">
+<a class="header-anchor" href="#2-%e6%9e%84%e5%bb%ba%e8%a7%82%e6%b5%8b"></a>
+2. 构建观测
+</h2><blockquote>
+<p>参考 maans MultiHabitatEnv 观测空间设计
+来源：<code>maans/onpolicy/envs/habitat/Habitat_Env.py</code></p>
+</blockquote>
+<h3 id="21-space-结构">
+<a class="header-anchor" href="#21-space-%e7%bb%93%e6%9e%84"></a>
+2.1 Space 结构
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span>       <span class="o">=</span> <span class="p">[</span><span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span><span class="o">...</span><span class="p">})]</span> <span class="err">×</span> <span class="n">N</span>   <span class="c1"># Actor 观测，Dict 类型</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">share_observation_space</span> <span class="o">=</span> <span class="p">[</span><span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span><span class="o">...</span><span class="p">})]</span> <span class="err">×</span> <span class="n">N</span>   <span class="c1"># Critic 观测，Actor + gt_map</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">action_space</span>            <span class="o">=</span> <span class="p">[</span><span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span> <span class="o">/</span> <span class="n">Box</span><span class="p">]</span> <span class="err">×</span> <span class="n">N</span> <span class="c1"># 动作</span>
+</span></span></code></pre></div><h3 id="22-尺寸变量">
+<a class="header-anchor" href="#22-%e5%b0%ba%e5%af%b8%e5%8f%98%e9%87%8f"></a>
+2.2 尺寸变量
+</h3><table>
+	<thead>
+			<tr>
+					<th>变量</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>N</code></td>
+					<td>agent 数量</td>
+			</tr>
+			<tr>
+					<td><code>S</code></td>
+					<td><code>grid_size</code> 网格尺寸</td>
+			</tr>
+			<tr>
+					<td><code>H</code></td>
+					<td>图像高度，取决于 <code>use_resnet</code> 和 <code>use_local</code> 等开关</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="23-actor-观测-dict-全通道">
+<a class="header-anchor" href="#23-actor-%e8%a7%82%e6%b5%8b-dict-%e5%85%a8%e9%80%9a%e9%81%93"></a>
+2.3 Actor 观测 Dict 全通道
+</h3><h4 id="地图类">
+<a class="header-anchor" href="#%e5%9c%b0%e5%9b%be%e7%b1%bb"></a>
+地图类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>global_obs</code></td>
+					<td><code>use_single=True</code></td>
+					<td><code>(4, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>单 agent 4 通道地图：障碍 / 已探索 / 当前位置 / 历史轨迹</td>
+			</tr>
+			<tr>
+					<td><code>global_merge_obs</code></td>
+					<td><code>use_single=False</code></td>
+					<td><code>(4|8, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>多 agent 融合地图</td>
+			</tr>
+			<tr>
+					<td><code>local_merge_obs</code></td>
+					<td><code>use_local</code> + <code>use_seperated_cnn</code></td>
+					<td><code>(4, H_loc, H_loc)</code></td>
+					<td><code>uint8</code></td>
+					<td>局部分离 CNN 的局部通道</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="目标类">
+<a class="header-anchor" href="#%e7%9b%ae%e6%a0%87%e7%b1%bb"></a>
+目标类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>global_goal</code></td>
+					<td><code>use_single</code> + <code>use_goal</code></td>
+					<td><code>(2, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>单 agent 目标位置 + 历史轨迹</td>
+			</tr>
+			<tr>
+					<td><code>global_merge_goal</code></td>
+					<td><code>use_merge_goal</code></td>
+					<td><code>(2, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>融合目标图（所有 agent goal + 历史）</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="轨迹类">
+<a class="header-anchor" href="#%e8%bd%a8%e8%bf%b9%e7%b1%bb"></a>
+轨迹类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>trace_image</code></td>
+					<td><code>use_single_agent_trace</code></td>
+					<td><code>(N|1, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>agent 历史经过位置累积图</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="网格类">
+<a class="header-anchor" href="#%e7%bd%91%e6%a0%bc%e7%b1%bb"></a>
+网格类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>grid_pos</code></td>
+					<td><code>grid_pos</code></td>
+					<td><code>(2|2N, S, S)</code></td>
+					<td><code>int</code></td>
+					<td>位置偏移：栅格坐标 - agent 当前栅格坐标</td>
+			</tr>
+			<tr>
+					<td><code>grid_goal</code></td>
+					<td><code>grid_last_goal</code></td>
+					<td><code>(2|2N, S, S)</code></td>
+					<td><code>int</code></td>
+					<td>上一轮 global policy 输出的 goal 栅格</td>
+			</tr>
+			<tr>
+					<td><code>action_mask_obs</code></td>
+					<td><code>action_mask</code></td>
+					<td><code>(1, S, S)</code></td>
+					<td><code>int</code></td>
+					<td>可通行掩码</td>
+			</tr>
+			<tr>
+					<td><code>action_mask</code></td>
+					<td><code>action_mask</code></td>
+					<td><code>(1, S, S)</code></td>
+					<td><code>int</code></td>
+					<td>同上副本</td>
+			</tr>
+			<tr>
+					<td><code>grid_agent_id</code></td>
+					<td><code>grid_agent_id</code></td>
+					<td><code>(1, S, S)</code></td>
+					<td><code>int</code></td>
+					<td>每栅格的 agent ID</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="朝向id-向量类">
+<a class="header-anchor" href="#%e6%9c%9d%e5%90%91id-%e5%90%91%e9%87%8f%e7%b1%bb"></a>
+朝向/ID 向量类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>global_orientation</code></td>
+					<td><code>use_orientation</code></td>
+					<td><code>(1,)</code></td>
+					<td><code>long</code></td>
+					<td>自身朝向离散化（0-71，5°/bin）</td>
+			</tr>
+			<tr>
+					<td><code>other_global_orientation</code></td>
+					<td><code>use_orientation</code></td>
+					<td><code>(N-1,)</code></td>
+					<td><code>long</code></td>
+					<td>其他 agent 相对朝向</td>
+			</tr>
+			<tr>
+					<td><code>vector</code></td>
+					<td><code>use_vector_agent_id</code></td>
+					<td><code>(N,)</code></td>
+					<td><code>float</code></td>
+					<td>agent ID 的 one-hot 向量</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="agent-id-图像类">
+<a class="header-anchor" href="#agent-id-%e5%9b%be%e5%83%8f%e7%b1%bb"></a>
+Agent ID 图像类
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>vector_cnn</code></td>
+					<td><code>use_cnn_agent_id</code></td>
+					<td><code>(1|2|N+1, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>agent ID 的 CNN 通道图</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="堆叠观测">
+<a class="header-anchor" href="#%e5%a0%86%e5%8f%a0%e8%a7%82%e6%b5%8b"></a>
+堆叠观测
+</h4><table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>stack_obs</code></td>
+					<td>始终存在</td>
+					<td><code>(C_total × N, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>所有 agent 全部单 agent 通道直接按通道拼接</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="24-critic-观测-share_observation_space">
+<a class="header-anchor" href="#24-critic-%e8%a7%82%e6%b5%8b-share_observation_space"></a>
+2.4 Critic 观测 <code>share_observation_space</code>
+</h3><p>= Actor 全部观测 + 以下额外 key（仅在 CTDE 模式下）：</p>
+<table>
+	<thead>
+			<tr>
+					<th>key</th>
+					<th>条件</th>
+					<th>shape</th>
+					<th>dtype</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>gt_map</code></td>
+					<td><code>use_centralized_V=True</code></td>
+					<td><code>(1, H, H)</code></td>
+					<td><code>uint8</code></td>
+					<td>Habitat navmesh 真值可通行地图</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+</div>
+    <footer class="article-footer"><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd%e4%b8%8e%e7%9b%ae%e6%a0%87%e5%af%bc%e8%88%aa"
+      data-aos="zoom-in"
+      >具身智能与目标导航</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/cover/cover_2.jpg"
+              data-sizes="auto"
+              alt="多智能体强化学习相关的顶级会议"
+              class="lazyload"
+            /><a
+          href="/post/20260528_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E7%9A%84%E9%A1%B6%E7%BA%A7%E4%BC%9A%E8%AE%AE/"
+          aria-label="前一篇:多智能体强化学习相关的顶级会议"
+          title="前一篇:多智能体强化学习相关的顶级会议"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">多智能体强化学习相关的顶级会议</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="/cover/cover_2.jpg"
+              data-sizes="auto"
+              alt="Habitat-多智能体目标导航强化学习代码框架编写指南"
+              class="lazyload"
+            /><a
+          href="/post/20260701_habitat_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%9B%AE%E6%A0%87%E5%AF%BC%E8%88%AA%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97/"
+          aria-label="后一篇:Habitat-多智能体目标导航强化学习代码框架编写指南"
+          title="后一篇:Habitat-多智能体目标导航强化学习代码框架编写指南"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Habitat-多智能体目标导航强化学习代码框架编写指南</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">Leave a comment</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2026<span class="footer-info-sep rotate"></span>wkt_cherish
+    </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-环境封装">1. 环境封装</a>
+      <ul>
+        <li><a href="#11-objctgoalnavigationrlenv-返回的观测数据格式">1.1 ObjctGoalNavigationRLEnv 返回的观测数据格式</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-构建观测">2. 构建观测</a>
+      <ul>
+        <li><a href="#21-space-结构">2.1 Space 结构</a></li>
+        <li><a href="#22-尺寸变量">2.2 尺寸变量</a></li>
+        <li><a href="#23-actor-观测-dict-全通道">2.3 Actor 观测 Dict 全通道</a></li>
+        <li><a href="#24-critic-观测-share_observation_space">2.4 Critic 观测 <code>share_observation_space</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="wkt_cherish"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">wkt_cherish</div>
+  <div class="sidebar-description">我是一名来自西北工业大学的硕士研究生，目前研一，我感兴趣的方向是具身智能与目标导航。热爱生活，并对生活中的任何事情保持好奇心与兴趣</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">16</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      5
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">1</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:wkt_cherish@qq.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/mirror"
+        aria-label="鉴心"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="Mirror icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">鉴心</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="about icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/taichi.svg" alt="friend icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js"  ></script><script src="/js/aos.js"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax ></script><script
+    src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js"
+    
+    
+    
+    
+    integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE/jMSCxD&#43;jAPU55x/jj3wlf" crossorigin="anonymous"></script><script src="/js/pjax.js"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "wkt_cherish",
+          title: "Habitat-多智能体环境观测结构设计",
+          url: "http:\/\/localhost:1313\/post\/20260701_habitat_%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%8E%AF%E5%A2%83%E8%A7%82%E6%B5%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1\/",
+          description: "环境封装与观测空间构建",
+          cover: "http:\/\/localhost:1313\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax ></script><script src="/js/tabs.js" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'disqus', 'utterances'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'HwsirZ\/comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDORsvLWA');
+        giscusScript.setAttribute('data-category', 'General');
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDORsvLWM4C46Yx');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? 'dark' : 'light' } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'giscus';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script></div>
+</div><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script><script>
+    var setupAPlayer = () => {
+      if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+          const meting = _$('meting-js');
+          if (meting) {
+            meting.setAttribute('fixed', 'true');
+            const aside = meting.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              meting.parentNode.removeChild(meting);
+              document.body.appendChild(meting);
+            }
+          }
+        }
+      }
+    };</script><script
+    src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js"
+    defer
+    
+    
+    onload="setupAPlayer()"
+    integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr&#43;h5UfruuRL/aORyw&#43;5&#43;HZoU6e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/meting@2.0.1/dist/Meting.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-ASVlpKF80A22OXTK3tfEjZm1EL6uFMKIC4p8&#43;0maanw1S/IyB&#43;Y4JG&#43;ZDU7GpKE8" crossorigin="anonymous"></script></body>
+</html>
