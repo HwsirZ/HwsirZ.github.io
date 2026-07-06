@@ -161,7 +161,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">3</div>
   </a>
 </div>
 <div class="sidebar-social" ><div class="icon-email sidebar-social-icon">
@@ -256,6 +256,24 @@
                 >
                   心态
                 </a>
+              </li><li class="tag-item">
+                <a
+                  class="tag-link"
+                  href="/tags/%E6%97%A5%E8%AE%B0/"
+                  aria-label="标签: 日记"
+                  title="日记"
+                >
+                  日记
+                </a>
+              </li><li class="tag-item">
+                <a
+                  class="tag-link"
+                  href="/tags/%E9%9A%8F%E7%AC%94/"
+                  aria-label="标签: 随笔"
+                  title="随笔"
+                >
+                  随笔
+                </a>
               </li></ul>
       </div>
     </div>
@@ -269,6 +287,16 @@
             href="/tags/%E5%BF%83%E6%80%81/"
             aria-label="标签: 心态"
             >心态</a
+          ><a
+            style="font-size:10px"
+            href="/tags/%E6%97%A5%E8%AE%B0/"
+            aria-label="标签: 日记"
+            >日记</a
+          ><a
+            style="font-size:10px"
+            href="/tags/%E9%9A%8F%E7%AC%94/"
+            aria-label="标签: 随笔"
+            >随笔</a
           ></div>
   </div>
 </div><div class="widget-wrapper">
@@ -293,16 +321,23 @@
     </div>
   </div></div></div></aside>
 <section id="main" aria-label="Main content">
-<article class="mirror-single">
-  
-  <div class="mirror-single-cover" style="background-image: url('/images/mirror/20260704.jpg');"></div>
+<article class="diary-entry">
   
   
-  <header class="mirror-single-header">
+  
+  <div class="diary-cover" style="background-image: url('/images/mirror/20260704.jpg');"></div>
+  
+
+  
+  <header class="diary-header">
+    <div class="diary-date">
+      <span class="day">04</span>
+      <span class="month">Jul</span>
+      <span class="year">2026</span>
+    </div>
     <h1>2026 07 04</h1>
-    <time datetime="2026-07-04 13:07:06 &#43;0800 CST">2026年07月04日</time>
     
-    <div class="mirror-single-tags">
+    <div class="diary-tags">
       
       <span class="tag">#心态</span>
       
@@ -310,96 +345,227 @@
     
   </header>
 
-  <div class="mirror-single-body">
+  
+  <div class="diary-body">
     <p>测试</p>
 
   </div>
 
-  <div class="mirror-single-footer">
-    <a href="/mirror/" class="back-link">← 返回鉴心列表</a>
+  
+  <div class="diary-footer">
+    <a href="/mirror/" class="back-link">← 返回镜语</a>
+    <span class="divider">·</span>
+    <span class="footer-quote">🌙 写于深夜</span>
   </div>
+
 </article>
 
 <style>
-.mirror-single {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+ 
+.diary-entry {
+  max-width: 720px;
+  margin: 2.5rem auto;
+  padding: 3rem 3rem 2.5rem;
+  background: #fefcf7;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+  font-family: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif;
+  border: 1px solid #f0ede8;
+  position: relative;
 }
 
-.mirror-single-cover {
+ 
+.diary-entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      transparent 0px,
+      transparent 29px,
+      rgba(200, 195, 185, 0.08) 29px,
+      rgba(200, 195, 185, 0.08) 30px
+    );
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+ 
+.diary-cover {
   width: 100%;
-  height: 260px;
+  height: 200px;
   background-size: cover;
   background-position: center;
-  border-radius: 16px;
-  margin-bottom: 1.5rem;
-  background-color: #e2e8f0;
-}
-
-.mirror-single-header {
-  text-align: center;
+  border-radius: 12px;
   margin-bottom: 2rem;
+  background-color: #e8e4de;
 }
 
-.mirror-single-header h1 {
+ 
+.diary-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #e8e4de;
+  padding-bottom: 1.8rem;
+  position: relative;
+}
+
+.diary-date {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  background: #f5f2ed;
+  padding: 0.1rem 1.2rem 0.1rem 0.9rem;
+  border-radius: 40px;
+  margin-bottom: 0.8rem;
+  font-family: 'Mulish', sans-serif;
+}
+.diary-date .day {
   font-size: 2.2rem;
-  color: #0f172a;
-  margin-bottom: 0.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.2;
 }
-
-.mirror-single-header time {
-  color: #94a3b8;
+.diary-date .month {
   font-size: 0.9rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 0.2rem;
+}
+.diary-date .year {
+  font-size: 0.9rem;
+  color: #b0aaa2;
+  margin-left: 0.2rem;
 }
 
-.mirror-single-tags {
-  margin-top: 0.6rem;
+.diary-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0.3rem 0 0.6rem 0;
+  letter-spacing: 0.5px;
+}
+
+.diary-tags {
   display: flex;
   justify-content: center;
   gap: 0.4rem;
   flex-wrap: wrap;
 }
+.diary-tags .tag {
+  font-size: 0.7rem;
+  font-family: 'Mulish', sans-serif;
+  color: #7f8c8d;
+  background: #f0ede8;
+  padding: 0.15rem 0.8rem;
+  border-radius: 20px;
+}
 
-.mirror-single-body {
+ 
+.diary-body {
   font-size: 1.05rem;
-  line-height: 1.9;
-  color: #1e293b;
+  line-height: 2.1;
+  color: #2c3e50;
+  padding: 0.2rem 0.2rem;
 }
 
-.mirror-single-body h2 {
+.diary-body p {
+  margin: 0.8rem 0;
+  text-indent: 2em;
+}
+.diary-body p:first-of-type {
+  margin-top: 0;
+}
+
+.diary-body h2, .diary-body h3 {
   margin-top: 2rem;
-  border-left: 4px solid #3b82f6;
+  font-weight: 600;
+  color: #1e293b;
+  border-left: 4px solid #d4a373;
   padding-left: 1rem;
-  color: #0f172a;
 }
 
-.mirror-single-body ul, .mirror-single-body ol {
-  padding-left: 1.5rem;
+.diary-body ul, .diary-body ol {
+  padding-left: 2.2rem;
+  margin: 0.6rem 0 1.2rem 0;
+}
+.diary-body li {
+  margin-bottom: 0.3rem;
 }
 
-.mirror-single-footer {
+.diary-body blockquote {
+  background: #f8f6f2;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #d4a373;
+  color: #5a4e42;
+  font-style: italic;
+}
+
+.diary-body hr {
+  border: none;
+  border-top: 1px dashed #ddd8d0;
+  margin: 2rem 0;
+}
+
+ 
+.diary-footer {
   margin-top: 3rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #e8e4de;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  font-family: 'Mulish', sans-serif;
+  font-size: 0.9rem;
 }
-
 .back-link {
-  color: #3b82f6;
+  color: #7f8c8d;
   text-decoration: none;
-  font-weight: 500;
+  transition: color 0.2s;
 }
 .back-link:hover {
+  color: #3b82f6;
   text-decoration: underline;
 }
+.divider {
+  color: #d5d0c8;
+}
+.footer-quote {
+  color: #b0aaa2;
+  font-style: italic;
+}
 
+ 
 @media (max-width: 640px) {
-  .mirror-single-cover {
-    height: 160px;
+  .diary-entry {
+    padding: 1.8rem 1.2rem;
+    margin: 1rem 0.5rem;
+    border-radius: 12px;
   }
-  .mirror-single-header h1 {
+  .diary-header h1 {
+    font-size: 1.5rem;
+  }
+  .diary-date .day {
     font-size: 1.6rem;
+  }
+  .diary-cover {
+    height: 130px;
+  }
+  .diary-body {
+    font-size: 0.98rem;
+    line-height: 1.9;
+  }
+  .diary-body p {
+    text-indent: 1.5em;
   }
 }
 </style>
@@ -439,7 +605,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">3</div>
   </a>
 </div>
 <div class="sidebar-social" ><div class="icon-email sidebar-social-icon">
