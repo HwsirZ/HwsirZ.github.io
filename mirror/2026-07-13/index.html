@@ -349,7 +349,302 @@
 
   
   <div class="diary-body">
-    <p>今天想记录点什么&hellip;</p>
+    
+<div>
+<style>
+  /* ===== 基础重置 & 容器 ===== */
+  .blue-hour-wrapper {
+    all: initial;
+    /* 重置继承样式 */
+    display: block;
+    margin: 2rem auto;
+    max-width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 120px rgba(10, 20, 50, 0.5);
+    position: relative;
+    font-family: "Georgia", "Palatino", "Noto Serif SC", "思源宋体", "Source Han Serif SC", serif;
+  }
+
+  .blue-hour-container {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    padding: 4rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 30% 20%, #0f1a2e, #0a0e1a 50%, #0d0b1a 80%, #05060d);
+    overflow: hidden;
+    isolation: isolate;
+    /* 创建层叠上下文 */;
+  }
+
+  /* ===== 光晕背景层 ===== */
+  .blue-hour-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 80%, rgba(30, 60, 120, 0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 10%, rgba(60, 30, 100, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(10, 30, 80, 0.3) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== 星星容器 ===== */
+  .stars-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: twinkle var(--dur, 2.5s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    will-change: transform, opacity;
+  }
+
+  /* 星星颜色微调：部分偏蓝 */
+  .star.is-blue {
+    background: #b8d4e3;
+    box-shadow: 0 0 4px rgba(150, 200, 230, 0.3);
+  }
+  .star.is-warm {
+    background: #f0e6d0;
+    box-shadow: 0 0 4px rgba(240, 220, 180, 0.2);
+  }
+
+  @keyframes twinkle {
+    0% {
+      opacity: 0.15;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  /* ===== 内容层 ===== */
+  .blue-hour-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  /* 装饰分隔线（上） */
+  .blue-hour-content::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    margin: 0 auto 2.2rem auto;
+    background: linear-gradient(90deg, transparent, rgba(232, 201, 160, 0.5), rgba(232, 201, 160, 0.8), rgba(232, 201, 160, 0.5), transparent);
+    border-radius: 2px;
+  }
+
+  .blue-hour-content .line {
+    display: block;
+    font-size: clamp(1.2rem, 3.2vw, 2rem);
+    line-height: 1.8;
+    letter-spacing: 0.06em;
+    color: #e8c9a0;
+    text-shadow:
+      0 0 20px rgba(232, 201, 160, 0.12),
+      0 0 60px rgba(232, 201, 160, 0.06),
+      0 4px 30px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    padding: 0.2rem 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* 每行之间的微妙分隔 */
+  .blue-hour-content .line+.line {
+    margin-top: 0.1rem;
+  }
+
+  /* 最后一句的强调 */
+  .blue-hour-content .line:last-child {
+    color: #f0dbb0;
+    text-shadow:
+      0 0 30px rgba(232, 201, 160, 0.2),
+      0 0 80px rgba(232, 201, 160, 0.08),
+      0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* 装饰分隔线（下） */
+  .blue-hour-content::after {
+    content: '✦ ✦ ✦';
+    display: block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.8rem;
+    color: rgba(232, 201, 160, 0.25);
+    text-shadow: 0 0 20px rgba(232, 201, 160, 0.05);
+  }
+
+  /* ===== 左下 / 右下 微光点缀 ===== */
+  .glow-spot {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .glow-spot--bl {
+    bottom: -60px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(40, 60, 140, 0.2), transparent 70%);
+  }
+  .glow-spot--tr {
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(80, 40, 130, 0.15), transparent 70%);
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 640px) {
+    .blue-hour-container {
+      padding: 2.8rem 1.5rem;
+      min-height: 460px;
+    }
+    .blue-hour-content .line {
+      font-size: clamp(1rem, 4.2vw, 1.4rem);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+    .blue-hour-content::before {
+      width: 56px;
+      margin-bottom: 1.8rem;
+    }
+    .blue-hour-content::after {
+      font-size: 0.55rem;
+      letter-spacing: 0.6rem;
+      margin-top: 1.8rem;
+    }
+    .glow-spot--bl {
+      width: 180px;
+      height: 180px;
+      bottom: -40px;
+      left: -40px;
+    }
+    .glow-spot--tr {
+      width: 240px;
+      height: 240px;
+      top: -50px;
+      right: -50px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .blue-hour-container {
+      padding: 2rem 1rem;
+      min-height: 400px;
+    }
+    .blue-hour-content .line {
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+  }
+
+  /* ===== 暗色模式兼容（若Hugo主题有暗色模式，保留此样式） ===== */
+  /* 我们使用独立容器，不受全局暗色模式影响 */
+</style>
+
+<div class="blue-hour-wrapper">
+  <div class="blue-hour-container">
+
+    <!-- 光晕装饰 -->
+    <div class="glow-spot glow-spot--bl"></div>
+    <div class="glow-spot glow-spot--tr"></div>
+
+    <!-- 星星层 -->
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <!-- 文字内容 -->
+    <div class="blue-hour-content">
+      <span class="line">理性产生于非理性，</span>
+      <span class="line">感觉产生于非感觉，</span>
+      <span class="line">逻辑产生于非逻辑，</span>
+      <span class="line">公正无私的观察产生于贪婪的欲望，</span>
+      <span class="line">为他人而活着产生于自我中心主义，</span>
+      <span class="line">真理产生于谬误。</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+
+    const container = document.getElementById('starsLayer');
+    if (!container) return;
+
+    const count = 110; // 星星数量
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+
+      // 随机位置 (百分比)
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      star.style.left = left + '%';
+      star.style.top = top + '%';
+
+      // 随机大小 (1px ~ 3.5px)
+      const size = 1 + Math.random() * 2.5;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      // 随机动画持续时间 (1.5s ~ 4.5s)
+      const duration = 1.8 + Math.random() * 2.8;
+      star.style.setProperty('--dur', duration + 's');
+
+      // 随机动画延迟 (0s ~ 5s)
+      const delay = Math.random() * 5;
+      star.style.setProperty('--delay', delay + 's');
+
+      // 随机颜色倾向 (约15%偏蓝, 10%偏暖, 其余白色)
+      const colorRand = Math.random();
+      if (colorRand < 0.15) {
+        star.classList.add('is-blue');
+      } else if (colorRand < 0.25) {
+        star.classList.add('is-warm');
+      }
+
+      // 极少数星星更大更亮 (作为“主星”)
+      if (i % 7 === 0 && size > 2) {
+        star.style.boxShadow = '0 0 6px rgba(255,255,255,0.4), 0 0 12px rgba(200,220,255,0.1)';
+      }
+
+      fragment.appendChild(star);
+    }
+
+    container.appendChild(fragment);
+
+  })();
+</script>
+</div>
+
+
 
   </div>
 
